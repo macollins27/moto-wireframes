@@ -1,200 +1,145 @@
-# MOTO — Discover (Profile Browsing) Wireframe Spec
+# MOTO Discover — Wireframe Spec
 
-## Shell Layout
+## Shell Layout (430px mobile)
 
 ```
-+------------------------------------------+
-| [Logo] MOTO    [Filter] [Bell*] | [Theme]|  <- 56px header
-+------------------------------------------+
-|                                          |
-|  +----- SCROLLABLE CONTENT AREA ------+  |
-|  |                                    |  |
-|  |  PHOTO CAROUSEL (3:4 aspect)       |  |
-|  |  [dots]  [<tap left] [tap right>]  |  |
-|  |  Gradient overlay at bottom:       |  |
-|  |  "Emma Chen 28"                    |  |
-|  |  [Verified] San Francisco, CA      |  |
-|  |                                    |  |
-|  +------------------------------------+  |
-|  | MUSIC PLAYER (sticky top, blur bg) |  |
-|  | [Art] Title / Artist [EQ] [Play]   |  |
-|  | [====-------] progress bar         |  |
-|  +------------------------------------+  |
-|  | QUICK TAGS row (pill chips)        |  |
-|  +------------------------------------+  |
-|  | COMPATIBILITY CARD (gradient bg)   |  |
-|  | [87% ring] "Extraordinary Match"   |  |
-|  | [Expand v] -> domain bars          |  |
-|  +------------------------------------+  |
-|  | LIFE PLANS (2-col card grid)       |  |
-|  | [Marriage] [Children]              |  |
-|  | [Location] [Education]             |  |
-|  | [Spirit]   [Finance]              |  |
-|  +------------------------------------+  |
-|  | VALUES & BELIEFS (icon+text list)  |  |
-|  +------------------------------------+  |
-|  | SOCIAL INTERESTS (tag pills)       |  |
-|  +------------------------------------+  |
-|  | MOOD BOARD (pinterest grid)        |  |
-|  | [tall]  [sq]  [sq]                |  |
-|  | [tall]  [sq]  [+4]               |  |
-|  +------------------------------------+  |
-|  | AUDIO IDENTITY (track list)        |  |
-|  +------------------------------------+  |
-|  | WRITTEN EXPRESSION (poem card)     |  |
-|  | Quote + attribution + reflection   |  |
-|  +------------------------------------+  |
-|  | GEOGRAPHY (icon+detail list)       |  |
-|  +------------------------------------+  |
-|                                          |
-+------------------------------------------+
-| [X Pass] [* Super] [<3 LIKE] [Bookmark] |  <- Action bar
-+------------------------------------------+
-| Discover  Matches  Messages  Activity  Me|  <- 60px tab bar
-+------------------------------------------+
++----------------------------------+
+|  HEADER  [Logo] 3/8  [F] [T]    |  56px, surface-1
++----------------------------------+
+| [ForYou] [Ready] [Near] [Fam].. |  filter-row, scroll-x
++----------------------------------+
+|                                  |
+|   IMMERSIVE PROFILE SCROLL       |  flex:1, overflow-y:auto
+|   (one person at a time)         |
+|                                  |
+|   Ch1: Photo + Identity          |
+|   Ch2: Alignment Bars            |
+|   Ch3: Life Architecture         |
+|   Ch4: Values & Beliefs          |
+|   Ch5: Audio Identity            |
+|   Ch6: Mood Board                |
+|   Ch7: Literary Expression       |
+|   Ch8: Lifestyle Details         |
+|                                  |
++----------------------------------+
+|  [X]   [Bookmark]   [Heart]     |  action-bar, surface-1
++----------------------------------+
+| Disc  Match  Msg  Activity  Me  |  tab-bar, 60px, surface-1
++----------------------------------+
 ```
-
-Max-width: 430px centered. Height: 100vh.
 
 ## Header
 
-- Height: 56px, surface-1 bg, border-bottom faint
-- Left: MOTO logo (28px SVG mark + gradient text)
-- Right: filter icon btn (40px), bell icon btn (40px, pink notification dot), theme toggle
+- 56px height, surface-1 bg, border-bottom border-faint
+- Left: MOTO logo (gradient SVG circle + gradient text), profile counter "3 of 8" in text-tertiary
+- Right: filter icon btn (36x36) + divider + theme toggle (36x36)
 
-## Photo Carousel
+## Intent Filter Row
 
-- Aspect ratio: 3:4, full width, surface-2 bg
-- 5 dot indicators at top (3px height bars, 32px wide, white translucent)
-- Left/right tap zones (40% width each, invisible)
-- Bottom gradient overlay: transparent to bg-page
-- Name: 28px/700, white. Age: 24px/300, white 70%
-- Verified badge: green-muted bg, pill shape, checkmark + "Verified"
-- Location: 14px, white 70%, map-pin icon
+- Horizontally scrollable pills, 13px font, rounded-full (20px radius)
+- Active pill: accent border + accent-muted bg + accent text
+- Inactive: border-default + surface-1 bg + text-secondary
+- Filters: "For You" (active), "Ready Now", "Near You", "Family-Focused", "Same Timeline"
+- Each pill has leading SVG icon (14x14)
 
-## Music Player (Sticky)
+## Chapter 1: Photo + Identity
 
-- Sticks to top of scroll area, z-index 10
-- Blur backdrop: 12px, surface-1 at 85% alpha
-- Album art: 40px square, rounded-md
-- Track title: 13px/500. Artist: 12px tertiary
-- Spotify badge: green #1DB954, 10px
-- Animated equalizer bars (4 bars, varying heights)
-- Play/pause button: 36px circle, accent bg
-- 2px progress bar at absolute bottom
+- Full-bleed photo area, aspect-ratio 3:4
+- Photo dot indicators at top center (6px dots, active=20px wide pill, white)
+- Top gradient overlay for status bar
+- Bottom gradient overlay with identity info:
+  - Name: Playfair Display serif, 28px/600, white
+  - Meta row: age + height + location + verified badge, 14px, white/75%
+  - Compatibility ring: 48x48 SVG circle, stroke-dasharray for score arc, score number centered 13px/700
+  - Ring label: "89% Life Alignment" bold + description below
 
-## Compatibility Score Card
+## Chapter 2: Alignment Bars
 
-- Gradient warm background, accent-tinted border
-- SVG ring: 72px, 4px stroke, accent fill, animated dashoffset
-- Score: 20px/700 accent. Percent: 11px tertiary
-- Match label: "Extraordinary Match" pill with star icon, accent-muted bg
-- Description: 14px secondary
-- Expand button toggles domain breakdown (max-height transition)
+- Chapter label: 11px/600 uppercase, accent color, 0.1em letter-spacing
+- Chapter title: Playfair Display 20px/600
+- 7 domain rows, each with:
+  - Icon: 28x28 rounded-md, domain-color-muted bg, domain-color icon
+  - Name + weight label: 13px/500 + 11px/text-disabled
+  - Track: 4px height, surface-2 bg, domain-color fill
+  - Percentage: 13px/600 tabular-nums, color-coded (green >80%, amber 60-79%, red <60%)
 
-## Domain Score Breakdown (Expandable)
+| Domain | Color var | Weight |
+|--------|-----------|--------|
+| Family Goals | --domain-family (#f472b6) | 25% |
+| Geography | --domain-geography (#3b82f6) | 15% |
+| Spirituality | --domain-spirituality (#8b5cf6) | 15% |
+| Lifestyle | --domain-lifestyle (#fbbf24) | 15% |
+| Attraction | --domain-attraction (#f472b6) | 10% |
+| Philosophy | --domain-politics (#d97706) | 10% |
+| Social | --domain-social (#16a34a) | 10% |
 
-| Domain | Weight | Bar Color | Example Score |
-|---|---|---|---|
-| Family Goals | 25% | accent-pink | 92 |
-| Geography | 15% | info blue | 88 |
-| Spirituality | 15% | special purple | 94 |
-| Lifestyle | 15% | gold | 85 |
-| Physical Attraction | 10% | accent-pink | 80 |
-| Politics | 10% | warning amber | 72 |
-| Social Interests | 10% | positive green | 90 |
+## Chapter 3: Life Architecture
 
-- Each row: 28px icon (rounded-md, tinted bg) + name/weight + 4px bar + numeric score
-- Alignment chips below: green "Both want 2-3 children", amber "Moderate political difference"
+- Timeline rows with 32x32 rounded-lg colored icons
+- Each row: label (13px/500), value (14px/text-secondary), match indicator pill
+- Match indicator: rounded-full, 12px/600, semantic bg+text
+  - "Aligned with you": compat-high-muted bg, compat-high text
+  - "Close to yours": compat-medium-muted bg, compat-medium text
+  - "Different from yours": compat-medium-muted bg, compat-medium text
+- Data: marriage timeline, children count + non-negotiable flag, family start age, location preference, education philosophy
 
-## Life Plans
+## Chapter 4: Values & Beliefs
 
-- Section header: 13px/600 uppercase tertiary + 14px secondary subtitle
-- 2-column grid, 12px gap
-- Each card: surface-2 bg, border-faint, rounded-xl, 16px padding
-- Content: emoji (20px) + label (12px tertiary) + value (14px/500 primary)
+- Spiritual life: denomination + importance level + free-text expression
+- Core values: flex-wrap chip grid, 13px/500, rounded-full (20px)
+  - `.aligned`: compat-high border + muted bg + text
+  - `.partial`: accent-gold border + muted bg + text
+  - default: border-default + surface-1 bg
+- Lifestyle values: same chip pattern
 
-## Values & Beliefs
+## Chapter 5: Audio Identity
 
-- Icon + text list, 16px vertical gap
-- Icon: 36px rounded-lg, tinted bg, centered emoji
-- Title: 14px/500 primary. Quote: 14px secondary, 1.5 line-height
+- Now-playing bar: 44x44 album art placeholder + title/artist + waveform animation
+- Playlist card: surface-1 bg, rounded-xl, Spotify icon + playlist name + song count
+- Song list: 3 preview rows (number, title, artist, duration), all tabular-nums
 
-## Social Interests
+## Chapter 6: Mood Board
 
-- Flex-wrap tag pills, 8px gap
-- Top interests: accent-muted bg, accent text, 500 weight
-- Others: surface-2 bg, border-faint, secondary text
-- Footer note: 13px tertiary
+- 2-column CSS grid, 4px gap, rounded-xl overflow hidden
+- First item spans 2 rows (`.tall`), rest are 1:1 squares
+- Each item has gradient overlay caption at bottom (11px/500 white)
+- Archetype quote below grid: 14px italic text-secondary
 
-## Mood Board
+## Chapter 7: Literary Expression
 
-- 3-col x 2-row grid, 4px gap, 3:2 container aspect
-- First item: spans full left column (grid-row 1/3)
-- Last item: "+4 more" overlay (black 50%, white text)
-- All items: rounded-lg, overflow hidden, hover opacity
+- Passage block: surface-1 bg, border-faint, rounded-xl
+- Large quote mark: Playfair Display 44px, accent color, 0.3 opacity
+- Poem text: Playfair Display italic 16px/1.7
+- Source: Inter 13px text-tertiary
+- Reflection: 14px text-secondary, border-top separator
 
-## Audio Identity (Playlist)
+## Chapter 8: Lifestyle Details
 
-- Spotify badge in section header
-- Currently playing: accent-muted bg, eq animation, accent text
-- Other tracks: numbered, hover surface-hover, 10px padding
-- Duration: 12px tertiary, tabular-nums
-
-## Written Expression
-
-- Poem card: surface-2 bg, rounded-2xl, 32px padding
-- Top gradient stripe: 3px, accent to pink
-- Large quote mark: 48px Georgia, accent 30% opacity
-- Poem text: 16px italic, 1.8 line-height
-- Attribution: 13px tertiary, 500 weight
-- Reflection section: border-top divider, 12px uppercase accent label, 14px secondary text
-
-## Geography
-
-- Icon + detail list, 12px gap
-- 36px icon containers (rounded-lg, surface-2 or accent-muted bg)
-- Label: 12px tertiary. Value: 14px/500 primary
-- Distance: positive green color, tabular-nums
+- Detail rows: icon (16px text-tertiary) + label (13px text-tertiary, 90px min) + value (14px/500 text-primary)
+- Rows separated by border-top border-faint
+- Data: daily rhythm, activity, social style, wealth view, work style, environment
 
 ## Action Bar
 
-- Fixed above tab bar, surface-1 blur backdrop
-- 4 buttons centered with 20px gap
-- Pass: 52px circle, surface-2, X icon. Hover: red tint
-- Super Like: 44px circle, gold-muted, star fill. Hover: gold glow
-- Like (primary): 64px circle, purple-to-pink gradient, heart fill, 20px shadow. Hover: scale 1.05 + stronger shadow
-- Save: 44px circle, surface-2, bookmark outline. Hover: blue tint
+- 3 buttons centered with 16px gap
+- Pass: 56x56 circle, surface-2 bg, border-default, X icon. Hover: negative-muted bg, negative border+icon
+- Bookmark: 56x56 circle, surface-2 bg, border-default, bookmark icon. Hover: gold-muted bg, gold border+icon
+- Interested: 64x64 circle (larger = primary), accent bg, white heart icon, accent box-shadow glow. Hover: accent-hover + stronger glow
 
 ## Bottom Tab Bar
 
-- 60px height, surface-1 bg, border-top faint
-- 5 tabs: Discover (compass), Matches (heart), Messages (chat + badge), Activity (pulse), Profile (user)
-- Active: accent color. Inactive: tertiary
-- Each: 22px icon + 11px/500 label, flex-column, 2px gap
-- Messages badge: pink bg, white 9px/700 count, 16px pill
+- 60px height, surface-1, border-top border-faint
+- 5 tabs: Discover (active), Matches, Messages (badge "3"), Activity, Profile
+- Active: accent color fill. Inactive: text-tertiary stroke
+- Tab: flex-column, 22x22 icon + 11px/500 label
 
-## Filter Sheet (Bottom Modal)
+## Key Differentiators from Competitors
 
-- Overlay: fixed, black 50%, z-100
-- Sheet: bottom-anchored, rounded-t-2xl, surface-1, max 80vh
-- Handle bar: 36px wide, 4px, centered
-- Groups: Marriage Readiness, Family Timeline, Geographic Commitment, Spirituality, Min Compatibility
-- Chips: 36px height, rounded-full, border-default. Selected: accent-muted bg + accent border
-- Range slider: accent color, 14px/600 accent value label
-- Apply button: full-width primary lg
-
-## Atmosphere
-
-Warm Luxury (Atmosphere 3): purple accent (#a78bfa dark / #7c3aed light), stone warm tones.
-Dark default. Light toggle available.
-
-## Interactions
-
-- Photo carousel: tap left/right zones or dots to navigate
-- Music player: sticky on scroll, play/pause toggle
-- Compatibility: expand/collapse domain breakdown with animated max-height
-- Filter sheet: opens from header button, closes on overlay click or Done
-- Filter chips: toggle selected state on click
-- Action buttons: scale on press, hover color transitions
-- All interactive elements: focus-visible double-ring pattern
+1. NOT a swipe card — full vertical scroll narrative per person
+2. Compatibility ring + 7-domain bars visible BEFORE detailed content
+3. Serif typography (Playfair Display) for headings — editorial feel
+4. Mood board grid embedded in profile scroll
+5. Audio identity with waveform animation
+6. Literary expression with reflection
+7. Intent-based filter pills (marriage readiness, family timeline)
+8. Three-action model (pass/bookmark/interested) not binary swipe

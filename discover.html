@@ -7,11 +7,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* === WARM LUXURY ATMOSPHERE === */
+      /* === MOTO CUSTOM ATMOSPHERE ===
+         Based on Warm Luxury (Atmosphere 3), customized for MOTO.
+         Research justification:
+         - Warm stone neutrals: signals depth and intentionality (vs cold grays of tech apps)
+         - Purple accent (#a78bfa): differentiated from Hinge (rose), Bumble (yellow), eHarmony (green)
+         - Pink secondary (#f472b6): warmth + femininity balance in a relationship product
+         - Gold tertiary (#fbbf24): premium/aspirational signal
+         - Dark-first: NO major dating app is dark-first. This signals seriousness + sophistication.
+         - Serif heading accents (Playfair Display): NO dating app uses serif typography.
+           This signals intellectual depth and editorial quality, matching MOTO's thesis.
+      */
+
       /* Dark (default) */
       :root,
       [data-theme="dark"] {
@@ -35,6 +46,7 @@
         --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
         --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
         --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
         /* MOTO custom tokens */
         --gradient-warm: linear-gradient(
           135deg,
@@ -44,8 +56,13 @@
         --gradient-hero: linear-gradient(
           180deg,
           transparent 0%,
-          rgba(12, 10, 9, 0.7) 60%,
+          rgba(12, 10, 9, 0.6) 50%,
           rgba(12, 10, 9, 0.95) 100%
+        );
+        --gradient-photo-top: linear-gradient(
+          0deg,
+          transparent 60%,
+          rgba(12, 10, 9, 0.6) 100%
         );
         --accent-pink: #f472b6;
         --accent-pink-muted: rgba(244, 114, 182, 0.12);
@@ -61,7 +78,32 @@
         --negative-muted: rgba(239, 68, 68, 0.08);
         --special: #8b5cf6;
         --special-muted: rgba(139, 92, 246, 0.08);
+
+        /* Domain colors — matching established MOTO palette */
+        --domain-family: #f472b6;
+        --domain-family-muted: rgba(244, 114, 182, 0.12);
+        --domain-geography: #3b82f6;
+        --domain-geography-muted: rgba(59, 130, 246, 0.12);
+        --domain-spirituality: #8b5cf6;
+        --domain-spirituality-muted: rgba(139, 92, 246, 0.12);
+        --domain-lifestyle: #fbbf24;
+        --domain-lifestyle-muted: rgba(251, 191, 36, 0.12);
+        --domain-attraction: #f472b6;
+        --domain-attraction-muted: rgba(244, 114, 182, 0.08);
+        --domain-politics: #d97706;
+        --domain-politics-muted: rgba(217, 119, 6, 0.08);
+        --domain-social: #16a34a;
+        --domain-social-muted: rgba(22, 163, 74, 0.08);
+
+        /* Compatibility score colors */
+        --compat-high: #16a34a;
+        --compat-high-muted: rgba(22, 163, 74, 0.1);
+        --compat-medium: #fbbf24;
+        --compat-medium-muted: rgba(251, 191, 36, 0.1);
+        --compat-low: #ef4444;
+        --compat-low-muted: rgba(239, 68, 68, 0.08);
       }
+
       /* Light */
       [data-theme="light"] {
         --bg-page: #faf9f7;
@@ -87,6 +129,7 @@
         --shadow-lg:
           0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
         --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
         /* MOTO custom tokens — light overrides */
         --gradient-warm: linear-gradient(
           135deg,
@@ -96,8 +139,13 @@
         --gradient-hero: linear-gradient(
           180deg,
           transparent 0%,
-          rgba(250, 249, 247, 0.7) 60%,
+          rgba(250, 249, 247, 0.6) 50%,
           rgba(250, 249, 247, 0.95) 100%
+        );
+        --gradient-photo-top: linear-gradient(
+          0deg,
+          transparent 60%,
+          rgba(250, 249, 247, 0.6) 100%
         );
         --accent-pink: #ec4899;
         --accent-pink-muted: rgba(236, 72, 153, 0.08);
@@ -113,6 +161,29 @@
         --negative-muted: rgba(239, 68, 68, 0.06);
         --special: #7c3aed;
         --special-muted: rgba(124, 58, 237, 0.06);
+
+        /* Domain colors — light */
+        --domain-family: #ec4899;
+        --domain-family-muted: rgba(236, 72, 153, 0.08);
+        --domain-geography: #2563eb;
+        --domain-geography-muted: rgba(37, 99, 235, 0.08);
+        --domain-spirituality: #7c3aed;
+        --domain-spirituality-muted: rgba(124, 58, 237, 0.08);
+        --domain-lifestyle: #d97706;
+        --domain-lifestyle-muted: rgba(217, 119, 6, 0.08);
+        --domain-attraction: #ec4899;
+        --domain-attraction-muted: rgba(236, 72, 153, 0.06);
+        --domain-politics: #b45309;
+        --domain-politics-muted: rgba(180, 83, 9, 0.06);
+        --domain-social: #16a34a;
+        --domain-social-muted: rgba(22, 163, 74, 0.06);
+
+        --compat-high: #16a34a;
+        --compat-high-muted: rgba(22, 163, 74, 0.08);
+        --compat-medium: #d97706;
+        --compat-medium-muted: rgba(217, 119, 6, 0.08);
+        --compat-low: #ef4444;
+        --compat-low-muted: rgba(239, 68, 68, 0.06);
       }
 
       html,
@@ -169,6 +240,11 @@
       h3 {
         font-size: 16px;
         line-height: 1.3;
+      }
+
+      /* Serif accent for MOTO — editorial differentiation from every competitor */
+      .serif {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
       }
 
       /* Buttons */
@@ -243,74 +319,7 @@
         font-size: 16px;
       }
 
-      /* Inputs */
-      input[type="text"],
-      input[type="email"],
-      input[type="password"],
-      input[type="search"],
-      input[type="number"],
-      input[type="url"],
-      input[type="tel"],
-      select,
-      textarea {
-        height: 40px;
-        padding: 0 12px;
-        border-radius: 8px;
-        border: 1px solid var(--border-default);
-        background: var(--bg-page);
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 400;
-        transition:
-          border-color 150ms ease-out,
-          box-shadow 150ms ease-out;
-        -webkit-font-smoothing: antialiased;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      input::placeholder,
-      textarea::placeholder {
-        color: var(--text-disabled);
-      }
-      input:focus,
-      select:focus,
-      textarea:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-muted);
-      }
-      textarea {
-        height: auto;
-        min-height: 80px;
-        padding: 12px;
-        resize: vertical;
-      }
-
-      /* Cards */
-      .card {
-        background: var(--surface-1);
-        border: 1px solid var(--border-faint);
-        border-radius: 12px;
-        padding: 24px;
-        transition:
-          background-color 150ms ease-out,
-          border-color 150ms ease-out,
-          box-shadow 200ms ease-out;
-      }
-      .card-interactive {
-        cursor: pointer;
-      }
-      .card-interactive:hover {
-        background: var(--surface-hover);
-        border-color: var(--border-default);
-      }
-      .card-interactive:focus-visible {
-        outline: none;
-        box-shadow: var(--focus-ring);
-      }
-
-      /* Badges */
+      /* Badge */
       .badge {
         display: inline-flex;
         align-items: center;
@@ -366,23 +375,17 @@
 
       /* Scrollbar */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 4px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
         background: var(--border-default);
-        border-radius: 3px;
+        border-radius: 2px;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: var(--border-strong);
-      }
-
-      /* Scroll containment */
-      .shell > *,
-      .shell > * > * {
-        min-height: 0;
       }
 
       /* === THEME TOGGLE === */
@@ -422,174 +425,200 @@
         color: var(--text-tertiary);
       }
 
-      /* ================================================================
-   MOTO CUSTOM STYLES — Profile Discovery Experience
-   ================================================================ */
+      /* Flexbox scroll containment */
+      .shell > *,
+      .shell > * > * {
+        min-height: 0;
+      }
 
-      /* Photo carousel */
-      .photo-carousel {
+      /* ============================================================
+         DISCOVER PAGE — IMMERSIVE PROFILE EXPERIENCE
+         This is NOT a swipe card. It is a full-screen, vertically
+         scrollable narrative about a person's life architecture.
+         ============================================================ */
+
+      /* Photo section — cinematic, edge-to-edge */
+      .photo-section {
         position: relative;
         width: 100%;
-        aspect-ratio: 3/4;
         overflow: hidden;
-        background: var(--surface-2);
       }
-      .photo-carousel img {
+      .photo-hero {
         width: 100%;
-        height: 100%;
+        aspect-ratio: 3 / 4;
         object-fit: cover;
         display: block;
+        background: var(--surface-2);
       }
-      .photo-dots {
-        position: absolute;
-        top: 16px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 6px;
-        z-index: 3;
-      }
-      .photo-dot {
-        width: 32px;
-        height: 3px;
-        border-radius: 2px;
-        background: rgba(255, 255, 255, 0.35);
-        transition: background-color 200ms ease-out;
-        cursor: pointer;
-        border: none;
-        padding: 0;
-      }
-      .photo-dot.active {
-        background: rgba(255, 255, 255, 0.95);
-      }
-      .photo-dot:hover {
-        background: rgba(255, 255, 255, 0.7);
-      }
-      .photo-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 80px 24px 24px;
-        background: var(--gradient-hero);
-        z-index: 2;
-      }
-      .photo-nav {
+      .photo-overlay-top {
         position: absolute;
         top: 0;
-        bottom: 0;
-        width: 40%;
-        z-index: 4;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-      }
-      .photo-nav-left {
         left: 0;
-      }
-      .photo-nav-right {
         right: 0;
+        height: 80px;
+        background: var(--gradient-photo-top);
+        pointer-events: none;
+      }
+      .photo-overlay-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0 20px 20px;
+        background: var(--gradient-hero);
+        pointer-events: none;
+      }
+      .photo-dots {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        padding: 8px 0;
+      }
+      .photo-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.35);
+        transition:
+          background-color 200ms ease-out,
+          width 200ms ease-out;
+      }
+      .photo-dot.active {
+        width: 20px;
+        background: #fff;
       }
 
-      /* Verified badge */
+      /* Identity bar — name, age, basic info overlaid on photo */
+      .identity-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 20px 16px;
+        background: var(--gradient-hero);
+      }
+      .identity-name {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #fff;
+        line-height: 1.15;
+      }
+      .identity-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 4px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .identity-meta-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+      }
       .verified-badge {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        background: rgba(22, 163, 74, 0.15);
+        background: rgba(22, 163, 74, 0.2);
         color: #4ade80;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 500;
-      }
-      [data-theme="light"] .verified-badge {
-        background: rgba(22, 163, 74, 0.1);
-        color: #16a34a;
-      }
-
-      /* Compatibility score ring */
-      .score-ring-container {
-        position: relative;
-        width: 72px;
-        height: 72px;
-        flex-shrink: 0;
-      }
-      .score-ring {
-        width: 72px;
-        height: 72px;
-        transform: rotate(-90deg);
-      }
-      .score-ring-bg {
-        fill: none;
-        stroke: var(--border-default);
-        stroke-width: 4;
-      }
-      .score-ring-fill {
-        fill: none;
-        stroke: var(--accent);
-        stroke-width: 4;
-        stroke-linecap: round;
-        stroke-dasharray: 188.5;
-        stroke-dashoffset: calc(188.5 - (188.5 * var(--score, 87) / 100));
-        transition: stroke-dashoffset 800ms ease-out;
-      }
-      .score-ring-text {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .score-number {
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: var(--accent);
-        font-variant-numeric: tabular-nums;
-        line-height: 1;
-      }
-      .score-percent {
         font-size: 11px;
-        color: var(--text-tertiary);
-        font-weight: 500;
-      }
-
-      /* Match quality label */
-      .match-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 13px;
         font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-      .match-label-extraordinary {
-        background: var(--accent-muted);
-        color: var(--accent);
-        border: 1px solid rgba(167, 139, 250, 0.2);
-      }
-      [data-theme="light"] .match-label-extraordinary {
-        color: var(--accent);
-        border-color: rgba(124, 58, 237, 0.15);
+        padding: 2px 8px;
+        border-radius: 12px;
       }
 
-      /* Domain score bars */
-      .domain-bar-container {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .domain-row {
+      /* Compatibility ring — the signature MOTO element */
+      .compat-ring-wrap {
         display: flex;
         align-items: center;
         gap: 12px;
+        margin-top: 12px;
       }
-      .domain-icon {
+      .compat-ring {
+        width: 48px;
+        height: 48px;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .compat-ring svg {
+        width: 48px;
+        height: 48px;
+        transform: rotate(-90deg);
+      }
+      .compat-ring-bg {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-width: 4;
+      }
+      .compat-ring-fill {
+        fill: none;
+        stroke-width: 4;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 600ms ease-out;
+      }
+      .compat-ring-score {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        font-variant-numeric: tabular-nums;
+      }
+      .compat-ring-label {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.3;
+      }
+      .compat-ring-label strong {
+        display: block;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      /* Section chapter styling — editorial narrative feel */
+      .chapter {
+        padding: 24px 20px;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .chapter:last-of-type {
+        border-bottom: none;
+      }
+      .chapter-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .chapter-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        color: var(--text-primary);
+      }
+
+      /* Domain alignment bars */
+      .domain-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0;
+      }
+      .domain-bar-row + .domain-bar-row {
+        border-top: 1px solid var(--border-faint);
+      }
+      .domain-bar-icon {
         width: 28px;
         height: 28px;
         border-radius: 6px;
@@ -599,34 +628,18 @@
         flex-shrink: 0;
         font-size: 14px;
       }
-      .domain-info {
+      .domain-bar-info {
         flex: 1;
         min-width: 0;
       }
-      .domain-name {
+      .domain-bar-name {
         font-size: 13px;
         font-weight: 500;
         color: var(--text-primary);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
-      .domain-weight {
-        font-size: 11px;
-        color: var(--text-disabled);
-        font-weight: 400;
-      }
-      .domain-score-value {
-        font-size: 13px;
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-        min-width: 32px;
-        text-align: right;
-        flex-shrink: 0;
-      }
-      .domain-bar {
+      .domain-bar-track {
         height: 4px;
-        background: var(--border-default);
+        background: var(--surface-2);
         border-radius: 2px;
         margin-top: 4px;
         overflow: hidden;
@@ -636,303 +649,253 @@
         border-radius: 2px;
         transition: width 600ms ease-out;
       }
-
-      /* Music player */
-      .music-player {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 16px;
-        background: var(--surface-1);
-        border-bottom: 1px solid var(--border-faint);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-      [data-theme="dark"] .music-player {
-        background: rgba(20, 18, 16, 0.85);
-      }
-      [data-theme="light"] .music-player {
-        background: rgba(255, 255, 255, 0.85);
-      }
-      .music-album-art {
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-        overflow: hidden;
-        flex-shrink: 0;
-        background: var(--surface-2);
-      }
-      .music-album-art img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .music-info {
-        flex: 1;
-        min-width: 0;
-      }
-      .music-title {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-primary);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .music-artist {
-        font-size: 12px;
-        color: var(--text-tertiary);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .music-controls {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-shrink: 0;
-      }
-      .music-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: none;
-        background: transparent;
-        color: var(--text-secondary);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition:
-          background-color 150ms ease-out,
-          color 150ms ease-out;
-        padding: 0;
-      }
-      .music-btn:hover {
-        background: var(--surface-hover);
-        color: var(--text-primary);
-      }
-      .music-btn-play {
-        width: 36px;
-        height: 36px;
-        background: var(--accent);
-        color: #fff;
-      }
-      .music-btn-play:hover {
-        background: var(--accent-hover);
-        color: #fff;
-      }
-      .music-progress {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--border-faint);
-      }
-      .music-progress-fill {
-        height: 100%;
-        width: 35%;
-        background: var(--accent);
-        border-radius: 0 1px 1px 0;
-      }
-      .spotify-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 10px;
-        color: #1db954;
-        font-weight: 500;
-        letter-spacing: 0.03em;
-      }
-
-      /* Section headers */
-      .section-header {
-        padding: 24px 24px 16px;
-      }
-      .section-title {
+      .domain-bar-pct {
         font-size: 13px;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--text-tertiary);
-        margin-bottom: 4px;
+        font-variant-numeric: tabular-nums;
+        min-width: 36px;
+        text-align: right;
       }
-      .section-subtitle {
-        font-size: 14px;
+
+      /* Values chips */
+      .values-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .value-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        border: 1px solid var(--border-default);
+        background: var(--surface-1);
         color: var(--text-secondary);
-        line-height: 1.5;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .value-chip.aligned {
+        border-color: var(--compat-high);
+        background: var(--compat-high-muted);
+        color: var(--compat-high);
+      }
+      .value-chip.partial {
+        border-color: var(--accent-gold);
+        background: var(--accent-gold-muted);
+        color: var(--accent-gold);
       }
 
-      /* Section divider */
-      .section-divider {
-        height: 1px;
-        background: var(--border-faint);
-        margin: 0 24px;
-      }
-
-      /* Life plan cards */
-      .life-plan-grid {
+      /* Mood board — Pinterest-style grid within profile */
+      .mood-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        padding: 0 24px;
-      }
-      .life-plan-card {
-        background: var(--surface-2);
-        border: 1px solid var(--border-faint);
-        border-radius: 12px;
-        padding: 16px;
-        transition: background-color 150ms ease-out;
-      }
-      .life-plan-card:hover {
-        background: var(--surface-hover);
-      }
-      .life-plan-emoji {
-        font-size: 20px;
-        margin-bottom: 8px;
-      }
-      .life-plan-label {
-        font-size: 12px;
-        color: var(--text-tertiary);
-        margin-bottom: 2px;
-        font-weight: 500;
-      }
-      .life-plan-value {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text-primary);
-      }
-
-      /* Mood board */
-      .mood-board {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: auto;
         gap: 4px;
-        padding: 0 24px;
-        aspect-ratio: 3/2;
-      }
-      .mood-board-item {
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
+      }
+      .mood-item {
+        aspect-ratio: 1;
         background: var(--surface-2);
         position: relative;
-        cursor: pointer;
-        transition: opacity 150ms ease-out;
+        overflow: hidden;
       }
-      .mood-board-item:hover {
-        opacity: 0.85;
+      .mood-item.tall {
+        grid-row: span 2;
+        aspect-ratio: auto;
       }
-      .mood-board-item img {
+      .mood-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
-      .mood-board-item:first-child {
-        grid-row: 1 / 3;
-        grid-column: 1 / 2;
-      }
-      .mood-board-more {
+      .mood-caption {
         position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 10px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* Audio player bar */
+      .audio-bar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+      }
+      .audio-art {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: var(--gradient-warm);
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+      }
+      .audio-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .audio-title {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .audio-artist {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+      .audio-waveform {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 20px;
+      }
+      .audio-waveform-bar {
+        width: 3px;
+        border-radius: 1.5px;
+        background: var(--accent);
+        opacity: 0.6;
+        animation: waveform 1.2s ease-in-out infinite alternate;
+      }
+      @keyframes waveform {
+        0% {
+          height: 4px;
+        }
+        100% {
+          height: 18px;
+        }
+      }
+      .audio-waveform-bar:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .audio-waveform-bar:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .audio-waveform-bar:nth-child(4) {
+        animation-delay: 0.1s;
+      }
+      .audio-waveform-bar:nth-child(5) {
+        animation-delay: 0.3s;
       }
 
-      /* Written expression */
-      .written-block {
-        padding: 0 24px;
-      }
-      .poem-card {
-        background: var(--surface-2);
+      /* Literary passage block */
+      .passage-block {
+        padding: 20px;
+        background: var(--surface-1);
         border: 1px solid var(--border-faint);
-        border-radius: 16px;
-        padding: 32px 28px;
+        border-radius: 12px;
         position: relative;
-        overflow: hidden;
       }
-      .poem-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent), var(--accent-pink));
-        border-radius: 16px 16px 0 0;
-      }
-      .poem-quote-mark {
-        font-size: 48px;
-        line-height: 1;
+      .passage-quote {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 44px;
+        font-weight: 700;
         color: var(--accent);
         opacity: 0.3;
-        font-family: Georgia, serif;
-        margin-bottom: -8px;
+        line-height: 1;
+        position: absolute;
+        top: 12px;
+        left: 16px;
       }
-      .poem-text {
-        font-size: 16px;
-        line-height: 1.8;
-        color: var(--text-primary);
+      .passage-text {
+        font-family: "Playfair Display", Georgia, serif;
         font-style: italic;
-        margin-bottom: 16px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--text-primary);
+        padding-top: 16px;
+        position: relative;
       }
-      .poem-attribution {
+      .passage-source {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
         font-size: 13px;
         color: var(--text-tertiary);
-        font-weight: 500;
-        font-style: normal;
+        margin-top: 12px;
       }
-      .poem-reflection {
-        margin-top: 20px;
-        padding-top: 20px;
+      .passage-reflection {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-top: 12px;
+        padding-top: 12px;
         border-top: 1px solid var(--border-faint);
       }
-      .poem-reflection-label {
+
+      /* Life plan timeline */
+      .timeline-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+      }
+      .timeline-row + .timeline-row {
+        border-top: 1px solid var(--border-faint);
+      }
+      .timeline-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 16px;
+      }
+      .timeline-content {
+        flex: 1;
+      }
+      .timeline-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .timeline-value {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-top: 2px;
+      }
+      .timeline-match-indicator {
         font-size: 12px;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--accent);
-        margin-bottom: 8px;
-      }
-      .poem-reflection-text {
-        font-size: 14px;
-        line-height: 1.6;
-        color: var(--text-secondary);
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-top: 4px;
+        display: inline-block;
       }
 
-      /* Action bar */
+      /* Action bar — fixed at bottom of scroll, above tab bar */
       .action-bar {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 20px;
-        padding: 16px 24px;
+        gap: 16px;
+        padding: 16px 20px;
         background: var(--surface-1);
         border-top: 1px solid var(--border-faint);
         flex-shrink: 0;
       }
-      [data-theme="dark"] .action-bar {
-        background: rgba(20, 18, 16, 0.95);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-      [data-theme="light"] .action-bar {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
       .action-btn {
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         border: none;
         cursor: pointer;
@@ -940,21 +903,20 @@
         align-items: center;
         justify-content: center;
         transition:
-          transform 150ms ease-out,
           background-color 150ms ease-out,
-          box-shadow 200ms ease-out;
-        padding: 0;
+          transform 150ms ease-out;
+      }
+      .action-btn:hover {
+        transform: scale(1.08);
       }
       .action-btn:active {
-        transform: scale(0.9);
+        transform: scale(0.95);
       }
       .action-btn:focus-visible {
         outline: none;
         box-shadow: var(--focus-ring);
       }
       .action-btn-pass {
-        width: 52px;
-        height: 52px;
         background: var(--surface-2);
         border: 1px solid var(--border-default);
         color: var(--text-tertiary);
@@ -964,327 +926,135 @@
         border-color: var(--negative);
         color: var(--negative);
       }
-      .action-btn-superlike {
-        width: 44px;
-        height: 44px;
-        background: var(--accent-gold-muted);
-        border: 1px solid rgba(251, 191, 36, 0.3);
-        color: var(--accent-gold);
-      }
-      .action-btn-superlike:hover {
-        background: rgba(251, 191, 36, 0.2);
-        box-shadow: 0 0 16px rgba(251, 191, 36, 0.2);
-      }
-      .action-btn-like {
+      .action-btn-interested {
+        background: var(--accent);
+        color: #fff;
         width: 64px;
         height: 64px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-        color: #fff;
         box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
       }
-      .action-btn-like:hover {
+      .action-btn-interested:hover {
+        background: var(--accent-hover);
         box-shadow: 0 6px 28px rgba(167, 139, 250, 0.45);
-        transform: scale(1.05);
       }
-      .action-btn-like:active {
-        transform: scale(0.92);
-      }
-      .action-btn-save {
-        width: 44px;
-        height: 44px;
+      .action-btn-bookmark {
         background: var(--surface-2);
         border: 1px solid var(--border-default);
         color: var(--text-tertiary);
       }
-      .action-btn-save:hover {
-        background: var(--info-muted);
-        border-color: var(--info);
-        color: var(--info);
+      .action-btn-bookmark:hover {
+        background: var(--accent-gold-muted);
+        border-color: var(--accent-gold);
+        color: var(--accent-gold);
       }
 
-      /* Filter sheet */
-      .filter-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 100;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 200ms ease-out;
-      }
-      .filter-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .filter-sheet {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        max-height: 80vh;
-        background: var(--surface-1);
-        border-radius: 20px 20px 0 0;
-        z-index: 101;
-        transform: translateY(100%);
-        transition: transform 300ms ease-out;
-        overflow-y: auto;
-      }
-      .filter-overlay.open .filter-sheet {
-        transform: translateY(0);
-      }
-      .filter-sheet-handle {
-        width: 36px;
-        height: 4px;
-        background: var(--border-strong);
-        border-radius: 2px;
-        margin: 12px auto 0;
-      }
-      .filter-sheet-header {
+      /* Filter pills at top of discover feed */
+      .filter-row {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 24px;
+        gap: 8px;
+        padding: 12px 20px;
+        overflow-x: auto;
+        flex-shrink: 0;
         border-bottom: 1px solid var(--border-faint);
+        background: var(--surface-1);
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
-      .filter-sheet-body {
-        padding: 24px;
+      .filter-row::-webkit-scrollbar {
+        display: none;
       }
-      .filter-group {
-        margin-bottom: 24px;
-      }
-      .filter-group-label {
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--text-tertiary);
-        margin-bottom: 12px;
-      }
-      .filter-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .filter-chip {
-        height: 36px;
-        padding: 0 16px;
-        border-radius: 20px;
-        border: 1px solid var(--border-default);
-        background: var(--surface-2);
-        color: var(--text-secondary);
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition:
-          background-color 150ms ease-out,
-          border-color 150ms ease-out,
-          color 150ms ease-out;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .filter-chip:hover {
-        border-color: var(--border-strong);
-        color: var(--text-primary);
-      }
-      .filter-chip.selected {
-        background: var(--accent-muted);
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
-      /* Compatibility breakdown expand */
-      .expand-trigger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        padding: 8px 16px;
-        background: none;
-        border: none;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: color 150ms ease-out;
-        width: 100%;
-        margin-top: 8px;
-      }
-      .expand-trigger:hover {
-        color: var(--accent-hover);
-      }
-      .expand-trigger svg {
-        transition: transform 200ms ease-out;
-      }
-      .expand-trigger.expanded svg {
-        transform: rotate(180deg);
-      }
-      .expandable-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 300ms ease-out;
-      }
-      .expandable-content.expanded {
-        max-height: 800px;
-      }
-
-      /* Profile info tags */
-      .profile-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 0 24px;
-      }
-      .profile-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        height: 30px;
-        padding: 0 12px;
-        border-radius: 20px;
-        background: var(--surface-2);
-        border: 1px solid var(--border-faint);
-        font-size: 13px;
-        color: var(--text-secondary);
-        font-weight: 400;
-      }
-      .profile-tag-icon {
-        font-size: 14px;
-      }
-
-      /* Header icon buttons */
-      .header-icon-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        border: none;
-        background: transparent;
-        color: var(--text-secondary);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition:
-          background-color 150ms ease-out,
-          color 150ms ease-out;
-        position: relative;
-      }
-      .header-icon-btn:hover {
-        background: var(--surface-hover);
-        color: var(--text-primary);
-      }
-      .header-icon-btn:focus-visible {
-        outline: none;
-        box-shadow: var(--focus-ring);
-      }
-      .notification-dot {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent-pink);
-        border: 2px solid var(--surface-1);
-      }
-
-      /* Scroll hint animation */
-      @keyframes scrollHint {
-        0%,
-        100% {
-          transform: translateY(0);
-          opacity: 0.6;
-        }
-        50% {
-          transform: translateY(6px);
-          opacity: 1;
-        }
-      }
-      .scroll-hint {
-        animation: scrollHint 2s ease-in-out infinite;
-      }
-
-      /* Smooth section transitions */
-      .profile-section {
-        opacity: 1;
-        transition: opacity 300ms ease-out;
-      }
-
-      /* Equalizer animation for music */
-      @keyframes eq1 {
-        0%,
-        100% {
-          height: 8px;
-        }
-        50% {
-          height: 16px;
-        }
-      }
-      @keyframes eq2 {
-        0%,
-        100% {
-          height: 14px;
-        }
-        50% {
-          height: 6px;
-        }
-      }
-      @keyframes eq3 {
-        0%,
-        100% {
-          height: 10px;
-        }
-        50% {
-          height: 18px;
-        }
-      }
-      .eq-bar {
-        width: 3px;
-        border-radius: 1px;
-        background: var(--accent);
-      }
-      .eq-bar:nth-child(1) {
-        animation: eq1 0.8s ease-in-out infinite;
-      }
-      .eq-bar:nth-child(2) {
-        animation: eq2 0.6s ease-in-out infinite 0.1s;
-      }
-      .eq-bar:nth-child(3) {
-        animation: eq3 0.7s ease-in-out infinite 0.2s;
-      }
-      .eq-bar:nth-child(4) {
-        animation: eq1 0.9s ease-in-out infinite 0.15s;
-      }
-
-      /* Value alignment chips */
-      .alignment-chip {
+      .filter-pill {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        padding: 4px 10px;
+        padding: 6px 14px;
         border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        border: 1px solid var(--border-default);
+        background: var(--surface-1);
+        color: var(--text-secondary);
+      }
+      .filter-pill:hover {
+        border-color: var(--border-strong);
+        background: var(--surface-hover);
+      }
+      .filter-pill.active {
+        border-color: var(--accent);
+        background: var(--accent-muted);
+        color: var(--accent);
+      }
+      .filter-pill svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* Photo placeholder for wireframe */
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background: var(--surface-2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .photo-placeholder svg {
+        width: 48px;
+        height: 48px;
+        color: var(--text-disabled);
+        opacity: 0.5;
+      }
+      .photo-placeholder span {
         font-size: 12px;
+        color: var(--text-disabled);
         font-weight: 500;
       }
-      .alignment-high {
-        background: var(--positive-muted);
-        color: var(--positive);
+
+      /* Lifestyle detail badges */
+      .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
       }
-      .alignment-medium {
-        background: var(--warning-muted);
-        color: var(--warning);
+      .detail-row + .detail-row {
+        border-top: 1px solid var(--border-faint);
       }
-      .alignment-low {
-        background: var(--negative-muted);
-        color: var(--negative);
+      .detail-icon {
+        color: var(--text-tertiary);
+        flex-shrink: 0;
+      }
+      .detail-label {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        flex-shrink: 0;
+        min-width: 90px;
+      }
+      .detail-value {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      /* Profile navigation indicator */
+      .profile-count {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
       }
     </style>
   </head>
+
   <body>
-    <!-- ================================================================
-       MOTO — Profile Discovery / Browsing Experience
-       Mobile-First Shell with Bottom Tab Navigation
-       ================================================================ -->
     <div
       class="shell"
       style="
@@ -1294,14 +1064,15 @@
         max-width: 430px;
         margin: 0 auto;
         overflow: hidden;
+        background: var(--bg-page);
+        position: relative;
         border-left: 1px solid var(--border-faint);
         border-right: 1px solid var(--border-faint);
-        position: relative;
       "
     >
       <!-- ============================================================
-         TOP HEADER
-         ============================================================ -->
+           TOP HEADER — Minimal, lets the profile content breathe
+           ============================================================ -->
       <header
         style="
           height: 56px;
@@ -1309,112 +1080,95 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 12px 0 16px;
+          padding: 0 16px;
           border-bottom: 1px solid var(--border-faint);
           background: var(--surface-1);
-          z-index: 20;
         "
       >
         <!-- Left: Logo -->
         <div style="display: flex; align-items: center; gap: 8px">
-          <div style="display: flex; align-items: center; gap: 6px">
-            <!-- MOTO logo mark -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <circle
-                cx="14"
-                cy="14"
-                r="13"
-                stroke="var(--accent)"
-                stroke-width="2"
-              />
-              <circle
-                cx="10"
-                cy="12"
-                r="3"
-                fill="var(--accent)"
-                opacity="0.6"
-              />
-              <circle
-                cx="18"
-                cy="12"
-                r="3"
-                fill="var(--accent-pink)"
-                opacity="0.6"
-              />
-              <path
-                d="M10 15 C10 19, 18 19, 18 15"
-                stroke="var(--accent)"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </svg>
-            <span
-              style="
-                font-size: 18px;
-                font-weight: 700;
-                letter-spacing: -0.03em;
-                background: linear-gradient(
-                  135deg,
-                  var(--accent),
-                  var(--accent-pink)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-              "
-              >MOTO</span
-            >
-          </div>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            style="flex-shrink: 0"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="11"
+              stroke="url(#motoGradH)"
+              stroke-width="2"
+            />
+            <circle cx="12" cy="12" r="4" fill="url(#motoGradH)" />
+            <defs>
+              <linearGradient id="motoGradH" x1="4" y1="4" x2="20" y2="20">
+                <stop stop-color="var(--accent)" />
+                <stop offset="1" stop-color="#f472b6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span
+            style="
+              font-size: 18px;
+              font-weight: 700;
+              letter-spacing: -0.03em;
+              background: linear-gradient(
+                135deg,
+                var(--accent),
+                var(--accent-pink)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+            >MOTO</span
+          >
+          <span class="profile-count">3 of 8</span>
         </div>
 
-        <!-- Right: Actions -->
-        <div style="display: flex; align-items: center; gap: 2px">
+        <!-- Right: filter icon + theme toggle -->
+        <div style="display: flex; align-items: center; gap: 4px">
           <!-- Filter button -->
           <button
-            class="header-icon-btn"
-            onclick="toggleFilters()"
+            class="btn-ghost btn-sm"
+            style="
+              width: 36px;
+              height: 36px;
+              padding: 0;
+              border-radius: 8px;
+              border: none;
+              background: transparent;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
             title="Filters"
-            aria-label="Open filters"
           >
             <svg
-              width="20"
-              height="20"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
+              style="color: var(--text-tertiary)"
             >
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="8" y1="12" x2="20" y2="12" />
-              <line x1="12" y1="18" x2="20" y2="18" />
-              <circle cx="6" cy="6" r="2" fill="currentColor" stroke="none" />
-              <circle cx="10" cy="12" r="2" fill="currentColor" stroke="none" />
-              <circle cx="14" cy="18" r="2" fill="currentColor" stroke="none" />
+              <line x1="4" y1="21" x2="4" y2="14" />
+              <line x1="4" y1="10" x2="4" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="3" />
+              <line x1="20" y1="21" x2="20" y2="16" />
+              <line x1="20" y1="12" x2="20" y2="3" />
+              <line x1="1" y1="14" x2="7" y2="14" />
+              <line x1="9" y1="8" x2="15" y2="8" />
+              <line x1="17" y1="16" x2="23" y2="16" />
             </svg>
           </button>
-          <!-- Notification bell -->
-          <button
-            class="header-icon-btn"
-            title="Notifications"
-            aria-label="Notifications"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-            <span class="notification-dot"></span>
-          </button>
-          <!-- Theme toggle -->
+
           <div
             style="
               width: 1px;
@@ -1423,6 +1177,8 @@
               margin: 0 2px;
             "
           ></div>
+
+          <!-- Theme toggle -->
           <button
             class="theme-toggle"
             onclick="toggleTheme()"
@@ -1466,344 +1222,1300 @@
       </header>
 
       <!-- ============================================================
-         CONTENT AREA — Immersive Profile Scroll
-         ============================================================ -->
-      <div
-        id="profile-scroll"
-        style="
-          flex: 1;
-          overflow-y: auto;
-          min-height: 0;
-          scroll-behavior: smooth;
-        "
-      >
-        <!-- ========================================
-           SECTION 1: PHOTO CAROUSEL
-           ======================================== -->
-        <div class="photo-carousel" id="photo-carousel">
-          <!-- Photo indicator dots -->
-          <div class="photo-dots">
-            <button
-              class="photo-dot active"
-              onclick="goToPhoto(0)"
-              aria-label="Photo 1"
-            ></button>
-            <button
-              class="photo-dot"
-              onclick="goToPhoto(1)"
-              aria-label="Photo 2"
-            ></button>
-            <button
-              class="photo-dot"
-              onclick="goToPhoto(2)"
-              aria-label="Photo 3"
-            ></button>
-            <button
-              class="photo-dot"
-              onclick="goToPhoto(3)"
-              aria-label="Photo 4"
-            ></button>
-            <button
-              class="photo-dot"
-              onclick="goToPhoto(4)"
-              aria-label="Photo 5"
-            ></button>
-          </div>
-
-          <!-- Navigation zones -->
-          <button
-            class="photo-nav photo-nav-left"
-            onclick="prevPhoto()"
-            aria-label="Previous photo"
-          ></button>
-          <button
-            class="photo-nav photo-nav-right"
-            onclick="nextPhoto()"
-            aria-label="Next photo"
-          ></button>
-
-          <!-- Photos (using placeholder images with realistic styling) -->
-          <div
-            id="photo-container"
-            style="position: absolute; inset: 0; overflow: hidden"
+           INTENT FILTER ROW — MOTO's unique intent-based filtering
+           Users filter by what matters: marriage readiness, family
+           timeline, geographic commitment — not just age/distance.
+           ============================================================ -->
+      <div class="filter-row">
+        <button class="filter-pill active">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
           >
-            <img
-              id="profile-photo"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=1067&fit=crop&crop=face"
-              alt="Emma Chen — portrait"
-              style="width: 100%; height: 100%; object-fit: cover"
+            <circle cx="12" cy="12" r="10" />
+            <polygon
+              points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
             />
-          </div>
+          </svg>
+          For You
+        </button>
+        <button class="filter-pill">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          Ready Now
+        </button>
+        <button class="filter-pill">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          Near You
+        </button>
+        <button class="filter-pill">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Family-Focused
+        </button>
+        <button class="filter-pill">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          Same Timeline
+        </button>
+      </div>
 
-          <!-- Bottom gradient overlay with name + basic info -->
-          <div class="photo-overlay">
+      <!-- ============================================================
+           IMMERSIVE PROFILE SCROLL — The core experience
+           One person at a time. Vertical scroll reveals their life
+           architecture in distinct chapters. NOT a card. NOT a swipe.
+           ============================================================ -->
+      <div style="flex: 1; overflow-y: auto; overflow-x: hidden; min-height: 0">
+        <!-- ========================================
+             CHAPTER 1: PHOTO + IDENTITY
+             Entry point. Cinematic, edge-to-edge.
+             Photo carousel with dots indicator.
+             Name, age, location overlaid at bottom.
+             Compatibility ring immediately visible.
+             ======================================== -->
+        <div class="photo-section" style="position: relative">
+          <!-- Photo placeholder (wireframe) -->
+          <div
+            style="
+              width: 100%;
+              aspect-ratio: 3 / 4;
+              background: linear-gradient(
+                160deg,
+                #2a2520 0%,
+                #1a1815 40%,
+                #14120f 100%
+              );
+              position: relative;
+              overflow: hidden;
+            "
+          >
+            <!-- Simulated photo scene -->
             <div
               style="
+                position: absolute;
+                inset: 0;
                 display: flex;
-                align-items: flex-end;
-                justify-content: space-between;
-                gap: 12px;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 8px;
               "
             >
-              <div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    margin-bottom: 6px;
-                  "
-                >
-                  <h1
-                    style="
-                      font-size: 28px;
-                      font-weight: 700;
-                      letter-spacing: -0.03em;
-                      color: #fff;
-                    "
-                  >
-                    Emma Chen
-                  </h1>
-                  <span
-                    style="
-                      font-size: 24px;
-                      font-weight: 300;
-                      color: rgba(255, 255, 255, 0.7);
-                    "
-                    class="tabular-nums"
-                    >28</span
-                  >
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <span class="verified-badge">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                    Verified
-                  </span>
-                  <span
-                    style="
-                      font-size: 14px;
-                      color: rgba(255, 255, 255, 0.7);
-                      display: flex;
-                      align-items: center;
-                      gap: 4px;
-                    "
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                    >
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    San Francisco, CA
-                  </span>
-                </div>
+              <svg
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                style="color: var(--text-disabled); opacity: 0.3"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+              <span
+                style="
+                  font-size: 13px;
+                  color: var(--text-disabled);
+                  opacity: 0.4;
+                "
+                >Lifestyle — Active, outdoors</span
+              >
+            </div>
+
+            <!-- Top gradient for status bar legibility -->
+            <div class="photo-overlay-top"></div>
+
+            <!-- Photo dots indicator -->
+            <div style="position: absolute; top: 12px; left: 0; right: 0">
+              <div class="photo-dots">
+                <div class="photo-dot active"></div>
+                <div class="photo-dot"></div>
+                <div class="photo-dot"></div>
+                <div class="photo-dot"></div>
+                <div class="photo-dot"></div>
               </div>
-              <!-- Scroll hint -->
+            </div>
+
+            <!-- Identity bar overlaid on photo -->
+            <div class="identity-bar">
               <div
-                class="scroll-hint"
                 style="
                   display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  gap: 2px;
-                  color: rgba(255, 255, 255, 0.5);
+                  align-items: flex-start;
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <div class="identity-name">Elena Vasquez</div>
+                  <div class="identity-meta">
+                    <span>28</span>
+                    <span class="identity-meta-dot"></span>
+                    <span>5'6"</span>
+                    <span class="identity-meta-dot"></span>
+                    <span>Denver, CO</span>
+                    <span class="identity-meta-dot"></span>
+                    <span class="verified-badge">
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                        />
+                      </svg>
+                      Verified
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Compatibility ring — MOTO's signature element -->
+              <div class="compat-ring-wrap">
+                <div class="compat-ring">
+                  <svg viewBox="0 0 48 48">
+                    <circle class="compat-ring-bg" cx="24" cy="24" r="20" />
+                    <circle
+                      class="compat-ring-fill"
+                      cx="24"
+                      cy="24"
+                      r="20"
+                      stroke="#16a34a"
+                      stroke-dasharray="125.66"
+                      stroke-dashoffset="13.82"
+                    />
+                  </svg>
+                  <div class="compat-ring-score">89</div>
+                </div>
+                <div class="compat-ring-label">
+                  <strong>89% Life Alignment</strong>
+                  High compatibility across 7 domains
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================
+             CHAPTER 2: ALIGNMENT AT A GLANCE
+             Multi-domain compatibility visualization.
+             Users see WHERE they align before reading
+             any detailed content. This is MOTO's key
+             differentiator — alignment-first, not
+             attraction-first.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Compatibility Breakdown</div>
+          <div class="chapter-title">Where You Align</div>
+
+          <!-- 7 domain alignment bars -->
+          <div>
+            <!-- Family Goals — 25% weight, highest priority -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-family-muted);
+                  color: var(--domain-family);
                 "
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Family Goals
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >25%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 95%; background: var(--domain-family)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                95%
+              </div>
+            </div>
+
+            <!-- Geography — 15% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-geography-muted);
+                  color: var(--domain-geography);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Geography
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >15%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 88%; background: var(--domain-geography)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                88%
+              </div>
+            </div>
+
+            <!-- Spirituality — 15% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-spirituality-muted);
+                  color: var(--domain-spirituality);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
                 >
-                  <polyline points="6 9 12 15 18 9" />
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
                 </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Spirituality
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >15%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 92%; background: var(--domain-spirituality)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                92%
+              </div>
+            </div>
+
+            <!-- Lifestyle — 15% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-lifestyle-muted);
+                  color: var(--domain-lifestyle);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Lifestyle
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >15%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 85%; background: var(--domain-lifestyle)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                85%
+              </div>
+            </div>
+
+            <!-- Physical Attraction — 10% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-attraction-muted);
+                  color: var(--domain-attraction);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Attraction
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >10%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 82%; background: var(--domain-attraction)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                82%
+              </div>
+            </div>
+
+            <!-- Politics — 10% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-politics-muted);
+                  color: var(--domain-politics);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
+                  <line x1="7" y1="2" x2="7" y2="22" />
+                  <line x1="17" y1="2" x2="17" y2="22" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <line x1="2" y1="7" x2="7" y2="7" />
+                  <line x1="2" y1="17" x2="7" y2="17" />
+                  <line x1="17" y1="7" x2="22" y2="7" />
+                  <line x1="17" y1="17" x2="22" y2="17" />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Philosophy
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >10%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 78%; background: var(--domain-politics)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-medium)">
+                78%
+              </div>
+            </div>
+
+            <!-- Social Interests — 10% weight -->
+            <div class="domain-bar-row">
+              <div
+                class="domain-bar-icon"
+                style="
+                  background: var(--domain-social-muted);
+                  color: var(--domain-social);
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="domain-bar-info">
+                <div class="domain-bar-name">
+                  Social
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-disabled);
+                      font-weight: 400;
+                    "
+                    >10%</span
+                  >
+                </div>
+                <div class="domain-bar-track">
+                  <div
+                    class="domain-bar-fill"
+                    style="width: 91%; background: var(--domain-social)"
+                  ></div>
+                </div>
+              </div>
+              <div class="domain-bar-pct" style="color: var(--compat-high)">
+                91%
               </div>
             </div>
           </div>
         </div>
 
         <!-- ========================================
-           MUSIC PLAYER (Sticky)
-           ======================================== -->
-        <div class="music-player">
-          <div class="music-album-art">
-            <img
-              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=80&h=80&fit=crop"
-              alt="Album art"
-            />
-          </div>
-          <div class="music-info">
-            <div class="music-title">The Night We Met</div>
-            <div style="display: flex; align-items: center; gap: 6px">
-              <span class="music-artist">Lord Huron</span>
-              <span style="color: var(--border-strong)">·</span>
-              <span class="spotify-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#1DB954">
+             CHAPTER 3: LIFE ARCHITECTURE
+             Family goals, marriage timeline, children,
+             geographic plans — the structured data that
+             makes MOTO unique. Shows alignment indicators.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Life Architecture</div>
+          <div class="chapter-title">Her Vision for the Future</div>
+
+          <!-- Family timeline -->
+          <div>
+            <div class="timeline-row">
+              <div
+                class="timeline-icon"
+                style="
+                  background: var(--domain-family-muted);
+                  color: var(--domain-family);
+                "
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <path
-                    d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
                   />
                 </svg>
-                Spotify
-              </span>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-label">Marriage Timeline</div>
+                <div class="timeline-value">Within 3 years</div>
+                <span
+                  class="timeline-match-indicator"
+                  style="
+                    background: var(--compat-high-muted);
+                    color: var(--compat-high);
+                  "
+                  >Aligned with you</span
+                >
+              </div>
+            </div>
+
+            <div class="timeline-row">
+              <div
+                class="timeline-icon"
+                style="
+                  background: var(--domain-family-muted);
+                  color: var(--domain-family);
+                "
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-label">Children</div>
+                <div class="timeline-value">
+                  2-3 children
+                  <span
+                    style="
+                      font-size: 12px;
+                      color: var(--accent-pink);
+                      font-weight: 600;
+                    "
+                    >Non-negotiable</span
+                  >
+                </div>
+                <span
+                  class="timeline-match-indicator"
+                  style="
+                    background: var(--compat-high-muted);
+                    color: var(--compat-high);
+                  "
+                  >Aligned with you</span
+                >
+              </div>
+            </div>
+
+            <div class="timeline-row">
+              <div
+                class="timeline-icon"
+                style="background: var(--info-muted); color: var(--info)"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-label">Start Family By</div>
+                <div class="timeline-value">Age 31 (within 3 years)</div>
+                <span
+                  class="timeline-match-indicator"
+                  style="
+                    background: var(--compat-medium-muted);
+                    color: var(--compat-medium);
+                  "
+                  >Close to yours</span
+                >
+              </div>
+            </div>
+
+            <div class="timeline-row">
+              <div
+                class="timeline-icon"
+                style="
+                  background: var(--domain-geography-muted);
+                  color: var(--domain-geography);
+                "
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-label">Where She Wants to Live</div>
+                <div class="timeline-value">Suburban Colorado</div>
+                <span
+                  class="timeline-match-indicator"
+                  style="
+                    background: var(--compat-high-muted);
+                    color: var(--compat-high);
+                  "
+                  >Aligned with you</span
+                >
+              </div>
+            </div>
+
+            <div class="timeline-row">
+              <div
+                class="timeline-icon"
+                style="
+                  background: var(--accent-gold-muted);
+                  color: var(--accent-gold);
+                "
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  />
+                </svg>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-label">Education Philosophy</div>
+                <div class="timeline-value">Hybrid (private + homeschool)</div>
+                <span
+                  class="timeline-match-indicator"
+                  style="
+                    background: var(--compat-medium-muted);
+                    color: var(--compat-medium);
+                  "
+                  >Different from yours</span
+                >
+              </div>
             </div>
           </div>
-          <div class="music-controls">
+        </div>
+
+        <!-- ========================================
+             CHAPTER 4: VALUES & BELIEFS
+             Spiritual, political, lifestyle values
+             displayed as chips with alignment indicators.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Values & Beliefs</div>
+          <div class="chapter-title">What She Stands For</div>
+
+          <div style="margin-bottom: 16px">
             <div
               style="
-                display: flex;
-                align-items: flex-end;
-                gap: 2px;
-                height: 20px;
-                margin-right: 4px;
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--text-tertiary);
+                margin-bottom: 8px;
               "
             >
-              <div class="eq-bar" style="height: 8px"></div>
-              <div class="eq-bar" style="height: 14px"></div>
-              <div class="eq-bar" style="height: 10px"></div>
-              <div class="eq-bar" style="height: 12px"></div>
+              Spiritual Life
             </div>
-            <button
-              class="music-btn music-btn-play"
-              title="Pause"
-              aria-label="Pause music"
+            <div class="detail-row" style="border: none; padding: 0">
+              <div class="detail-value">
+                Christian (Non-denominational)
+                <span
+                  style="
+                    font-size: 12px;
+                    color: var(--domain-spirituality);
+                    font-weight: 600;
+                  "
+                  >High importance</span
+                >
+              </div>
+            </div>
+            <div
+              style="
+                font-size: 14px;
+                color: var(--text-secondary);
+                margin-top: 6px;
+                line-height: 1.6;
+              "
             >
+              "Faith is the foundation of how I want to raise a family. I attend
+              a small community church weekly and my faith informs every major
+              life decision."
+            </div>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <div
+              style="
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--text-tertiary);
+                margin-bottom: 8px;
+              "
+            >
+              Core Values
+            </div>
+            <div class="values-grid">
+              <span class="value-chip aligned">Family-first</span>
+              <span class="value-chip aligned">Tradition</span>
+              <span class="value-chip aligned">Faith-guided</span>
+              <span class="value-chip partial">Community</span>
+              <span class="value-chip">Self-reliance</span>
+              <span class="value-chip aligned">Growth-oriented</span>
+            </div>
+          </div>
+
+          <div>
+            <div
+              style="
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--text-tertiary);
+                margin-bottom: 8px;
+              "
+            >
+              Lifestyle
+            </div>
+            <div class="values-grid">
+              <span class="value-chip aligned">Active outdoors</span>
+              <span class="value-chip">Morning person</span>
+              <span class="value-chip partial">Social butterfly</span>
+              <span class="value-chip aligned">Homemaker aspirations</span>
+              <span class="value-chip">Minimal social media</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================
+             CHAPTER 5: AUDIO IDENTITY
+             Spotify integration — music plays during
+             profile browsing. Cultural identity signal.
+             No competitor does this.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Audio Identity</div>
+          <div class="chapter-title">Her Soundtrack</div>
+
+          <div class="audio-bar" style="margin-bottom: 12px">
+            <div class="audio-art">
               <svg
-                width="14"
-                height="14"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+                stroke-linecap="round"
               >
-                <rect x="6" y="4" width="4" height="16" rx="1" />
-                <rect x="14" y="4" width="4" height="16" rx="1" />
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
               </svg>
-            </button>
+            </div>
+            <div class="audio-info">
+              <div class="audio-title">Wildflowers</div>
+              <div class="audio-artist">Tom Petty</div>
+            </div>
+            <div class="audio-waveform">
+              <div class="audio-waveform-bar" style="height: 8px"></div>
+              <div class="audio-waveform-bar" style="height: 14px"></div>
+              <div class="audio-waveform-bar" style="height: 10px"></div>
+              <div class="audio-waveform-bar" style="height: 16px"></div>
+              <div class="audio-waveform-bar" style="height: 6px"></div>
+            </div>
           </div>
-          <div class="music-progress">
-            <div class="music-progress-fill"></div>
-          </div>
-        </div>
 
-        <!-- ========================================
-           SECTION 2: PROFILE QUICK INFO TAGS
-           ======================================== -->
-        <div
-          class="profile-section"
-          style="padding-top: 20px; padding-bottom: 8px"
-        >
-          <div class="profile-tags">
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">🎓</span> Stanford, MBA</span
-            >
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">💼</span> Product Design
-              Lead</span
-            >
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">📏</span> 5'6"</span
-            >
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">🍷</span> Socially</span
-            >
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">🚭</span> Never</span
-            >
-            <span class="profile-tag"
-              ><span class="profile-tag-icon">🐕</span> Dog parent</span
-            >
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 3: COMPATIBILITY SCORE
-           ======================================== -->
-        <div class="profile-section" style="padding: 20px 24px">
+          <!-- Playlist preview -->
           <div
-            class="card"
             style="
-              background: var(--gradient-warm);
-              border-color: rgba(167, 139, 250, 0.15);
-              padding: 24px;
+              background: var(--surface-1);
+              border: 1px solid var(--border-faint);
+              border-radius: 12px;
+              overflow: hidden;
             "
           >
-            <div style="display: flex; align-items: center; gap: 20px">
-              <!-- Score ring -->
-              <div class="score-ring-container" style="--score: 87">
-                <svg class="score-ring" viewBox="0 0 64 64">
-                  <circle class="score-ring-bg" cx="32" cy="32" r="30" />
-                  <circle class="score-ring-fill" cx="32" cy="32" r="30" />
+            <div
+              style="
+                padding: 12px 16px;
+                border-bottom: 1px solid var(--border-faint);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 8px">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="var(--positive)"
+                  style="flex-shrink: 0"
+                >
+                  <circle cx="12" cy="12" r="12" />
+                  <path
+                    d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.97A.998.998 0 0 0 8 6.82z"
+                    fill="#fff"
+                  />
                 </svg>
-                <div class="score-ring-text">
-                  <span class="score-number">87</span>
-                  <span class="score-percent">%</span>
-                </div>
-              </div>
-              <!-- Score info -->
-              <div style="flex: 1">
-                <div
-                  class="match-label match-label-extraordinary"
-                  style="margin-bottom: 10px"
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                    />
-                  </svg>
-                  Extraordinary Match
-                </div>
-                <p
+                <span
                   style="
-                    font-size: 14px;
+                    font-size: 13px;
+                    font-weight: 500;
                     color: var(--text-secondary);
-                    line-height: 1.5;
-                    margin: 0;
                   "
+                  >Elena's Life Playlist</span
                 >
-                  Deep alignment on family goals, spirituality, and life
-                  direction.
-                </p>
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: var(--text-disabled);
+                  font-variant-numeric: tabular-nums;
+                "
+                >24 songs</span
+              >
+            </div>
+            <!-- Song list preview -->
+            <div style="padding: 4px 0">
+              <div
+                style="
+                  padding: 8px 16px;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    color: var(--text-disabled);
+                    font-size: 12px;
+                    font-variant-numeric: tabular-nums;
+                    min-width: 16px;
+                  "
+                  >1</span
+                >
+                <div style="flex: 1; min-width: 0">
+                  <div
+                    style="
+                      font-weight: 500;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    "
+                  >
+                    Wildflowers
+                  </div>
+                  <div style="font-size: 12px; color: var(--text-tertiary)">
+                    Tom Petty
+                  </div>
+                </div>
+                <span
+                  style="
+                    font-size: 12px;
+                    color: var(--text-disabled);
+                    font-variant-numeric: tabular-nums;
+                  "
+                  >3:24</span
+                >
+              </div>
+              <div
+                style="
+                  padding: 8px 16px;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    color: var(--text-disabled);
+                    font-size: 12px;
+                    font-variant-numeric: tabular-nums;
+                    min-width: 16px;
+                  "
+                  >2</span
+                >
+                <div style="flex: 1; min-width: 0">
+                  <div
+                    style="
+                      font-weight: 500;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    "
+                  >
+                    Home
+                  </div>
+                  <div style="font-size: 12px; color: var(--text-tertiary)">
+                    Edward Sharpe & The Magnetic Zeros
+                  </div>
+                </div>
+                <span
+                  style="
+                    font-size: 12px;
+                    color: var(--text-disabled);
+                    font-variant-numeric: tabular-nums;
+                  "
+                  >5:08</span
+                >
+              </div>
+              <div
+                style="
+                  padding: 8px 16px;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    color: var(--text-disabled);
+                    font-size: 12px;
+                    font-variant-numeric: tabular-nums;
+                    min-width: 16px;
+                  "
+                  >3</span
+                >
+                <div style="flex: 1; min-width: 0">
+                  <div
+                    style="
+                      font-weight: 500;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    "
+                  >
+                    I Will Wait
+                  </div>
+                  <div style="font-size: 12px; color: var(--text-tertiary)">
+                    Mumford & Sons
+                  </div>
+                </div>
+                <span
+                  style="
+                    font-size: 12px;
+                    color: var(--text-disabled);
+                    font-variant-numeric: tabular-nums;
+                  "
+                  >4:36</span
+                >
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Expand to see domain breakdown -->
-            <button
-              class="expand-trigger"
-              id="domain-expand-btn"
-              onclick="toggleDomainBreakdown()"
-            >
-              <span>View compatibility breakdown</span>
+        <!-- ========================================
+             CHAPTER 6: MOOD BOARD
+             Pinterest-style visual collage of her ideal
+             life. This is MOTO's most distinctive feature.
+             Translates abstract desires into visceral
+             alignment. No competitor has this.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Life Vision</div>
+          <div class="chapter-title">Her Ideal Life</div>
+
+          <div class="mood-grid">
+            <!-- Row 1: tall left + 2 squares right -->
+            <div class="mood-item tall">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(180deg, #2d3a2e 0%, #1a231b 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.2)"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.3)"
+                  >Homestead</span
+                >
+              </div>
+              <div class="mood-caption">Mountain homestead</div>
+            </div>
+            <div class="mood-item">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(180deg, #3a2d28 0%, #231a17 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.2)"
+                  stroke-width="1.5"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.3)"
+                  >Family</span
+                >
+              </div>
+              <div class="mood-caption">Family dinners</div>
+            </div>
+            <div class="mood-item">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(180deg, #2a2d3a 0%, #171a23 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.2)"
+                  stroke-width="1.5"
+                >
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.3)"
+                  >Morning</span
+                >
+              </div>
+              <div class="mood-caption">Quiet mornings</div>
+            </div>
+
+            <!-- Row 2: 2 squares left + tall right is done, so 2 more squares -->
+            <div class="mood-item">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(180deg, #3a362a 0%, #23201a 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.2)"
+                  stroke-width="1.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  />
+                </svg>
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.3)"
+                  >Travel</span
+                >
+              </div>
+              <div class="mood-caption">Europe trip together</div>
+            </div>
+            <div class="mood-item">
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(180deg, #2d2a3a 0%, #1a1723 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                  gap: 4px;
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.2)"
+                  stroke-width="1.5"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  />
+                </svg>
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.3)"
+                  >Reading</span
+                >
+              </div>
+              <div class="mood-caption">Fireside reading</div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 12px;
+              font-size: 14px;
+              color: var(--text-secondary);
+              line-height: 1.6;
+              font-style: italic;
+            "
+          >
+            "Open land, animals, a garden to tend, children running through tall
+            grass, strong family structure built on faith and shared purpose."
+          </div>
+        </div>
+
+        <!-- ========================================
+             CHAPTER 7: LITERARY EXPRESSION
+             Favorite poem/passage with reflection.
+             Reveals depth, emotional structure,
+             philosophical orientation.
+             ======================================== -->
+        <div class="chapter">
+          <div class="chapter-label">Written Soul</div>
+          <div class="chapter-title">Words That Move Her</div>
+
+          <div class="passage-block">
+            <div class="passage-quote">&ldquo;</div>
+            <div class="passage-text">
+              Tell me, what is it you plan to do<br />
+              with your one wild and precious life?
+            </div>
+            <div class="passage-source">
+              &mdash; Mary Oliver, <em>The Summer Day</em>
+            </div>
+            <div class="passage-reflection">
+              "This poem is a daily reminder that intention matters. I don't
+              want to drift through life collecting experiences — I want to
+              build something meaningful with someone who shares that urgency."
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================
+             CHAPTER 8: LIFESTYLE DETAILS
+             Practical compatibility data: daily rhythm,
+             social preferences, economic vision.
+             ======================================== -->
+        <div class="chapter" style="border-bottom: none">
+          <div class="chapter-label">Daily Life</div>
+          <div class="chapter-title">How She Lives</div>
+
+          <div>
+            <div class="detail-row">
               <svg
+                class="detail-icon"
                 width="16"
                 height="16"
                 viewBox="0 0 24 24"
@@ -1812,1104 +2524,146 @@
                 stroke-width="2"
                 stroke-linecap="round"
               >
-                <polyline points="6 9 12 15 18 9" />
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
               </svg>
-            </button>
+              <span class="detail-label">Daily rhythm</span>
+              <span class="detail-value">Early riser (5:30am)</span>
+            </div>
 
-            <!-- Expandable domain scores -->
-            <div class="expandable-content" id="domain-breakdown">
-              <div
-                style="
-                  padding-top: 20px;
-                  border-top: 1px solid var(--border-faint);
-                  margin-top: 12px;
-                "
+            <div class="detail-row">
+              <svg
+                class="detail-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
               >
-                <div class="domain-bar-container">
-                  <!-- Family Goals (25%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--accent-pink-muted)"
-                    >
-                      👶
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Family Goals
-                        <span class="domain-weight">25%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 92%; background: var(--accent-pink)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >92</span
-                    >
-                  </div>
-                  <!-- Geography (15%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--info-muted)"
-                    >
-                      🌍
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Geography
-                        <span class="domain-weight">15%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 88%; background: var(--info)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >88</span
-                    >
-                  </div>
-                  <!-- Spirituality (15%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--special-muted)"
-                    >
-                      🕊️
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Spirituality
-                        <span class="domain-weight">15%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 94%; background: var(--special)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >94</span
-                    >
-                  </div>
-                  <!-- Lifestyle (15%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--accent-gold-muted)"
-                    >
-                      🏡
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Lifestyle
-                        <span class="domain-weight">15%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 85%; background: var(--accent-gold)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >85</span
-                    >
-                  </div>
-                  <!-- Physical Attraction (10%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--accent-pink-muted)"
-                    >
-                      ✨
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Physical Attraction
-                        <span class="domain-weight">10%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 80%; background: var(--accent-pink)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >80</span
-                    >
-                  </div>
-                  <!-- Politics (10%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--info-muted)"
-                    >
-                      ⚖️
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Politics
-                        <span class="domain-weight">10%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 72%; background: var(--warning)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--warning)"
-                      >72</span
-                    >
-                  </div>
-                  <!-- Social Interests (10%) -->
-                  <div class="domain-row">
-                    <div
-                      class="domain-icon"
-                      style="background: var(--positive-muted)"
-                    >
-                      🎨
-                    </div>
-                    <div class="domain-info">
-                      <div class="domain-name">
-                        Social Interests
-                        <span class="domain-weight">10%</span>
-                      </div>
-                      <div class="domain-bar">
-                        <div
-                          class="domain-bar-fill"
-                          style="width: 90%; background: var(--positive)"
-                        ></div>
-                      </div>
-                    </div>
-                    <span
-                      class="domain-score-value"
-                      style="color: var(--positive)"
-                      >90</span
-                    >
-                  </div>
-                </div>
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              <span class="detail-label">Activity</span>
+              <span class="detail-value">Hiking, yoga, gardening</span>
+            </div>
 
-                <!-- Key alignment highlights -->
-                <div
-                  style="
-                    margin-top: 20px;
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 6px;
-                  "
-                >
-                  <span class="alignment-chip alignment-high">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                    Both want 2-3 children
-                  </span>
-                  <span class="alignment-chip alignment-high">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                    Marriage within 2 years
-                  </span>
-                  <span class="alignment-chip alignment-high">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                    Suburban long-term
-                  </span>
-                  <span class="alignment-chip alignment-medium">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <circle cx="12" cy="12" r="6" />
-                    </svg>
-                    Moderate political difference
-                  </span>
-                </div>
-              </div>
+            <div class="detail-row">
+              <svg
+                class="detail-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span class="detail-label">Social style</span>
+              <span class="detail-value">Small gatherings over parties</span>
+            </div>
+
+            <div class="detail-row">
+              <svg
+                class="detail-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+              <span class="detail-label">Wealth view</span>
+              <span class="detail-value">Moderate — comfort over status</span>
+            </div>
+
+            <div class="detail-row">
+              <svg
+                class="detail-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              <span class="detail-label">Work style</span>
+              <span class="detail-value">Remote — educational nonprofit</span>
+            </div>
+
+            <div class="detail-row">
+              <svg
+                class="detail-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="detail-label">Environment</span>
+              <span class="detail-value">Suburban — close to mountains</span>
             </div>
           </div>
         </div>
 
-        <!-- ========================================
-           SECTION 4: LIFE PLANS
-           ======================================== -->
-        <div class="profile-section">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Life Plans</div>
-            <div class="section-subtitle">
-              Where she sees herself building a future
-            </div>
-          </div>
-          <div class="life-plan-grid">
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">💍</div>
-              <div class="life-plan-label">Marriage Timeline</div>
-              <div class="life-plan-value">Within 2 years</div>
-            </div>
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">👶</div>
-              <div class="life-plan-label">Children</div>
-              <div class="life-plan-value">2–3, starting by 31</div>
-            </div>
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">🏡</div>
-              <div class="life-plan-label">Long-Term Location</div>
-              <div class="life-plan-value">Bay Area suburbs</div>
-            </div>
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">📚</div>
-              <div class="life-plan-label">Education Philosophy</div>
-              <div class="life-plan-value">Montessori + public</div>
-            </div>
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">🕊️</div>
-              <div class="life-plan-label">Spirituality</div>
-              <div class="life-plan-value">Christian, weekly practice</div>
-            </div>
-            <div class="life-plan-card">
-              <div class="life-plan-emoji">💰</div>
-              <div class="life-plan-label">Financial Style</div>
-              <div class="life-plan-value">Save-first, modest living</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 5: VALUES & BELIEFS
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Values & Beliefs</div>
-            <div class="section-subtitle">What guides her decisions</div>
-          </div>
-          <div
-            style="
-              padding: 0 24px;
-              display: flex;
-              flex-direction: column;
-              gap: 16px;
-            "
-          >
-            <!-- Value card 1 -->
-            <div style="display: flex; align-items: flex-start; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--accent-muted);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                🙏
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                    margin-bottom: 2px;
-                  "
-                >
-                  Faith is central
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    color: var(--text-secondary);
-                    line-height: 1.5;
-                  "
-                >
-                  "My faith shapes how I love, parent, and make decisions. I'm
-                  looking for someone who shares that foundation."
-                </div>
-              </div>
-            </div>
-            <!-- Value card 2 -->
-            <div style="display: flex; align-items: flex-start; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--positive-muted);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                🌱
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                    margin-bottom: 2px;
-                  "
-                >
-                  Growth over comfort
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    color: var(--text-secondary);
-                    line-height: 1.5;
-                  "
-                >
-                  "I'd rather have hard conversations early than pretend
-                  everything is fine. Emotional honesty matters more than
-                  keeping the peace."
-                </div>
-              </div>
-            </div>
-            <!-- Value card 3 -->
-            <div style="display: flex; align-items: flex-start; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--accent-pink-muted);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                👨‍👩‍👧
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                    margin-bottom: 2px;
-                  "
-                >
-                  Family is the priority
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    color: var(--text-secondary);
-                    line-height: 1.5;
-                  "
-                >
-                  "Career matters, but I'm building a life where family comes
-                  first. I want a partner who feels the same."
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 6: SOCIAL INTERESTS
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Social Interests</div>
-            <div class="section-subtitle">How she spends her time</div>
-          </div>
-          <div
-            style="padding: 0 24px; display: flex; flex-wrap: wrap; gap: 8px"
-          >
-            <span
-              class="profile-tag"
-              style="
-                background: var(--accent-muted);
-                border-color: rgba(167, 139, 250, 0.2);
-                color: var(--accent);
-                font-weight: 500;
-              "
-            >
-              <span style="font-size: 14px">🥾</span> Hiking — weekly
-            </span>
-            <span
-              class="profile-tag"
-              style="
-                background: var(--accent-muted);
-                border-color: rgba(167, 139, 250, 0.2);
-                color: var(--accent);
-                font-weight: 500;
-              "
-            >
-              <span style="font-size: 14px">📖</span> Reading — daily
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">🎨</span> Watercolor painting
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">🧘</span> Yoga
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">🍳</span> Cooking — loves it
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">✈️</span> Travel — 2-3x/year
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">🎵</span> Live music
-            </span>
-            <span class="profile-tag">
-              <span style="font-size: 14px">🏃‍♀️</span> Half-marathons
-            </span>
-          </div>
-          <div
-            style="
-              padding: 12px 24px 0;
-              font-size: 13px;
-              color: var(--text-tertiary);
-            "
-          >
-            Prefers social activities · Outdoors > Indoors
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 7: MOOD BOARD / Cultural Aesthetic
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Her Vibe</div>
-            <div class="section-subtitle">
-              A visual mood board of the life she's building
-            </div>
-          </div>
-          <div class="mood-board">
-            <!-- Pinterest-style image grid: tall left, 4 squares right -->
-            <div class="mood-board-item">
-              <img
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=600&fit=crop"
-                alt="Mountain sunrise — adventure and peace"
-              />
-            </div>
-            <div class="mood-board-item">
-              <img
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop"
-                alt="Cozy home library"
-              />
-            </div>
-            <div class="mood-board-item">
-              <img
-                src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=300&h=300&fit=crop"
-                alt="Golden hour beach walk"
-              />
-            </div>
-            <div class="mood-board-item">
-              <img
-                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=300&fit=crop"
-                alt="Watercolor art supplies"
-              />
-            </div>
-            <div class="mood-board-item" style="position: relative">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
-                alt="Sunday farmers market"
-              />
-              <div class="mood-board-more">+4 more</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 8: EMMA'S PLAYLIST
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">
-              <span style="display: flex; align-items: center; gap: 8px">
-                Audio Identity
-                <span class="spotify-badge" style="font-size: 11px">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="#1DB954"
-                  >
-                    <path
-                      d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
-                    />
-                  </svg>
-                  Spotify
-                </span>
-              </span>
-            </div>
-            <div class="section-subtitle">The soundtrack to her world</div>
-          </div>
-          <div
-            style="
-              padding: 0 24px;
-              display: flex;
-              flex-direction: column;
-              gap: 2px;
-            "
-          >
-            <!-- Track 1 — currently playing -->
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 10px;
-                background: var(--accent-muted);
-              "
-            >
-              <div
-                style="
-                  display: flex;
-                  align-items: flex-end;
-                  gap: 2px;
-                  height: 16px;
-                  width: 16px;
-                  justify-content: center;
-                "
-              >
-                <div class="eq-bar" style="height: 6px"></div>
-                <div class="eq-bar" style="height: 12px"></div>
-                <div class="eq-bar" style="height: 8px"></div>
-              </div>
-              <div style="flex: 1; min-width: 0">
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--accent);
-                  "
-                >
-                  The Night We Met
-                </div>
-                <div style="font-size: 12px; color: var(--text-tertiary)">
-                  Lord Huron
-                </div>
-              </div>
-              <span
-                style="
-                  font-size: 12px;
-                  color: var(--text-tertiary);
-                  font-variant-numeric: tabular-nums;
-                "
-                >3:28</span
-              >
-            </div>
-            <!-- Track 2 -->
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 10px;
-                transition: background-color 150ms ease-out;
-                cursor: pointer;
-              "
-              onmouseover="this.style.background = 'var(--surface-hover)'"
-              onmouseout="this.style.background = 'transparent'"
-            >
-              <span
-                style="
-                  font-size: 13px;
-                  color: var(--text-disabled);
-                  width: 16px;
-                  text-align: center;
-                  font-variant-numeric: tabular-nums;
-                "
-                >2</span
-              >
-              <div style="flex: 1; min-width: 0">
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--text-primary);
-                  "
-                >
-                  Holocene
-                </div>
-                <div style="font-size: 12px; color: var(--text-tertiary)">
-                  Bon Iver
-                </div>
-              </div>
-              <span
-                style="
-                  font-size: 12px;
-                  color: var(--text-tertiary);
-                  font-variant-numeric: tabular-nums;
-                "
-                >5:36</span
-              >
-            </div>
-            <!-- Track 3 -->
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 10px;
-                transition: background-color 150ms ease-out;
-                cursor: pointer;
-              "
-              onmouseover="this.style.background = 'var(--surface-hover)'"
-              onmouseout="this.style.background = 'transparent'"
-            >
-              <span
-                style="
-                  font-size: 13px;
-                  color: var(--text-disabled);
-                  width: 16px;
-                  text-align: center;
-                  font-variant-numeric: tabular-nums;
-                "
-                >3</span
-              >
-              <div style="flex: 1; min-width: 0">
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--text-primary);
-                  "
-                >
-                  Re: Stacks
-                </div>
-                <div style="font-size: 12px; color: var(--text-tertiary)">
-                  Bon Iver
-                </div>
-              </div>
-              <span
-                style="
-                  font-size: 12px;
-                  color: var(--text-tertiary);
-                  font-variant-numeric: tabular-nums;
-                "
-                >6:41</span
-              >
-            </div>
-            <!-- Track 4 -->
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 10px;
-                transition: background-color 150ms ease-out;
-                cursor: pointer;
-              "
-              onmouseover="this.style.background = 'var(--surface-hover)'"
-              onmouseout="this.style.background = 'transparent'"
-            >
-              <span
-                style="
-                  font-size: 13px;
-                  color: var(--text-disabled);
-                  width: 16px;
-                  text-align: center;
-                  font-variant-numeric: tabular-nums;
-                "
-                >4</span
-              >
-              <div style="flex: 1; min-width: 0">
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--text-primary);
-                  "
-                >
-                  First Day of My Life
-                </div>
-                <div style="font-size: 12px; color: var(--text-tertiary)">
-                  Bright Eyes
-                </div>
-              </div>
-              <span
-                style="
-                  font-size: 12px;
-                  color: var(--text-tertiary);
-                  font-variant-numeric: tabular-nums;
-                "
-                >4:27</span
-              >
-            </div>
-            <!-- Track 5 -->
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 10px 12px;
-                border-radius: 10px;
-                transition: background-color 150ms ease-out;
-                cursor: pointer;
-              "
-              onmouseover="this.style.background = 'var(--surface-hover)'"
-              onmouseout="this.style.background = 'transparent'"
-            >
-              <span
-                style="
-                  font-size: 13px;
-                  color: var(--text-disabled);
-                  width: 16px;
-                  text-align: center;
-                  font-variant-numeric: tabular-nums;
-                "
-                >5</span
-              >
-              <div style="flex: 1; min-width: 0">
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--text-primary);
-                  "
-                >
-                  To Build a Home
-                </div>
-                <div style="font-size: 12px; color: var(--text-tertiary)">
-                  The Cinematic Orchestra
-                </div>
-              </div>
-              <span
-                style="
-                  font-size: 12px;
-                  color: var(--text-tertiary);
-                  font-variant-numeric: tabular-nums;
-                "
-                >6:08</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 9: WRITTEN EXPRESSION
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Written Expression</div>
-            <div class="section-subtitle">A piece that speaks to her soul</div>
-          </div>
-          <div class="written-block">
-            <div class="poem-card">
-              <div class="poem-quote-mark">"</div>
-              <div class="poem-text">
-                I said to my soul, be still, and wait without hope<br />
-                For hope would be hope for the wrong thing; wait without love<br />
-                For love would be love of the wrong thing; there is yet faith<br />
-                But the faith and the love and the hope are all in the waiting.
-              </div>
-              <div class="poem-attribution">
-                — T.S. Eliot, "East Coker" from Four Quartets
-              </div>
-              <div class="poem-reflection">
-                <div class="poem-reflection-label">Why this resonates</div>
-                <div class="poem-reflection-text">
-                  I spent my early twenties chasing the idea of love rather than
-                  building the foundation for it. This poem reminds me that the
-                  best things come when you stop forcing timelines and start
-                  trusting the process. I want a partner who understands that
-                  patience isn't passive — it's the bravest thing you can do.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================
-           SECTION 10: GEOGRAPHY DETAIL
-           ======================================== -->
-        <div class="profile-section" style="padding-top: 24px">
-          <div class="section-divider"></div>
-          <div class="section-header">
-            <div class="section-title">Geography</div>
-            <div class="section-subtitle">Her roots and where she's headed</div>
-          </div>
-          <div
-            style="
-              padding: 0 24px;
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-            "
-          >
-            <div style="display: flex; align-items: center; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--surface-2);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                🏠
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 12px;
-                    color: var(--text-tertiary);
-                    font-weight: 500;
-                  "
-                >
-                  Originally from
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                  "
-                >
-                  Portland, Oregon
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--surface-2);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                📍
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 12px;
-                    color: var(--text-tertiary);
-                    font-weight: 500;
-                  "
-                >
-                  Currently living in
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                  "
-                >
-                  San Francisco, CA
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--accent-muted);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                🎯
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 12px;
-                    color: var(--text-tertiary);
-                    font-weight: 500;
-                  "
-                >
-                  Long-term plan
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--text-primary);
-                  "
-                >
-                  Bay Area suburbs — open to Marin or Peninsula
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 14px">
-              <div
-                style="
-                  width: 36px;
-                  height: 36px;
-                  border-radius: 10px;
-                  background: var(--surface-2);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-shrink: 0;
-                  font-size: 16px;
-                "
-              >
-                🚗
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 12px;
-                    color: var(--text-tertiary);
-                    font-weight: 500;
-                  "
-                >
-                  Distance from you
-                </div>
-                <div
-                  style="
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: var(--positive);
-                  "
-                  class="tabular-nums"
-                >
-                  4.2 miles away
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom spacing for action bar -->
-        <div style="height: 100px"></div>
+        <!-- Spacer above action bar -->
+        <div style="height: 16px; flex-shrink: 0"></div>
       </div>
-      <!-- END content scroll area -->
 
       <!-- ============================================================
-         ACTION BAR (Fixed above tab bar)
-         ============================================================ -->
+           ACTION BAR — Pass / Interested / Bookmark
+           Not binary swipe. Three intentional options:
+           - Pass: not aligned
+           - Interested: begin conversation (requires engaging with content)
+           - Bookmark: save for later reflection
+           ============================================================ -->
       <div class="action-bar">
-        <!-- Pass -->
         <button
           class="action-btn action-btn-pass"
           title="Pass"
           aria-label="Pass on this profile"
         >
           <svg
-            width="22"
-            height="22"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2.5"
+            stroke-width="2"
             stroke-linecap="round"
           >
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
-        <!-- Super Like -->
+
         <button
-          class="action-btn action-btn-superlike"
-          title="Super Like"
-          aria-label="Super Like this profile"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-            />
-          </svg>
-        </button>
-        <!-- Like (primary — largest) -->
-        <button
-          class="action-btn action-btn-like"
-          title="Like"
-          aria-label="Like this profile"
-        >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-            />
-          </svg>
-        </button>
-        <!-- Save for Later -->
-        <button
-          class="action-btn action-btn-save"
-          title="Save for Later"
-          aria-label="Save this profile for later"
+          class="action-btn action-btn-bookmark"
+          title="Save for later"
+          aria-label="Bookmark this profile"
         >
           <svg
-            width="18"
-            height="18"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -2919,11 +2673,31 @@
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
           </svg>
         </button>
+
+        <button
+          class="action-btn action-btn-interested"
+          title="I'm interested"
+          aria-label="Express interest in this person"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+        </button>
       </div>
 
       <!-- ============================================================
-         BOTTOM TAB BAR
-         ============================================================ -->
+           BOTTOM TAB BAR — 5 tabs, consistent with other MOTO screens
+           ============================================================ -->
       <nav
         style="
           height: 60px;
@@ -2934,34 +2708,30 @@
           border-top: 1px solid var(--border-faint);
           background: var(--surface-1);
           padding: 0 8px;
-          padding-bottom: env(safe-area-inset-bottom, 0px);
         "
       >
         <!-- Discover (active) -->
-        <button class="tab-bar-item active" aria-label="Discover">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          >
-            <circle cx="12" cy="12" r="10" />
+        <a href="discover.html" class="tab-bar-item active">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
             <polygon
               points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
               fill="currentColor"
-              stroke="none"
             />
           </svg>
           <span>Discover</span>
-        </button>
+        </a>
+
         <!-- Matches -->
-        <button class="tab-bar-item" aria-label="Matches">
+        <a href="matches.html" class="tab-bar-item">
           <svg
-            width="22"
-            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -2973,16 +2743,11 @@
             />
           </svg>
           <span>Matches</span>
-        </button>
+        </a>
+
         <!-- Messages -->
-        <button
-          class="tab-bar-item"
-          aria-label="Messages"
-          style="position: relative"
-        >
+        <a href="messages.html" class="tab-bar-item" style="position: relative">
           <svg
-            width="22"
-            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -2993,12 +2758,13 @@
               d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
             />
           </svg>
-          <!-- Unread count badge -->
+          <span>Messages</span>
+          <!-- Unread badge -->
           <span
             style="
               position: absolute;
-              top: 0;
-              right: 6px;
+              top: -2px;
+              right: 4px;
               background: var(--accent-pink);
               color: #fff;
               font-size: 9px;
@@ -3011,17 +2777,14 @@
               justify-content: center;
               padding: 0 4px;
               font-variant-numeric: tabular-nums;
-              border: 2px solid var(--surface-1);
             "
             >3</span
           >
-          <span>Messages</span>
-        </button>
+        </a>
+
         <!-- Activity -->
-        <button class="tab-bar-item" aria-label="Activity">
+        <a href="#" class="tab-bar-item">
           <svg
-            width="22"
-            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -3031,12 +2794,11 @@
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
           </svg>
           <span>Activity</span>
-        </button>
+        </a>
+
         <!-- Profile -->
-        <button class="tab-bar-item" aria-label="Profile">
+        <a href="#" class="tab-bar-item">
           <svg
-            width="22"
-            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -3047,206 +2809,9 @@
             <circle cx="12" cy="7" r="4" />
           </svg>
           <span>Profile</span>
-        </button>
+        </a>
       </nav>
-
-      <!-- ============================================================
-         FILTER SHEET (Overlay)
-         ============================================================ -->
-      <div
-        class="filter-overlay"
-        id="filter-overlay"
-        onclick="closeFilters(event)"
-      >
-        <div class="filter-sheet" onclick="event.stopPropagation()">
-          <div class="filter-sheet-handle"></div>
-          <div class="filter-sheet-header">
-            <h2 style="font-size: 18px; font-weight: 600">Intent Filters</h2>
-            <button class="btn btn-ghost btn-sm" onclick="toggleFilters()">
-              Done
-            </button>
-          </div>
-          <div class="filter-sheet-body">
-            <!-- Marriage Readiness -->
-            <div class="filter-group">
-              <div class="filter-group-label">Marriage Readiness</div>
-              <div class="filter-chips">
-                <button
-                  class="filter-chip selected"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Ready now
-                </button>
-                <button
-                  class="filter-chip selected"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Within 1-2 years
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Within 3-5 years
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Open to it
-                </button>
-              </div>
-            </div>
-            <!-- Family Timeline -->
-            <div class="filter-group">
-              <div class="filter-group-label">Family Timeline</div>
-              <div class="filter-chips">
-                <button
-                  class="filter-chip selected"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Wants children
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Starting within 2 years
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Starting within 5 years
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Open / flexible
-                </button>
-              </div>
-            </div>
-            <!-- Geographic Commitment -->
-            <div class="filter-group">
-              <div class="filter-group-label">Geographic Commitment</div>
-              <div class="filter-chips">
-                <button
-                  class="filter-chip selected"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Bay Area
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  West Coast
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Open to relocating
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Remote / flexible
-                </button>
-              </div>
-            </div>
-            <!-- Spirituality -->
-            <div class="filter-group">
-              <div class="filter-group-label">Spirituality</div>
-              <div class="filter-chips">
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Christian
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Jewish
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Muslim
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Buddhist
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Spiritual, not religious
-                </button>
-                <button
-                  class="filter-chip"
-                  onclick="this.classList.toggle('selected')"
-                >
-                  Any / no preference
-                </button>
-              </div>
-            </div>
-            <!-- Minimum Compatibility -->
-            <div class="filter-group">
-              <div class="filter-group-label">Minimum Compatibility Score</div>
-              <div style="display: flex; align-items: center; gap: 16px">
-                <input
-                  type="range"
-                  min="50"
-                  max="95"
-                  value="70"
-                  style="
-                    flex: 1;
-                    height: auto;
-                    padding: 0;
-                    border: none;
-                    accent-color: var(--accent);
-                  "
-                  oninput="
-                    document.getElementById('min-score-label').textContent =
-                      this.value + '%'
-                  "
-                />
-                <span
-                  id="min-score-label"
-                  style="
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: var(--accent);
-                    min-width: 40px;
-                    text-align: right;
-                    font-variant-numeric: tabular-nums;
-                  "
-                  >70%</span
-                >
-              </div>
-            </div>
-            <!-- Apply button -->
-            <button
-              class="btn btn-primary btn-lg"
-              style="width: 100%; margin-top: 8px"
-              onclick="toggleFilters()"
-            >
-              Apply Filters
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
-    <!-- END shell -->
 
     <script>
       // Theme toggle
@@ -3254,76 +2819,6 @@
         const html = document.documentElement;
         const current = html.getAttribute("data-theme");
         html.setAttribute("data-theme", current === "light" ? "dark" : "light");
-      }
-
-      // Photo carousel
-      const photos = [
-        {
-          src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=1067&fit=crop&crop=face",
-          alt: "Emma Chen — portrait",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=1067&fit=crop&crop=face",
-          alt: "Emma Chen — full body outdoor",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1067&fit=crop&crop=face",
-          alt: "Emma Chen — lifestyle candid",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1067&fit=crop&crop=face",
-          alt: "Emma Chen — smiling close-up",
-        },
-        {
-          src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&h=1067&fit=crop&crop=face",
-          alt: "Emma Chen — active lifestyle",
-        },
-      ];
-      let currentPhoto = 0;
-
-      function goToPhoto(index) {
-        currentPhoto = index;
-        updatePhoto();
-      }
-      function nextPhoto() {
-        currentPhoto = (currentPhoto + 1) % photos.length;
-        updatePhoto();
-      }
-      function prevPhoto() {
-        currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
-        updatePhoto();
-      }
-      function updatePhoto() {
-        const img = document.getElementById("profile-photo");
-        img.src = photos[currentPhoto].src;
-        img.alt = photos[currentPhoto].alt;
-        document.querySelectorAll(".photo-dot").forEach((dot, i) => {
-          dot.classList.toggle("active", i === currentPhoto);
-        });
-      }
-
-      // Filter sheet
-      function toggleFilters() {
-        document.getElementById("filter-overlay").classList.toggle("open");
-      }
-      function closeFilters(e) {
-        if (e.target === e.currentTarget) {
-          document.getElementById("filter-overlay").classList.remove("open");
-        }
-      }
-
-      // Domain breakdown expand/collapse
-      function toggleDomainBreakdown() {
-        const content = document.getElementById("domain-breakdown");
-        const btn = document.getElementById("domain-expand-btn");
-        content.classList.toggle("expanded");
-        btn.classList.toggle("expanded");
-        if (content.classList.contains("expanded")) {
-          btn.querySelector("span").textContent = "Hide breakdown";
-        } else {
-          btn.querySelector("span").textContent =
-            "View compatibility breakdown";
-        }
       }
     </script>
   </body>
