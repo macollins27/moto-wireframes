@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOTO — Wireframes</title>
+    <style>
+      /* === WARM LUXURY ATMOSPHERE === */
+      :root,
+      [data-theme="dark"] {
+        --bg-page: #0c0a09;
+        --surface-1: #141210;
+        --surface-2: #1c1a17;
+        --surface-hover: #242220;
+        --surface-active: #2c2a27;
+        --text-primary: #edece8;
+        --text-secondary: #a8a29e;
+        --text-tertiary: #78716c;
+        --text-disabled: #57534e;
+        --border-faint: #1e1c19;
+        --border-default: #2e2c28;
+        --border-strong: #44403c;
+        --accent: #a78bfa;
+        --accent-hover: #8b5cf6;
+        --accent-muted: rgba(167, 139, 250, 0.12);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+      }
+      [data-theme="light"] {
+        --bg-page: #faf9f7;
+        --surface-1: #ffffff;
+        --surface-2: #f5f4f1;
+        --surface-hover: #efede9;
+        --surface-active: #e8e6e1;
+        --text-primary: #1c1917;
+        --text-secondary: #57534e;
+        --text-tertiary: #78716c;
+        --text-disabled: #a8a29e;
+        --border-faint: #e7e5e4;
+        --border-default: #d6d3d1;
+        --border-strong: #a8a29e;
+        --accent: #7c3aed;
+        --accent-hover: #6d28d9;
+        --accent-muted: rgba(124, 58, 237, 0.08);
+        --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+        --shadow-sm:
+          0 2px 4px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.03);
+        --shadow-md:
+          0 4px 16px rgba(28, 25, 23, 0.07), 0 2px 4px rgba(28, 25, 23, 0.03);
+        --shadow-lg:
+          0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+      }
+
+      html,
+      body {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition:
+          background-color 200ms ease-out,
+          color 200ms ease-out;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Shell */
+      .shell {
+        max-width: 430px;
+        margin: 0 auto;
+        min-height: 100vh;
+        background: var(--bg-page);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header */
+      .header {
+        padding: 20px 20px 0;
+        flex-shrink: 0;
+      }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, var(--accent), #c4b5fd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      [data-theme="dark"] .theme-icon-sun {
+        display: block;
+      }
+      [data-theme="dark"] .theme-icon-moon {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-sun {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-moon {
+        display: block;
+      }
+      .theme-toggle svg {
+        color: var(--text-tertiary);
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        font-weight: 400;
+      }
+
+      .version {
+        font-size: 13px;
+        color: var(--text-disabled);
+        margin-top: 4px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--border-faint);
+        margin: 20px 0 0;
+      }
+
+      /* Card list */
+      .card-list {
+        flex: 1;
+        padding: 16px 20px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .section-label {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-tertiary);
+        padding: 8px 0 4px;
+      }
+
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out;
+      }
+
+      a.card:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      a.card:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      a.card:active {
+        background: var(--surface-active);
+      }
+
+      .card-disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+      .card-disabled:hover {
+        background: var(--surface-1);
+        border-color: var(--border-faint);
+      }
+
+      .card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--accent-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .card-icon svg {
+        width: 22px;
+        height: 22px;
+        color: var(--accent);
+      }
+
+      .card-body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .card-title {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 2px;
+      }
+
+      .card-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.4;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 11px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .badge-live {
+        color: #16a34a;
+        background: rgba(22, 163, 74, 0.08);
+      }
+
+      .badge-soon {
+        color: var(--text-tertiary);
+        background: rgba(113, 113, 122, 0.08);
+      }
+
+      .card-arrow {
+        color: var(--text-disabled);
+        flex-shrink: 0;
+      }
+      a.card:hover .card-arrow {
+        color: var(--text-tertiary);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-default);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-strong);
+      }
+
+      /* Focus-visible */
+      a:focus-visible,
+      button:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-top">
+          <div>
+            <div class="logo">MOTO</div>
+            <div class="subtitle">Product Wireframes</div>
+            <div class="version">v1.0 — April 2026</div>
+          </div>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+        <div class="divider"></div>
+      </div>
+
+      <!-- Wireframe Cards -->
+      <div class="card-list">
+        <div class="section-label">Core Experience</div>
+
+        <!-- Discover — LIVE -->
+        <a class="card" href="discover.html">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Profile Discovery</div>
+            <div class="card-desc">
+              Immersive scrollable profile browsing with music, mood boards, and
+              compatibility scores
+            </div>
+          </div>
+          <span class="badge badge-live">Live</span>
+          <svg
+            class="card-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </a>
+
+        <!-- Onboarding — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <line x1="20" y1="8" x2="20" y2="14" />
+              <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Onboarding</div>
+            <div class="card-desc">
+              11-step identity builder across all matching domains —
+              self-discovery, not data entry
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <!-- Matches — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Matches</div>
+            <div class="card-desc">
+              Mutual matches with compatibility breakdowns and conversation
+              starters
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <!-- Messages — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Messages</div>
+            <div class="card-desc">
+              Conversations with matches — voice notes, shared playlists, and
+              prompts
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <div class="section-label">Engagement</div>
+
+        <!-- Activity — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Activity Feed</div>
+            <div class="card-desc">
+              Who liked you, profile views, and engagement notifications
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <!-- Compatibility Deep Dive — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Compatibility Deep Dive</div>
+            <div class="card-desc">
+              Side-by-side comparison of values, life plans, and domain
+              alignment
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <div class="section-label">Profile & Settings</div>
+
+        <!-- My Profile — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">My Profile</div>
+            <div class="card-desc">
+              View and edit your profile as others see it
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <!-- Settings — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+              />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Settings</div>
+            <div class="card-desc">
+              Account preferences, notifications, privacy, and subscription
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+
+        <!-- Intent Filters — Coming Soon -->
+        <div class="card card-disabled">
+          <div class="card-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Intent Filters</div>
+            <div class="card-desc">
+              Filter by marriage readiness, family timeline, and geographic
+              commitment
+            </div>
+          </div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+      }
+    </script>
+  </body>
+</html>
