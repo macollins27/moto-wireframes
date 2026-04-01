@@ -1,0 +1,5125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOTO — My Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* === WARM LUXURY ATMOSPHERE (MOTO) === */
+      :root,
+      [data-theme="dark"] {
+        --bg-page: #0c0a09;
+        --surface-1: #141210;
+        --surface-2: #1c1a17;
+        --surface-hover: #242220;
+        --surface-active: #2c2a27;
+        --text-primary: #edece8;
+        --text-secondary: #a8a29e;
+        --text-tertiary: #78716c;
+        --text-disabled: #57534e;
+        --border-faint: #1e1c19;
+        --border-default: #2e2c28;
+        --border-strong: #44403c;
+        --accent: #a78bfa;
+        --accent-hover: #8b5cf6;
+        --accent-muted: rgba(167, 139, 250, 0.12);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+        /* MOTO custom tokens */
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(167, 139, 250, 0.15),
+          rgba(244, 114, 182, 0.12)
+        );
+        --gradient-hero: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(12, 10, 9, 0.7) 60%,
+          rgba(12, 10, 9, 0.95) 100%
+        );
+        --accent-pink: #f472b6;
+        --accent-pink-muted: rgba(244, 114, 182, 0.12);
+        --accent-gold: #fbbf24;
+        --accent-gold-muted: rgba(251, 191, 36, 0.12);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.08);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.08);
+        --info: #3b82f6;
+        --info-muted: rgba(59, 130, 246, 0.12);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.08);
+        --special: #8b5cf6;
+        --special-muted: rgba(139, 92, 246, 0.08);
+      }
+      [data-theme="light"] {
+        --bg-page: #faf9f7;
+        --surface-1: #ffffff;
+        --surface-2: #f5f4f1;
+        --surface-hover: #efede9;
+        --surface-active: #e8e6e1;
+        --text-primary: #1c1917;
+        --text-secondary: #57534e;
+        --text-tertiary: #78716c;
+        --text-disabled: #a8a29e;
+        --border-faint: #e7e5e4;
+        --border-default: #d6d3d1;
+        --border-strong: #a8a29e;
+        --accent: #7c3aed;
+        --accent-hover: #6d28d9;
+        --accent-muted: rgba(124, 58, 237, 0.08);
+        --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+        --shadow-sm:
+          0 2px 4px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.03);
+        --shadow-md:
+          0 4px 16px rgba(28, 25, 23, 0.07), 0 2px 4px rgba(28, 25, 23, 0.03);
+        --shadow-lg:
+          0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.08),
+          rgba(236, 72, 153, 0.06)
+        );
+        --gradient-hero: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(250, 249, 247, 0.7) 60%,
+          rgba(250, 249, 247, 0.95) 100%
+        );
+        --accent-pink: #ec4899;
+        --accent-pink-muted: rgba(236, 72, 153, 0.08);
+        --accent-gold: #d97706;
+        --accent-gold-muted: rgba(217, 119, 6, 0.08);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.06);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.06);
+        --info: #3b82f6;
+        --info-muted: rgba(59, 130, 246, 0.08);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.06);
+        --special: #7c3aed;
+        --special-muted: rgba(124, 58, 237, 0.06);
+      }
+
+      html,
+      body {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition:
+          background-color 200ms ease-out,
+          color 200ms ease-out;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* === COMPONENT STANDARDS === */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 1.3;
+      }
+
+      .btn {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: none;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+      }
+      .btn-secondary {
+        background: var(--surface-1);
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+      }
+      .btn-secondary:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .btn-sm {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      .btn-lg {
+        height: 48px;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="search"],
+      input[type="number"],
+      input[type="url"],
+      input[type="tel"],
+      select,
+      textarea {
+        height: 40px;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-default);
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        transition:
+          border-color 150ms ease-out,
+          box-shadow 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--text-disabled);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-muted);
+      }
+      textarea {
+        height: auto;
+        min-height: 80px;
+        padding: 12px;
+        resize: vertical;
+      }
+
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out;
+      }
+      .card-interactive {
+        cursor: pointer;
+      }
+      .card-interactive:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      .card-interactive:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .tab-bar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        transition: color 150ms ease-out;
+        text-decoration: none;
+        background: none;
+        border: none;
+      }
+      .tab-bar-item:hover {
+        color: var(--text-secondary);
+      }
+      .tab-bar-item.active {
+        color: var(--accent);
+      }
+      .tab-bar-item svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      [role="button"]:focus-visible,
+      [tabindex]:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-default);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-strong);
+      }
+
+      .shell > *,
+      .shell > * > * {
+        min-height: 0;
+      }
+
+      /* === HEADER ICON BUTTON === */
+      .header-icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .header-icon-btn:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .header-icon-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* === THEME TOGGLE === */
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      [data-theme="dark"] .theme-icon-sun {
+        display: block;
+      }
+      [data-theme="dark"] .theme-icon-moon {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-sun {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-moon {
+        display: block;
+      }
+      .theme-toggle svg {
+        color: var(--text-tertiary);
+      }
+
+      /* === PROFILE-SPECIFIC STYLES === */
+
+      /* Section header with edit button */
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-tertiary);
+      }
+      .section-edit-btn {
+        height: 28px;
+        padding: 0 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border-default);
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .section-edit-btn:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+        border-color: var(--border-strong);
+      }
+      .section-edit-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Profile completion ring */
+      .completion-ring {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+      .completion-ring svg {
+        transform: rotate(-90deg);
+      }
+      .completion-ring-text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Domain completion items */
+      .domain-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+      }
+      .domain-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .domain-bar-track {
+        flex: 1;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--surface-2);
+        overflow: hidden;
+      }
+      .domain-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 600ms ease-out;
+      }
+
+      /* Photo grid */
+      .photo-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 3px;
+        border-radius: 16px;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+      }
+      .photo-grid-item {
+        background: var(--surface-2);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: opacity 150ms ease-out;
+      }
+      .photo-grid-item:hover {
+        opacity: 0.85;
+      }
+      .photo-grid-item:first-child {
+        grid-row: 1 / 3;
+      }
+      .photo-grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .photo-grid-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.45);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      /* Value chip pills */
+      .value-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 0 12px;
+        border-radius: 16px;
+        font-size: 13px;
+        font-weight: 500;
+        background: var(--surface-2);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-faint);
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .value-chip.highlighted {
+        background: var(--accent-muted);
+        color: var(--accent);
+        border-color: rgba(167, 139, 250, 0.2);
+      }
+
+      /* Life plan card grid items */
+      .life-plan-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .life-plan-card:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      .life-plan-emoji {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+      .life-plan-label {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        font-weight: 400;
+      }
+      .life-plan-value {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      /* Mood board masonry */
+      .mood-board {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 4px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .mood-board-item {
+        background: var(--surface-2);
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: opacity 150ms ease-out;
+        position: relative;
+      }
+      .mood-board-item:hover {
+        opacity: 0.85;
+      }
+      .mood-board-item.tall {
+        grid-row: span 2;
+      }
+      .mood-board-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Playlist tracks */
+      .track-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 150ms ease-out;
+      }
+      .track-item:hover {
+        background: var(--surface-hover);
+      }
+      .track-item.playing {
+        background: var(--accent-muted);
+      }
+      .track-num {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+        width: 20px;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+      .track-art {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        background: var(--surface-2);
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .track-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .track-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .track-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .track-artist {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+      .track-duration {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Equalizer animation */
+      .eq-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 16px;
+      }
+      .eq-bar {
+        width: 3px;
+        border-radius: 1px;
+        background: var(--accent);
+        animation: eq 1.2s ease-in-out infinite;
+      }
+      .eq-bar:nth-child(1) {
+        height: 8px;
+        animation-delay: 0s;
+      }
+      .eq-bar:nth-child(2) {
+        height: 14px;
+        animation-delay: 0.2s;
+      }
+      .eq-bar:nth-child(3) {
+        height: 6px;
+        animation-delay: 0.4s;
+      }
+      .eq-bar:nth-child(4) {
+        height: 12px;
+        animation-delay: 0.1s;
+      }
+      @keyframes eq {
+        0%,
+        100% {
+          transform: scaleY(0.4);
+        }
+        50% {
+          transform: scaleY(1);
+        }
+      }
+
+      /* Literary quote styling */
+      .quote-block {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 18px;
+        font-style: italic;
+        line-height: 1.8;
+        color: var(--text-primary);
+      }
+
+      /* Edit sheet overlay */
+      .edit-sheet-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        display: none;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .edit-sheet-overlay.open {
+        display: flex;
+      }
+      .edit-sheet {
+        background: var(--surface-1);
+        border-radius: 20px 20px 0 0;
+        width: 100%;
+        max-width: 430px;
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 20px 20px 32px;
+      }
+      .edit-sheet-handle {
+        width: 36px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--border-strong);
+        margin: 0 auto 20px;
+      }
+
+      /* Profile verified badge */
+      .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        background: var(--positive-muted);
+        color: var(--positive);
+      }
+
+      /* Spotify badge */
+      .spotify-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 22px;
+        padding: 0 8px;
+        border-radius: 11px;
+        font-size: 11px;
+        font-weight: 600;
+        background: rgba(29, 185, 84, 0.12);
+        color: #1db954;
+      }
+
+      /* Geography detail row */
+      .geo-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+      }
+      .geo-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      /* View/Preview toggle tabs */
+      .preview-toggle {
+        display: flex;
+        background: var(--surface-2);
+        border-radius: 10px;
+        padding: 3px;
+        gap: 2px;
+      }
+      .preview-toggle-btn {
+        flex: 1;
+        height: 32px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        color: var(--text-tertiary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+      }
+      .preview-toggle-btn:hover {
+        color: var(--text-secondary);
+      }
+      .preview-toggle-btn.active {
+        background: var(--surface-1);
+        color: var(--text-primary);
+        box-shadow: var(--shadow-xs);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         MOBILE SHELL (430px max-width, centered)
+         ============================================================ -->
+    <div
+      class="shell"
+      style="
+        max-width: 430px;
+        margin: 0 auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-page);
+        position: relative;
+        border-left: 1px solid var(--border-faint);
+        border-right: 1px solid var(--border-faint);
+      "
+    >
+      <!-- ============================================================
+           TOP HEADER
+           ============================================================ -->
+      <header
+        style="
+          height: 56px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 12px 0 16px;
+          border-bottom: 1px solid var(--border-faint);
+          background: var(--surface-1);
+          z-index: 20;
+        "
+      >
+        <!-- Left: Logo -->
+        <div style="display: flex; align-items: center; gap: 8px">
+          <div style="display: flex; align-items: center; gap: 6px">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle
+                cx="14"
+                cy="14"
+                r="13"
+                stroke="var(--accent)"
+                stroke-width="2"
+              />
+              <circle
+                cx="10"
+                cy="12"
+                r="3"
+                fill="var(--accent)"
+                opacity="0.6"
+              />
+              <circle
+                cx="18"
+                cy="12"
+                r="3"
+                fill="var(--accent-pink)"
+                opacity="0.6"
+              />
+              <path
+                d="M10 15 C10 19, 18 19, 18 15"
+                stroke="var(--accent)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+            </svg>
+            <span
+              style="
+                font-size: 18px;
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                background: linear-gradient(
+                  135deg,
+                  var(--accent),
+                  var(--accent-pink)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              "
+              >MOTO</span
+            >
+          </div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div style="display: flex; align-items: center; gap: 2px">
+          <!-- Settings -->
+          <button
+            class="header-icon-btn"
+            title="Settings"
+            aria-label="Settings"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+              />
+            </svg>
+          </button>
+          <!-- Theme toggle -->
+          <div
+            style="
+              width: 1px;
+              height: 24px;
+              background: var(--border-faint);
+              margin: 0 4px;
+            "
+          ></div>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ============================================================
+           SCROLLABLE CONTENT AREA
+           ============================================================ -->
+      <div style="flex: 1; overflow-y: auto; min-height: 0">
+        <!-- ============================================================
+             PROFILE HERO: Name, Photo, Completion Ring
+             ============================================================ -->
+        <div style="padding: 24px 20px 0">
+          <!-- View/Edit Toggle -->
+          <div style="margin-bottom: 20px">
+            <div class="preview-toggle">
+              <button
+                class="preview-toggle-btn active"
+                onclick="switchPreviewMode('view')"
+              >
+                My Profile
+              </button>
+              <button
+                class="preview-toggle-btn"
+                onclick="switchPreviewMode('preview')"
+              >
+                Preview as Others See
+              </button>
+            </div>
+          </div>
+
+          <!-- Name + Verification Row -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 16px;
+            "
+          >
+            <div>
+              <h1
+                style="
+                  font-size: 28px;
+                  font-weight: 700;
+                  letter-spacing: -0.03em;
+                "
+              >
+                Sophia Martinez
+              </h1>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  margin-top: 6px;
+                "
+              >
+                <span style="font-size: 14px; color: var(--text-secondary)"
+                  >28 years old</span
+                >
+                <span style="color: var(--border-default)">&middot;</span>
+                <span class="verified-badge">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Verified
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Completion Card -->
+          <div
+            class="card"
+            style="
+              background: var(--gradient-warm);
+              border-color: rgba(167, 139, 250, 0.15);
+              padding: 20px;
+              margin-bottom: 24px;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 20px">
+              <!-- Completion Ring -->
+              <div class="completion-ring">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <!-- Track -->
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="none"
+                    stroke="var(--border-default)"
+                    stroke-width="6"
+                    opacity="0.3"
+                  />
+                  <!-- Fill: 82% complete = 0.82 * 2 * PI * 42 = 216.4 -->
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="none"
+                    stroke="var(--accent)"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-dasharray="263.9"
+                    stroke-dashoffset="47.5"
+                  />
+                </svg>
+                <div class="completion-ring-text">
+                  <span
+                    style="
+                      font-size: 22px;
+                      font-weight: 700;
+                      color: var(--accent);
+                      font-variant-numeric: tabular-nums;
+                    "
+                    >82%</span
+                  >
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--text-tertiary);
+                      font-weight: 500;
+                    "
+                    >Complete</span
+                  >
+                </div>
+              </div>
+              <!-- Domain Summary -->
+              <div style="flex: 1; min-width: 0">
+                <h3 style="margin-bottom: 4px">Identity Strength</h3>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text-secondary);
+                    margin: 0 0 12px;
+                    line-height: 1.4;
+                  "
+                >
+                  Complete your Literary Expression to strengthen matches.
+                </p>
+                <button
+                  class="btn btn-sm btn-primary"
+                  onclick="openSheet('literary-edit')"
+                  style="border-radius: 16px"
+                >
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  Complete Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Domain Completion Mini-Bars -->
+            <div
+              style="
+                margin-top: 16px;
+                padding-top: 16px;
+                border-top: 1px solid rgba(167, 139, 250, 0.1);
+              "
+            >
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 8px 16px;
+                "
+              >
+                <!-- Row 1 -->
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#128141;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Family Goals</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--accent-pink)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#127758;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Geography</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--info)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#128591;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Spirituality</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--special)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#127939;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Lifestyle</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--accent-gold)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#128247;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Photos</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--accent-pink)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#9878;&#65039;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Politics</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--warning);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >75%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 75%; background: var(--warning)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#127912;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Mood Board</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: var(--accent)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#127925;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Audio Identity</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: rgba(29, 185, 84, 0.8)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#128214;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Literary Expression</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--negative);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >0%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 0%; background: var(--negative)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="domain-item" style="padding: 4px 0">
+                  <span style="font-size: 14px">&#127758;</span>
+                  <div style="flex: 1">
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 3px;
+                      "
+                    >
+                      <span style="font-size: 11px; color: var(--text-tertiary)"
+                        >Social Interests</span
+                      >
+                      <span
+                        style="
+                          font-size: 11px;
+                          color: var(--positive);
+                          font-variant-numeric: tabular-nums;
+                        "
+                        >100%</span
+                      >
+                    </div>
+                    <div class="domain-bar-track">
+                      <div
+                        class="domain-bar-fill"
+                        style="width: 100%; background: rgba(22, 163, 74, 0.8)"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 1: PHOTOS
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <span class="section-label">Photos</span>
+            <button class="section-edit-btn" onclick="openSheet('photos-edit')">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="photo-grid">
+            <!-- Main photo (2 rows tall) -->
+            <div
+              class="photo-grid-item"
+              style="
+                background: linear-gradient(135deg, #3b1f5e 0%, #1a0a2e 100%);
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <div style="text-align: center">
+                  <div style="font-size: 48px; margin-bottom: 8px">
+                    &#128105;&#8205;&#129457;
+                  </div>
+                  <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5)"
+                    >Main photo</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Top right -->
+            <div
+              class="photo-grid-item"
+              style="
+                background: linear-gradient(135deg, #2d1a47 0%, #1a0f2a 100%);
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <div style="text-align: center">
+                  <div style="font-size: 28px">&#127958;&#65039;</div>
+                  <span style="font-size: 11px; color: rgba(255, 255, 255, 0.4)"
+                    >Outdoors</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Bottom right -->
+            <div
+              class="photo-grid-item"
+              style="
+                background: linear-gradient(135deg, #2a1940 0%, #150d22 100%);
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <div style="text-align: center">
+                  <div style="font-size: 28px">&#128522;</div>
+                  <span style="font-size: 11px; color: rgba(255, 255, 255, 0.4)"
+                    >Social</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Photo count indicator -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 4px;
+              margin-top: 10px;
+            "
+          >
+            <span style="font-size: 12px; color: var(--text-tertiary)"
+              >6 photos</span
+            >
+            <span style="color: var(--border-default)">&middot;</span>
+            <span
+              style="
+                font-size: 12px;
+                color: var(--accent);
+                font-weight: 500;
+                cursor: pointer;
+              "
+              >View all</span
+            >
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 2: FAMILY ARCHITECTURE (Most Important - 25% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Family Architecture</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--accent-pink-muted);
+                  color: var(--accent-pink);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >25% weight</span
+              >
+            </div>
+            <button class="section-edit-btn" onclick="openSheet('family-edit')">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden">
+            <!-- Gradient header band -->
+            <div
+              style="
+                height: 4px;
+                background: linear-gradient(
+                  90deg,
+                  var(--accent-pink),
+                  var(--accent),
+                  var(--accent-gold)
+                );
+              "
+            ></div>
+            <div style="padding: 20px">
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+              >
+                <div class="life-plan-card">
+                  <span class="life-plan-emoji">&#128118;</span>
+                  <span class="life-plan-label">Desired Children</span>
+                  <span class="life-plan-value">2&ndash;3 children</span>
+                  <span
+                    style="
+                      font-size: 11px;
+                      color: var(--accent-pink);
+                      font-weight: 500;
+                    "
+                    >Non-negotiable</span
+                  >
+                </div>
+                <div class="life-plan-card">
+                  <span class="life-plan-emoji">&#128141;</span>
+                  <span class="life-plan-label">Marriage Timeline</span>
+                  <span class="life-plan-value">&lt; 3 years</span>
+                </div>
+                <div class="life-plan-card">
+                  <span class="life-plan-emoji">&#128197;</span>
+                  <span class="life-plan-label">Start Family By</span>
+                  <span class="life-plan-value">Within 2 years</span>
+                </div>
+                <div class="life-plan-card">
+                  <span class="life-plan-emoji">&#127891;</span>
+                  <span class="life-plan-label">Education Philosophy</span>
+                  <span class="life-plan-value">Private / Hybrid</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 3: GEOGRAPHY (15% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Geography</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--info-muted);
+                  color: var(--info);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >15% weight</span
+              >
+            </div>
+            <button class="section-edit-btn" onclick="openSheet('geo-edit')">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div class="geo-row">
+              <div class="geo-icon" style="background: var(--accent-muted)">
+                &#127968;
+              </div>
+              <div style="flex: 1">
+                <div style="font-size: 12px; color: var(--text-tertiary)">
+                  From
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Austin, Texas
+                </div>
+              </div>
+            </div>
+            <div class="geo-row">
+              <div class="geo-icon" style="background: var(--info-muted)">
+                &#128205;
+              </div>
+              <div style="flex: 1">
+                <div style="font-size: 12px; color: var(--text-tertiary)">
+                  Currently lives in
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Denver, Colorado
+                </div>
+              </div>
+            </div>
+            <div class="geo-row">
+              <div class="geo-icon" style="background: var(--positive-muted)">
+                &#127793;
+              </div>
+              <div style="flex: 1">
+                <div style="font-size: 12px; color: var(--text-tertiary)">
+                  Long-term goal
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Suburban &middot; Domestic
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                margin-top: 8px;
+                padding-top: 8px;
+                border-top: 1px solid var(--border-faint);
+              "
+            >
+              <span style="font-size: 12px; color: var(--text-tertiary)"
+                >Open to relocating?</span
+              >
+              <span
+                style="
+                  font-size: 13px;
+                  font-weight: 500;
+                  color: var(--positive);
+                  margin-left: 6px;
+                "
+                >Yes, flexible</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 4: SPIRITUALITY & FAITH (15% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Spirituality &amp; Faith</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--special-muted);
+                  color: var(--special);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >15% weight</span
+              >
+            </div>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('spirituality-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                margin-bottom: 16px;
+              "
+            >
+              <div
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 10px;
+                  background: var(--special-muted);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 20px;
+                  flex-shrink: 0;
+                "
+              >
+                &#128591;
+              </div>
+              <div>
+                <div
+                  style="font-size: 14px; font-weight: 500; margin-bottom: 2px"
+                >
+                  Christian &mdash; Non-denominational
+                </div>
+                <div style="font-size: 13px; color: var(--text-secondary)">
+                  Raised Baptist &middot; Practice regularly
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 12px;
+              "
+            >
+              <span style="font-size: 12px; color: var(--text-tertiary)"
+                >Importance:</span
+              >
+              <div style="display: flex; gap: 3px">
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--special);
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--special);
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--special);
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--border-default);
+                    opacity: 0.4;
+                  "
+                ></div>
+              </div>
+              <span
+                style="font-size: 12px; color: var(--special); font-weight: 500"
+                >High</span
+              >
+            </div>
+            <div
+              style="
+                padding: 12px;
+                background: var(--surface-2);
+                border-radius: 8px;
+              "
+            >
+              <p
+                style="
+                  font-size: 14px;
+                  color: var(--text-secondary);
+                  margin: 0;
+                  line-height: 1.5;
+                  font-style: italic;
+                "
+              >
+                "My faith shapes how I approach relationships and family. I'm
+                looking for someone who shares a deep spiritual foundation and
+                values Sunday mornings together."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 5: LIFESTYLE & ECONOMIC VISION (15% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Lifestyle &amp; Vision</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--accent-gold-muted);
+                  color: var(--accent-gold);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >15% weight</span
+              >
+            </div>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('lifestyle-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-bottom: 16px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Material Wealth Importance
+                </div>
+                <div style="font-size: 14px; font-weight: 500">Medium</div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Preferred Environment
+                </div>
+                <div style="font-size: 14px; font-weight: 500">Suburban</div>
+              </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <span class="value-chip highlighted">&#127793; Homesteading</span>
+              <span class="value-chip">&#128218; Lifelong Learner</span>
+              <span class="value-chip">&#127860; Farm-to-Table</span>
+              <span class="value-chip">&#128692; Active Lifestyle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 6: POLITICAL PHILOSOPHY (10% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Political Philosophy</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--warning-muted);
+                  color: var(--warning);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >10% weight</span
+              >
+            </div>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('politics-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 12px;
+              "
+            >
+              <span class="value-chip highlighted">Tradition</span>
+              <span class="value-chip">Individualism</span>
+              <span class="value-chip">Community-oriented</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 12px;
+              "
+            >
+              <span style="font-size: 12px; color: var(--text-tertiary)"
+                >Importance:</span
+              >
+              <div style="display: flex; gap: 3px">
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--warning);
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--warning);
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--border-default);
+                    opacity: 0.4;
+                  "
+                ></div>
+                <div
+                  style="
+                    width: 20px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background: var(--border-default);
+                    opacity: 0.4;
+                  "
+                ></div>
+              </div>
+              <span
+                style="font-size: 12px; color: var(--warning); font-weight: 500"
+                >Medium</span
+              >
+            </div>
+            <div
+              style="
+                padding-top: 8px;
+                border-top: 1px solid var(--border-faint);
+              "
+            >
+              <div
+                style="
+                  font-size: 12px;
+                  color: var(--text-tertiary);
+                  margin-bottom: 4px;
+                "
+              >
+                Non-negotiables
+              </div>
+              <div
+                style="
+                  font-size: 14px;
+                  color: var(--text-secondary);
+                  line-height: 1.5;
+                "
+              >
+                Pro-family policy, parental rights in education
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 7: SOCIAL INTERESTS (10% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Social Interests</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--positive-muted);
+                  color: var(--positive);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >10% weight</span
+              >
+            </div>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('interests-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 16px;
+              "
+            >
+              <span class="value-chip highlighted">&#128214; Reading</span>
+              <span class="value-chip highlighted"
+                >&#127939; Trail Running</span
+              >
+              <span class="value-chip highlighted">&#127859; Cooking</span>
+              <span class="value-chip">&#128247; Photography</span>
+              <span class="value-chip">&#127929; Piano</span>
+              <span class="value-chip">&#127793; Gardening</span>
+              <span class="value-chip">&#128678; Traveling</span>
+              <span class="value-chip">&#129506; Board Games</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 16px;
+                padding-top: 12px;
+                border-top: 1px solid var(--border-faint);
+              "
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 2px;
+                  "
+                >
+                  Frequency
+                </div>
+                <div style="font-size: 13px; font-weight: 500">
+                  Regularly active
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 2px;
+                  "
+                >
+                  Social Style
+                </div>
+                <div style="font-size: 13px; font-weight: 500">
+                  Mix of social &amp; solitary
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 8: MOOD BOARD ("Vibe" / Cultural Aesthetic)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">My Vibe &mdash; Mood Board</span>
+            </div>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('moodboard-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <!-- Mood board: Pinterest-style masonry -->
+          <div class="mood-board" style="min-height: 240px">
+            <!-- Tall item (left, spans 2 rows) -->
+            <div
+              class="mood-board-item tall"
+              style="
+                background: linear-gradient(180deg, #3d2a1a 0%, #1a1008 100%);
+                min-height: 240px;
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: flex-end;
+                  padding: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-size: 11px;
+                    color: rgba(255, 255, 255, 0.6);
+                    font-weight: 500;
+                  "
+                  >Open land &amp; ranch life</span
+                >
+              </div>
+            </div>
+            <!-- Top middle -->
+            <div
+              class="mood-board-item"
+              style="
+                background: linear-gradient(135deg, #2a3d1a 0%, #151f0d 100%);
+                min-height: 116px;
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: flex-end;
+                  padding: 10px;
+                "
+              >
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.5)"
+                  >Garden mornings</span
+                >
+              </div>
+            </div>
+            <!-- Top right -->
+            <div
+              class="mood-board-item"
+              style="
+                background: linear-gradient(135deg, #3d1a2a 0%, #1f0d15 100%);
+                min-height: 116px;
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: flex-end;
+                  padding: 10px;
+                "
+              >
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.5)"
+                  >Sundress summer</span
+                >
+              </div>
+            </div>
+            <!-- Bottom middle -->
+            <div
+              class="mood-board-item"
+              style="
+                background: linear-gradient(135deg, #1a2a3d 0%, #0d151f 100%);
+                min-height: 116px;
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: flex-end;
+                  padding: 10px;
+                "
+              >
+                <span style="font-size: 10px; color: rgba(255, 255, 255, 0.5)"
+                  >Family dinner table</span
+                >
+              </div>
+            </div>
+            <!-- Bottom right with +more overlay -->
+            <div
+              class="mood-board-item"
+              style="
+                background: linear-gradient(135deg, #2a2a1a 0%, #15150d 100%);
+                min-height: 116px;
+              "
+            >
+              <div class="photo-grid-overlay" style="font-size: 13px">
+                +4 more
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              font-size: 13px;
+              color: var(--text-tertiary);
+              margin: 10px 0 0;
+              text-align: center;
+              font-style: italic;
+            "
+          >
+            "Sundress, children, open land, animals, strong family structure"
+          </p>
+        </div>
+
+        <!-- ============================================================
+             SECTION 9: AUDIO IDENTITY (Spotify Playlist)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">Audio Identity</span>
+              <span class="spotify-badge">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381C8.88 5.88 15.78 6.12 20.1 8.82c.54.3.72 1.02.42 1.56-.299.421-1.02.599-1.439.3z"
+                  />
+                </svg>
+                Spotify
+              </span>
+            </div>
+            <button class="section-edit-btn" onclick="openSheet('audio-edit')">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 12px">
+            <!-- Currently playing -->
+            <div class="track-item playing">
+              <div class="eq-bars">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+              </div>
+              <div
+                class="track-art"
+                style="
+                  background: linear-gradient(135deg, #4a1942 0%, #1a0a16 100%);
+                "
+              ></div>
+              <div class="track-info">
+                <div class="track-title" style="color: var(--accent)">
+                  Holocene
+                </div>
+                <div class="track-artist">Bon Iver</div>
+              </div>
+              <span class="track-duration">5:36</span>
+            </div>
+            <!-- Track 2 -->
+            <div class="track-item">
+              <span class="track-num">2</span>
+              <div
+                class="track-art"
+                style="
+                  background: linear-gradient(135deg, #2a3d1a 0%, #0d1508 100%);
+                "
+              ></div>
+              <div class="track-info">
+                <div class="track-title">The Night We Met</div>
+                <div class="track-artist">Lord Huron</div>
+              </div>
+              <span class="track-duration">3:28</span>
+            </div>
+            <!-- Track 3 -->
+            <div class="track-item">
+              <span class="track-num">3</span>
+              <div
+                class="track-art"
+                style="
+                  background: linear-gradient(135deg, #1a2a3d 0%, #080d15 100%);
+                "
+              ></div>
+              <div class="track-info">
+                <div class="track-title">Lost in the Light</div>
+                <div class="track-artist">Bahamas</div>
+              </div>
+              <span class="track-duration">3:44</span>
+            </div>
+            <!-- Track 4 -->
+            <div class="track-item">
+              <span class="track-num">4</span>
+              <div
+                class="track-art"
+                style="
+                  background: linear-gradient(135deg, #3d2a1a 0%, #150d08 100%);
+                "
+              ></div>
+              <div class="track-info">
+                <div class="track-title">First Day of My Life</div>
+                <div class="track-artist">Bright Eyes</div>
+              </div>
+              <span class="track-duration">4:17</span>
+            </div>
+            <!-- Track 5 -->
+            <div class="track-item">
+              <span class="track-num">5</span>
+              <div
+                class="track-art"
+                style="
+                  background: linear-gradient(135deg, #2a1a3d 0%, #0d0815 100%);
+                "
+              ></div>
+              <div class="track-info">
+                <div class="track-title">Youth</div>
+                <div class="track-artist">Daughter</div>
+              </div>
+              <span class="track-duration">4:42</span>
+            </div>
+            <!-- See all link -->
+            <div style="text-align: center; padding: 8px 0 4px">
+              <span
+                style="
+                  font-size: 13px;
+                  color: var(--accent);
+                  font-weight: 500;
+                  cursor: pointer;
+                "
+                >View full playlist (12 songs)</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 10: LITERARY EXPRESSION (Poem / Passage)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <span class="section-label">Literary Expression</span>
+            <button
+              class="section-edit-btn"
+              onclick="openSheet('literary-edit')"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add
+            </button>
+          </div>
+          <!-- Empty state for incomplete section -->
+          <div
+            class="card"
+            style="padding: 32px 24px; text-align: center; border-style: dashed"
+          >
+            <div style="font-size: 36px; margin-bottom: 12px; opacity: 0.4">
+              &#128214;
+            </div>
+            <div style="font-size: 16px; font-weight: 500; margin-bottom: 6px">
+              Share Your Words
+            </div>
+            <p
+              style="
+                font-size: 14px;
+                color: var(--text-tertiary);
+                margin: 0 0 16px;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.5;
+              "
+            >
+              Choose a favorite poem or write something personal. Let others
+              glimpse your inner world.
+            </p>
+            <button
+              class="btn btn-primary btn-sm"
+              onclick="openSheet('literary-edit')"
+              style="border-radius: 16px"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add Literary Expression
+            </button>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             SECTION 11: PHYSICAL ATTRACTION CONTEXT (10% weight)
+             ============================================================ -->
+        <div style="padding: 0 20px 28px">
+          <div class="section-header">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="section-label">About Me</span>
+              <span
+                class="badge"
+                style="
+                  background: var(--accent-pink-muted);
+                  color: var(--accent-pink);
+                  font-size: 10px;
+                  height: 18px;
+                  padding: 0 6px;
+                "
+                >10% weight</span
+              >
+            </div>
+            <button class="section-edit-btn" onclick="openSheet('about-edit')">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                />
+                <path
+                  d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+              Edit
+            </button>
+          </div>
+          <div class="card" style="padding: 20px">
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Height
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  5'7" (170 cm)
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Ethnicity
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Hispanic/Latina
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Education
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Master's &mdash; Psychology
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: var(--text-tertiary);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Occupation
+                </div>
+                <div style="font-size: 14px; font-weight: 500">
+                  Family Therapist
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             ACCOUNT ACTIONS
+             ============================================================ -->
+        <div style="padding: 0 20px 32px">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <button
+              class="btn btn-secondary"
+              style="width: 100%; justify-content: center; border-radius: 12px"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              Privacy &amp; Safety Settings
+            </button>
+            <button
+              class="btn btn-secondary"
+              style="width: 100%; justify-content: center; border-radius: 12px"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Sign Out
+            </button>
+          </div>
+          <p
+            style="
+              font-size: 12px;
+              color: var(--text-disabled);
+              text-align: center;
+              margin: 16px 0 0;
+            "
+          >
+            MOTO v1.0.0 &middot; Member since Mar 2026
+          </p>
+        </div>
+
+        <!-- Extra bottom padding for safe scrolling above tab bar -->
+        <div style="height: 24px"></div>
+      </div>
+
+      <!-- ============================================================
+           BOTTOM TAB BAR
+           ============================================================ -->
+      <nav
+        style="
+          height: 60px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border-top: 1px solid var(--border-faint);
+          background: var(--surface-1);
+          padding: 0 8px;
+          padding-bottom: env(safe-area-inset-bottom, 0px);
+        "
+      >
+        <!-- Discover -->
+        <button class="tab-bar-item" aria-label="Discover">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polygon
+              points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+              fill="currentColor"
+              stroke="none"
+            />
+          </svg>
+          <span>Discover</span>
+        </button>
+        <!-- Matches -->
+        <button class="tab-bar-item" aria-label="Matches">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          <span>Matches</span>
+        </button>
+        <!-- Messages -->
+        <button
+          class="tab-bar-item"
+          aria-label="Messages"
+          style="position: relative"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          <span
+            style="
+              position: absolute;
+              top: 0;
+              right: 6px;
+              background: var(--accent-pink);
+              color: #fff;
+              font-size: 9px;
+              font-weight: 700;
+              min-width: 16px;
+              height: 16px;
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0 4px;
+              font-variant-numeric: tabular-nums;
+              border: 2px solid var(--surface-1);
+            "
+            >3</span
+          >
+          <span>Messages</span>
+        </button>
+        <!-- Activity -->
+        <button class="tab-bar-item" aria-label="Activity">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          <span>Activity</span>
+        </button>
+        <!-- Profile (active) -->
+        <button class="tab-bar-item active" aria-label="Profile">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Profile</span>
+        </button>
+      </nav>
+
+      <!-- ============================================================
+           EDIT SHEET: Family Architecture
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="family-edit"
+        onclick="closeSheetOnOverlay(event, 'family-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Family Architecture</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('family-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <!-- Desired children -->
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Desired Number of Children</label
+              >
+              <select style="width: 100%">
+                <option>1 child</option>
+                <option selected>2-3 children</option>
+                <option>4+ children</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >How important is this?</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Flexible
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Non-negotiable
+                </button>
+              </div>
+            </div>
+            <!-- Marriage timeline -->
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Marriage Timeline</label
+              >
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &lt; 3 years
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  3-5 years
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  5-10 years
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Not sure
+                </button>
+              </div>
+            </div>
+            <!-- Start family by -->
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Start Having Children By</label
+              >
+              <select style="width: 100%">
+                <option selected>Within 2 years</option>
+                <option>Within 3-5 years</option>
+                <option>5+ years</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+            <!-- Education philosophy -->
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Education Philosophy</label
+              >
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Public School
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Private School
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Homeschool
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Hybrid
+                </button>
+              </div>
+            </div>
+            <!-- Validation example -->
+            <div
+              style="
+                padding: 12px;
+                background: var(--negative-muted);
+                border: 1px solid rgba(239, 68, 68, 0.2);
+                border-radius: 8px;
+                display: none;
+              "
+              id="family-error"
+            >
+              <div style="display: flex; align-items: center; gap: 8px">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--negative)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span style="font-size: 13px; color: var(--negative)"
+                  >Please select a marriage timeline</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Save / Cancel -->
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('family-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('family-edit')"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Photos
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="photos-edit"
+        onclick="closeSheetOnOverlay(event, 'photos-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Photos</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('photos-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <p
+            style="
+              font-size: 14px;
+              color: var(--text-secondary);
+              margin: 0 0 16px;
+              line-height: 1.5;
+            "
+          >
+            Drag to reorder. Tap to replace. Your first photo is your profile
+            cover.
+          </p>
+          <!-- Photo grid for editing -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+              gap: 8px;
+              margin-bottom: 20px;
+            "
+          >
+            <!-- Existing photos -->
+            <div
+              style="
+                aspect-ratio: 3/4;
+                background: linear-gradient(135deg, #3b1f5e 0%, #1a0a2e 100%);
+                border-radius: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 28px">&#128105;&#8205;&#129457;</span>
+              <div
+                style="
+                  position: absolute;
+                  top: 6px;
+                  left: 6px;
+                  background: var(--accent);
+                  color: #fff;
+                  font-size: 10px;
+                  font-weight: 700;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                1
+              </div>
+              <button
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 6px;
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 12px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 14px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 3/4;
+                background: linear-gradient(135deg, #2d1a47 0%, #1a0f2a 100%);
+                border-radius: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 28px">&#127958;&#65039;</span>
+              <div
+                style="
+                  position: absolute;
+                  top: 6px;
+                  left: 6px;
+                  background: var(--surface-2);
+                  color: var(--text-secondary);
+                  font-size: 10px;
+                  font-weight: 700;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                2
+              </div>
+              <button
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 6px;
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 12px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 14px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 3/4;
+                background: linear-gradient(135deg, #2a1940 0%, #150d22 100%);
+                border-radius: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 28px">&#128522;</span>
+              <div
+                style="
+                  position: absolute;
+                  top: 6px;
+                  left: 6px;
+                  background: var(--surface-2);
+                  color: var(--text-secondary);
+                  font-size: 10px;
+                  font-weight: 700;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                3
+              </div>
+              <button
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 6px;
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 12px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 14px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 3/4;
+                background: linear-gradient(135deg, #1f3b5e 0%, #0a1a2e 100%);
+                border-radius: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 28px">&#127939;</span>
+              <div
+                style="
+                  position: absolute;
+                  top: 6px;
+                  left: 6px;
+                  background: var(--surface-2);
+                  color: var(--text-secondary);
+                  font-size: 10px;
+                  font-weight: 700;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                4
+              </div>
+              <button
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 6px;
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 12px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 14px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 3/4;
+                background: linear-gradient(135deg, #3d2a1a 0%, #1a1008 100%);
+                border-radius: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span style="font-size: 28px">&#127860;</span>
+              <div
+                style="
+                  position: absolute;
+                  top: 6px;
+                  left: 6px;
+                  background: var(--surface-2);
+                  color: var(--text-secondary);
+                  font-size: 10px;
+                  font-weight: 700;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 10px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                5
+              </div>
+              <button
+                style="
+                  position: absolute;
+                  top: 6px;
+                  right: 6px;
+                  width: 24px;
+                  height: 24px;
+                  border-radius: 12px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 14px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <!-- Add photo slot -->
+            <div
+              style="
+                aspect-ratio: 3/4;
+                border: 2px dashed var(--border-default);
+                border-radius: 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                cursor: pointer;
+                transition: border-color 150ms ease-out;
+              "
+              onmouseover="this.style.borderColor = 'var(--accent)'"
+              onmouseout="this.style.borderColor = 'var(--border-default)'"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--text-disabled)"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              <span style="font-size: 11px; color: var(--text-disabled)"
+                >Add photo</span
+              >
+            </div>
+          </div>
+          <div
+            style="
+              padding: 12px;
+              background: var(--surface-2);
+              border-radius: 8px;
+              margin-bottom: 20px;
+            "
+          >
+            <p
+              style="
+                font-size: 13px;
+                color: var(--text-tertiary);
+                margin: 0;
+                line-height: 1.4;
+              "
+            >
+              Tip: Include a clear face shot, a full-body photo, and at least
+              one lifestyle image showing your daily environment.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('photos-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('photos-edit')"
+            >
+              Save Photos
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Literary Expression
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="literary-edit"
+        onclick="closeSheetOnOverlay(event, 'literary-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Literary Expression</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('literary-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Type</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Favorite Poem
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Personal Writing
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Title &amp; Author</label
+              >
+              <input type="text" placeholder="e.g. Sonnet 116 — Shakespeare" />
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >The passage</label
+              >
+              <textarea
+                placeholder="Paste or write the poem/passage that resonates with you..."
+                style="min-height: 120px"
+              ></textarea>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Why this resonates with you</label
+              >
+              <textarea
+                placeholder="What does this piece say about your worldview?"
+                style="min-height: 80px"
+              ></textarea>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('literary-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('literary-edit')"
+            >
+              Save Expression
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Geography
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="geo-edit"
+        onclick="closeSheetOnOverlay(event, 'geo-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Geography</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('geo-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Where are you from?</label
+              >
+              <input type="text" value="Austin, Texas" />
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Where do you currently live?</label
+              >
+              <input type="text" value="Denver, Colorado" />
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Long-term living preference</label
+              >
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Urban
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Suburban
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Rural
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Open to international?</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Domestic only
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Open to international
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Willing to relocate?</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Yes, flexible
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Prefer not to
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('geo-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('geo-edit')"
+            >
+              Save Geography
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Spirituality
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="spirituality-edit"
+        onclick="closeSheetOnOverlay(event, 'spirituality-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Spirituality</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('spirituality-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Religious Upbringing</label
+              >
+              <input type="text" value="Baptist" />
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Current Belief System</label
+              >
+              <select>
+                <option selected>Christian &mdash; Non-denominational</option>
+                <option>Catholic</option>
+                <option>Jewish</option>
+                <option>Muslim</option>
+                <option>Buddhist</option>
+                <option>Hindu</option>
+                <option>Spiritual, not religious</option>
+                <option>Agnostic</option>
+                <option>Atheist</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >How important is shared faith?</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Low
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Medium
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  High
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Practice Level</label
+              >
+              <select>
+                <option>Rarely</option>
+                <option>Occasionally</option>
+                <option selected>Regularly</option>
+                <option>Daily</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Personal reflection (optional)</label
+              >
+              <textarea style="min-height: 80px">
+My faith shapes how I approach relationships and family. I'm looking for someone who shares a deep spiritual foundation and values Sunday mornings together.</textarea
+              >
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('spirituality-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('spirituality-edit')"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Lifestyle
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="lifestyle-edit"
+        onclick="closeSheetOnOverlay(event, 'lifestyle-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Lifestyle &amp; Vision</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('lifestyle-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Importance of Material Wealth/Status</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Low
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Medium
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  High
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Preferred Environment</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  City
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Suburb
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Rural
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Lifestyle Tags (select all that apply)</label
+              >
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127793; Homesteading
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128218; Lifelong Learner
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127860; Farm-to-Table
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128692; Active Lifestyle
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127970; Minimalist
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128188; Career-driven
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127749; Travel-focused
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('lifestyle-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('lifestyle-edit')"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Politics
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="politics-edit"
+        onclick="closeSheetOnOverlay(event, 'politics-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Political Philosophy</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('politics-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Core Beliefs (select up to 3)</label
+              >
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Tradition
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Individualism
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Community
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Progressivism
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Libertarian
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  Collectivism
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Importance Level</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Low
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Medium
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  High
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Non-negotiables (optional)</label
+              >
+              <textarea style="min-height: 60px">
+Pro-family policy, parental rights in education</textarea
+              >
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('politics-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('politics-edit')"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Social Interests
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="interests-edit"
+        onclick="closeSheetOnOverlay(event, 'interests-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Social Interests</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('interests-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Your Hobbies &amp; Interests (tap to rank top 3)</label
+              >
+              <p
+                style="
+                  font-size: 13px;
+                  color: var(--text-tertiary);
+                  margin: 0 0 8px;
+                "
+              >
+                Purple chips = your top 3 (most important)
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128214; Reading
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127939; Trail Running
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127859; Cooking
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128247; Photography
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127929; Piano
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#127793; Gardening
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#128678; Traveling
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px"
+                >
+                  &#129506; Board Games
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Add a new interest</label
+              >
+              <div style="display: flex; gap: 8px">
+                <input
+                  type="text"
+                  placeholder="Type an interest..."
+                  style="flex: 1"
+                />
+                <button class="btn btn-primary btn-sm">Add</button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Activity Frequency</label
+              >
+              <select>
+                <option>Rarely active</option>
+                <option selected>Regularly active</option>
+                <option>Very active (daily)</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Social Preference</label
+              >
+              <div style="display: flex; gap: 8px">
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Mostly solo
+                </button>
+                <button
+                  class="btn btn-primary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Mix of both
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  style="border-radius: 16px; flex: 1"
+                >
+                  Very social
+                </button>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('interests-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('interests-edit')"
+            >
+              Save Interests
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Mood Board
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="moodboard-edit"
+        onclick="closeSheetOnOverlay(event, 'moodboard-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Mood Board</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('moodboard-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <p
+            style="
+              font-size: 14px;
+              color: var(--text-secondary);
+              margin: 0 0 16px;
+              line-height: 1.5;
+            "
+          >
+            Create a visual representation of your ideal life. Show what your
+            dream environment, daily routines, and aesthetic look like.
+          </p>
+          <!-- Image upload grid -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+              gap: 8px;
+              margin-bottom: 16px;
+            "
+          >
+            <div
+              style="
+                aspect-ratio: 1;
+                background: linear-gradient(180deg, #3d2a1a 0%, #1a1008 100%);
+                border-radius: 8px;
+                position: relative;
+              "
+            >
+              <button
+                style="
+                  position: absolute;
+                  top: 4px;
+                  right: 4px;
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 11px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 1;
+                background: linear-gradient(135deg, #2a3d1a 0%, #151f0d 100%);
+                border-radius: 8px;
+                position: relative;
+              "
+            >
+              <button
+                style="
+                  position: absolute;
+                  top: 4px;
+                  right: 4px;
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 11px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 1;
+                background: linear-gradient(135deg, #3d1a2a 0%, #1f0d15 100%);
+                border-radius: 8px;
+                position: relative;
+              "
+            >
+              <button
+                style="
+                  position: absolute;
+                  top: 4px;
+                  right: 4px;
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 11px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 1;
+                background: linear-gradient(135deg, #1a2a3d 0%, #0d151f 100%);
+                border-radius: 8px;
+                position: relative;
+              "
+            >
+              <button
+                style="
+                  position: absolute;
+                  top: 4px;
+                  right: 4px;
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 11px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 1;
+                background: linear-gradient(135deg, #2a2a1a 0%, #15150d 100%);
+                border-radius: 8px;
+                position: relative;
+              "
+            >
+              <button
+                style="
+                  position: absolute;
+                  top: 4px;
+                  right: 4px;
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 11px;
+                  border: none;
+                  background: rgba(0, 0, 0, 0.5);
+                  color: #fff;
+                  font-size: 12px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                &times;
+              </button>
+            </div>
+            <!-- Add image slot -->
+            <div
+              style="
+                aspect-ratio: 1;
+                border: 2px dashed var(--border-default);
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                cursor: pointer;
+              "
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--text-disabled)"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              <span style="font-size: 10px; color: var(--text-disabled)"
+                >Add</span
+              >
+            </div>
+          </div>
+          <div>
+            <label
+              style="
+                display: block;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 6px;
+              "
+              >Describe your vibe in a sentence</label
+            >
+            <input
+              type="text"
+              value="Sundress, children, open land, animals, strong family structure"
+            />
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('moodboard-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('moodboard-edit')"
+            >
+              Save Board
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: Audio Identity
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="audio-edit"
+        onclick="closeSheetOnOverlay(event, 'audio-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit Audio Identity</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('audio-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Connected Account</label
+              >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  padding: 12px;
+                  background: var(--surface-2);
+                  border-radius: 8px;
+                "
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#1DB954">
+                  <path
+                    d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381C8.88 5.88 15.78 6.12 20.1 8.82c.54.3.72 1.02.42 1.56-.299.421-1.02.599-1.439.3z"
+                  />
+                </svg>
+                <div style="flex: 1">
+                  <div style="font-size: 14px; font-weight: 500">
+                    Spotify Connected
+                  </div>
+                  <div style="font-size: 12px; color: var(--text-tertiary)">
+                    sophia.m &middot; 12 tracks selected
+                  </div>
+                </div>
+                <button
+                  class="btn btn-ghost btn-sm"
+                  style="color: var(--negative)"
+                >
+                  Disconnect
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Select Playlist</label
+              >
+              <select>
+                <option selected>Soul Soundtrack (12 songs)</option>
+                <option>Chill Vibes (18 songs)</option>
+                <option>Sunday Mornings (9 songs)</option>
+                <option>Road Trip (24 songs)</option>
+              </select>
+            </div>
+            <p
+              style="
+                font-size: 13px;
+                color: var(--text-tertiary);
+                margin: 0;
+                line-height: 1.4;
+              "
+            >
+              Your selected playlist plays softly when someone views your
+              profile. Choose songs that represent who you are.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('audio-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('audio-edit')"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           EDIT SHEET: About Me
+           ============================================================ -->
+      <div
+        class="edit-sheet-overlay"
+        id="about-edit"
+        onclick="closeSheetOnOverlay(event, 'about-edit')"
+      >
+        <div class="edit-sheet" onclick="event.stopPropagation()">
+          <div class="edit-sheet-handle"></div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 24px;
+            "
+          >
+            <h2>Edit About Me</h2>
+            <button
+              class="btn btn-ghost btn-sm"
+              onclick="closeSheet('about-edit')"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px"
+            >
+              <div>
+                <label
+                  style="
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-bottom: 6px;
+                  "
+                  >Height</label
+                >
+                <input type="text" value="5'7&quot; (170 cm)" />
+              </div>
+              <div>
+                <label
+                  style="
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-bottom: 6px;
+                  "
+                  >Ethnicity</label
+                >
+                <select>
+                  <option>Asian</option>
+                  <option>Black</option>
+                  <option>Caucasian</option>
+                  <option selected>Hispanic/Latina</option>
+                  <option>Middle Eastern</option>
+                  <option>Mixed</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Education</label
+              >
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"
+              >
+                <select>
+                  <option>High School</option>
+                  <option>Bachelor's</option>
+                  <option selected>Master's</option>
+                  <option>Doctorate</option>
+                </select>
+                <input
+                  type="text"
+                  value="Psychology"
+                  placeholder="Field of study"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-bottom: 6px;
+                "
+                >Occupation</label
+              >
+              <input type="text" value="Family Therapist" />
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 24px">
+            <button
+              class="btn btn-ghost"
+              style="flex: 1; border-radius: 12px"
+              onclick="closeSheet('about-edit')"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-primary"
+              style="flex: 2; border-radius: 12px"
+              onclick="closeSheet('about-edit')"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End mobile shell -->
+
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
+    <script>
+      // Theme toggle
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+      }
+
+      // Edit sheet open/close
+      function openSheet(id) {
+        document.getElementById(id).classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeSheet(id) {
+        document.getElementById(id).classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function closeSheetOnOverlay(event, id) {
+        if (event.target === event.currentTarget) {
+          closeSheet(id);
+        }
+      }
+
+      // Preview mode toggle
+      function switchPreviewMode(mode) {
+        const btns = document.querySelectorAll(".preview-toggle-btn");
+        btns.forEach((btn) => btn.classList.remove("active"));
+        if (mode === "view") {
+          btns[0].classList.add("active");
+          // Show edit buttons
+          document.querySelectorAll(".section-edit-btn").forEach((btn) => {
+            btn.style.display = "inline-flex";
+          });
+        } else {
+          btns[1].classList.add("active");
+          // Hide edit buttons in preview mode
+          document.querySelectorAll(".section-edit-btn").forEach((btn) => {
+            btn.style.display = "none";
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

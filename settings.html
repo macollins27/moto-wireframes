@@ -1,0 +1,3092 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOTO — Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ================================================================
+       CUSTOM ATMOSPHERE — MOTO: Warm Intimacy
+       Base: Atmosphere 3 (Warm Luxury), customized per research.
+
+       WHY amber/gold accent: MOTO's thesis is about building a life
+       together — warmth, candlelight, intentionality. Competitors use
+       cool blues (Hinge), yellow (Bumble), red (Tinder). Warm amber
+       signals depth, maturity, and premium without being clinical.
+
+       WHY warm-toned dark surfaces: The white paper describes profiles
+       as "immersive experiences" with mood boards and Spotify. The
+       settings page should feel like an extension of that warmth, not
+       a jarring system-settings page.
+       ================================================================ */
+
+      /* Dark (default) */
+      :root,
+      [data-theme="dark"] {
+        --bg-page: #0d0b09;
+        --surface-1: #161310;
+        --surface-2: #1e1a16;
+        --surface-hover: #262220;
+        --surface-active: #2e2a27;
+        --text-primary: #ede9e3;
+        --text-secondary: #a89f94;
+        --text-tertiary: #7a7168;
+        --text-disabled: #564f47;
+        --border-faint: #201c18;
+        --border-default: #302b25;
+        --border-strong: #453e36;
+        --accent: #d4a54a;
+        --accent-hover: #c4952e;
+        --accent-muted: rgba(212, 165, 74, 0.12);
+        --accent-soft: rgba(212, 165, 74, 0.06);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
+        /* MOTO-specific semantic tokens */
+        --compatibility-high: #4aba7a;
+        --compatibility-mid: #d4a54a;
+        --compatibility-low: #c45c3e;
+        --premium-gradient: linear-gradient(
+          135deg,
+          #d4a54a 0%,
+          #e8c87a 50%,
+          #d4a54a 100%
+        );
+        --premium-bg: rgba(212, 165, 74, 0.06);
+        --danger: #c45c3e;
+        --danger-muted: rgba(196, 92, 62, 0.1);
+        --success: #4aba7a;
+        --success-muted: rgba(74, 186, 122, 0.1);
+      }
+
+      /* Light */
+      [data-theme="light"] {
+        --bg-page: #f9f6f2;
+        --surface-1: #ffffff;
+        --surface-2: #f3efe9;
+        --surface-hover: #ece7e0;
+        --surface-active: #e4ded6;
+        --text-primary: #1c1812;
+        --text-secondary: #5c5548;
+        --text-tertiary: #7f7769;
+        --text-disabled: #a89f94;
+        --border-faint: #e8e3db;
+        --border-default: #d6cfc4;
+        --border-strong: #a89f94;
+        --accent: #b8862e;
+        --accent-hover: #9c7226;
+        --accent-muted: rgba(184, 134, 46, 0.1);
+        --accent-soft: rgba(184, 134, 46, 0.04);
+        --shadow-xs: 0 1px 2px rgba(28, 24, 18, 0.04);
+        --shadow-sm:
+          0 2px 4px rgba(28, 24, 18, 0.06), 0 1px 2px rgba(28, 24, 18, 0.03);
+        --shadow-md:
+          0 4px 16px rgba(28, 24, 18, 0.07), 0 2px 4px rgba(28, 24, 18, 0.03);
+        --shadow-lg:
+          0 8px 32px rgba(28, 24, 18, 0.1), 0 4px 8px rgba(28, 24, 18, 0.03);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
+        --compatibility-high: #2d8c56;
+        --compatibility-mid: #b8862e;
+        --compatibility-low: #b34a2a;
+        --premium-gradient: linear-gradient(
+          135deg,
+          #b8862e 0%,
+          #d4a54a 50%,
+          #b8862e 100%
+        );
+        --premium-bg: rgba(184, 134, 46, 0.04);
+        --danger: #b34a2a;
+        --danger-muted: rgba(179, 74, 42, 0.08);
+        --success: #2d8c56;
+        --success-muted: rgba(45, 140, 86, 0.08);
+      }
+
+      /* === SHARED BODY STYLES === */
+      html,
+      body {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition:
+          background-color 200ms ease-out,
+          color 200ms ease-out;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* === COMPONENT STANDARDS === */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 1.3;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Buttons */
+      .btn {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: none;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #1c1812;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+      }
+      .btn-secondary {
+        background: var(--surface-1);
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+      }
+      .btn-secondary:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .btn-sm {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      .btn-lg {
+        height: 48px;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+      .btn-danger {
+        background: var(--danger-muted);
+        color: var(--danger);
+        border: 1px solid rgba(196, 92, 62, 0.2);
+      }
+      .btn-danger:hover {
+        background: rgba(196, 92, 62, 0.16);
+        border-color: rgba(196, 92, 62, 0.3);
+      }
+
+      /* Inputs */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="search"],
+      input[type="number"],
+      input[type="url"],
+      input[type="tel"],
+      select,
+      textarea {
+        height: 40px;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-default);
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        transition:
+          border-color 150ms ease-out,
+          box-shadow 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--text-disabled);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-muted);
+      }
+      textarea {
+        height: auto;
+        min-height: 80px;
+        padding: 12px;
+        resize: vertical;
+      }
+
+      /* Cards */
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out;
+      }
+      .card-interactive {
+        cursor: pointer;
+      }
+      .card-interactive:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      .card-interactive:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Focus-visible on all interactive elements */
+      a:focus-visible,
+      button:focus-visible,
+      [role="button"]:focus-visible,
+      [tabindex]:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-default);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-strong);
+      }
+
+      /* Numeric data */
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Flexbox scroll containment */
+      .shell > *,
+      .shell > * > * {
+        min-height: 0;
+      }
+
+      /* === THEME TOGGLE === */
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      [data-theme="dark"] .theme-icon-sun {
+        display: block;
+      }
+      [data-theme="dark"] .theme-icon-moon {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-sun {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-moon {
+        display: block;
+      }
+      .theme-toggle svg {
+        color: var(--text-tertiary);
+      }
+
+      /* ================================================================
+       MOTO SETTINGS — MOBILE-FIRST LAYOUT
+       430px max-width, centered on desktop. No sidebar. Back nav.
+       ================================================================ */
+
+      .mobile-shell {
+        max-width: 430px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-page);
+        position: relative;
+        border-left: 1px solid var(--border-faint);
+        border-right: 1px solid var(--border-faint);
+      }
+
+      /* Top header */
+      .settings-header {
+        height: 56px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--border-faint);
+        background: var(--surface-1);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .settings-header .back-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        transition: background-color 150ms ease-out;
+      }
+      .settings-header .back-btn:hover {
+        background: var(--surface-hover);
+      }
+      .settings-header .back-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .header-title {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+      }
+
+      /* Scrollable content */
+      .settings-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 0 40px;
+      }
+
+      /* Section styling */
+      .settings-section {
+        padding: 24px 20px 0;
+      }
+      .settings-section + .settings-section {
+        border-top: 1px solid var(--border-faint);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+      .section-header svg {
+        width: 18px;
+        height: 18px;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .section-title {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+      }
+      .section-description {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        margin-bottom: 20px;
+        line-height: 1.5;
+        padding-left: 28px;
+      }
+
+      /* Setting row */
+      .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-faint);
+        gap: 16px;
+      }
+      .setting-row:last-child {
+        border-bottom: none;
+      }
+      .setting-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .setting-label {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+      .setting-hint {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        line-height: 1.4;
+      }
+
+      /* Toggle switch */
+      .toggle {
+        width: 44px;
+        height: 24px;
+        border-radius: 12px;
+        border: none;
+        background: var(--border-strong);
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        transition: background-color 200ms ease-out;
+      }
+      .toggle::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        top: 3px;
+        left: 3px;
+        transition: transform 200ms ease-out;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      .toggle.active {
+        background: var(--accent);
+      }
+      .toggle.active::after {
+        transform: translateX(20px);
+      }
+      .toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Chevron row (drill-down) */
+      .chevron-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-faint);
+        cursor: pointer;
+        transition: background-color 150ms ease-out;
+        margin: 0 -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .chevron-row:hover {
+        background: var(--surface-hover);
+      }
+      .chevron-row:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .chevron-row:last-child {
+        border-bottom: none;
+      }
+      .chevron-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .chevron-value {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        font-variant-numeric: tabular-nums;
+      }
+      .chevron-icon {
+        width: 16px;
+        height: 16px;
+        color: var(--text-disabled);
+      }
+
+      /* Slider */
+      .slider-container {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .slider-container:last-child {
+        border-bottom: none;
+      }
+      .slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .slider-label {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .slider-value {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--border-default);
+        outline: none;
+        border: none;
+        padding: 0;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        border: 2px solid var(--surface-1);
+      }
+      input[type="range"]:focus-visible {
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Chip selection */
+      .chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 0 14px;
+      }
+      .chip {
+        height: 32px;
+        padding: 0 14px;
+        border-radius: 16px;
+        border: 1px solid var(--border-default);
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          color 150ms ease-out;
+      }
+      .chip:hover {
+        border-color: var(--border-strong);
+        color: var(--text-primary);
+      }
+      .chip.active {
+        background: var(--accent-muted);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .chip:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Premium membership card */
+      .premium-card {
+        background: var(--premium-bg);
+        border: 1px solid rgba(212, 165, 74, 0.15);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 0 0 8px;
+        position: relative;
+        overflow: hidden;
+      }
+      .premium-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--premium-gradient);
+      }
+      .premium-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        background: var(--accent-muted);
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+      .premium-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        letter-spacing: -0.02em;
+      }
+      .premium-desc {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        margin-bottom: 14px;
+        line-height: 1.4;
+      }
+      .premium-price {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+      .premium-price span {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+      }
+      .premium-renewal {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-top: 4px;
+      }
+
+      /* Domain weight bars */
+      .domain-weight-item {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .domain-weight-item:last-child {
+        border-bottom: none;
+      }
+      .domain-weight-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+      }
+      .domain-weight-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .domain-weight-pct {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .domain-weight-bar {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--border-default);
+        overflow: hidden;
+      }
+      .domain-weight-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: var(--accent);
+        transition: width 300ms ease-out;
+      }
+
+      /* Danger zone */
+      .danger-zone {
+        margin: 0 20px;
+        padding: 24px 0 0;
+        border-top: 1px solid rgba(196, 92, 62, 0.15);
+      }
+      .danger-zone .section-title {
+        color: var(--danger);
+      }
+      .danger-zone svg {
+        color: var(--danger);
+      }
+
+      /* Connected account row */
+      .connected-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .connected-row:last-child {
+        border-bottom: none;
+      }
+      .connected-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--surface-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .connected-icon svg {
+        width: 18px;
+        height: 18px;
+        color: var(--text-secondary);
+      }
+      .connected-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .connected-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .connected-status {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      /* Verification badge */
+      .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--success);
+      }
+      .verified-badge svg {
+        width: 14px;
+        height: 14px;
+      }
+      .unverified-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-disabled);
+      }
+
+      /* Tab navigation for settings sections */
+      .settings-tabs {
+        display: flex;
+        gap: 0;
+        padding: 0 20px;
+        border-bottom: 1px solid var(--border-faint);
+        background: var(--surface-1);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .settings-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .settings-tab-btn {
+        padding: 12px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .settings-tab-btn:hover {
+        color: var(--text-primary);
+      }
+      .settings-tab-btn.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .settings-tab-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .settings-tab-panel {
+        display: none;
+      }
+      .settings-tab-panel.active {
+        display: block;
+      }
+
+      /* Account avatar */
+      .account-avatar-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 28px 20px 24px;
+      }
+      .account-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--surface-2);
+        border: 2px solid var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+      }
+      .account-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: -0.02em;
+        margin-bottom: 2px;
+      }
+      .account-email {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        margin-bottom: 8px;
+      }
+      .account-member-since {
+        font-size: 12px;
+        color: var(--text-disabled);
+      }
+
+      /* Inline label + value row */
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .info-row:last-child {
+        border-bottom: none;
+      }
+      .info-row-label {
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+      .info-row-value {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        text-align: right;
+      }
+
+      /* Section footer hint */
+      .section-footer-hint {
+        font-size: 12px;
+        color: var(--text-disabled);
+        padding: 8px 0 16px;
+        line-height: 1.4;
+      }
+
+      /* Progress indicator */
+      .profile-completeness {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin: 16px 20px 0;
+      }
+      .completeness-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .completeness-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+      .completeness-pct {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .completeness-bar {
+        height: 6px;
+        border-radius: 3px;
+        background: var(--border-default);
+        overflow: hidden;
+      }
+      .completeness-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--accent);
+        transition: width 300ms ease-out;
+      }
+      .completeness-hint {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================================================================
+       MOTO SETTINGS PAGE — Mobile-first, 430px max-width
+       Sub-page of Profile. Back navigation to profile.
+       ================================================================ -->
+    <div class="mobile-shell shell">
+      <!-- ============================================================
+         HEADER — Back nav + title + theme toggle
+         ============================================================ -->
+      <header class="settings-header">
+        <button
+          class="back-btn"
+          title="Back to profile"
+          aria-label="Back to profile"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+        </button>
+        <span class="header-title">Settings</span>
+        <div style="display: flex; align-items: center; gap: 4px">
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ============================================================
+         TAB NAVIGATION — Horizontal scrollable tabs
+         ============================================================ -->
+      <div class="settings-tabs" data-tab-group="settings">
+        <button
+          class="settings-tab-btn active"
+          data-tab="account"
+          onclick="switchSettingsTab('account')"
+        >
+          Account
+        </button>
+        <button
+          class="settings-tab-btn"
+          data-tab="matching"
+          onclick="switchSettingsTab('matching')"
+        >
+          Matching
+        </button>
+        <button
+          class="settings-tab-btn"
+          data-tab="notifications"
+          onclick="switchSettingsTab('notifications')"
+        >
+          Notifications
+        </button>
+        <button
+          class="settings-tab-btn"
+          data-tab="privacy"
+          onclick="switchSettingsTab('privacy')"
+        >
+          Privacy
+        </button>
+        <button
+          class="settings-tab-btn"
+          data-tab="subscription"
+          onclick="switchSettingsTab('subscription')"
+        >
+          Plan
+        </button>
+      </div>
+
+      <!-- ============================================================
+         SCROLLABLE CONTENT AREA
+         ============================================================ -->
+      <div class="settings-content">
+        <!-- ============================================================
+           TAB 1: ACCOUNT
+           ============================================================ -->
+        <div class="settings-tab-panel active" data-panel="account">
+          <!-- Profile snapshot -->
+          <div class="account-avatar-section">
+            <div class="account-avatar">AH</div>
+            <div class="account-name">Amara Haines</div>
+            <div class="account-email">amara.haines@gmail.com</div>
+            <div class="account-member-since">Member since Jan 2026</div>
+          </div>
+
+          <!-- Profile completeness -->
+          <div class="profile-completeness">
+            <div class="completeness-header">
+              <span class="completeness-label">Profile completeness</span>
+              <span class="completeness-pct">78%</span>
+            </div>
+            <div class="completeness-bar">
+              <div class="completeness-fill" style="width: 78%"></div>
+            </div>
+            <div class="completeness-hint">
+              Add your mood board and literary expression to reach 100%
+            </div>
+          </div>
+
+          <!-- Personal Information section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <span class="section-title">Personal Information</span>
+            </div>
+            <p class="section-description">
+              Your identity details. Some are visible on your profile.
+            </p>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit display name"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Display name</div>
+                <div class="setting-hint">Amara</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit date of birth"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Date of birth</div>
+                <div class="setting-hint">Sep 14, 1994 (age 31)</div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value tabular-nums"></span>
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit gender identity"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Gender identity</div>
+                <div class="setting-hint">Woman</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit height"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Height</div>
+                <div class="setting-hint">5'7" (170 cm)</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact & Security section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span class="section-title">Security & Login</span>
+            </div>
+            <p class="section-description">
+              Keep your account secure and verified.
+            </p>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit email"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Email address</div>
+                <div class="setting-hint">amara.haines@gmail.com</div>
+              </div>
+              <div class="chevron-right">
+                <span class="verified-badge"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                  Verified</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit phone number"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Phone number</div>
+                <div class="setting-hint">+1 (512) 555-0184</div>
+              </div>
+              <div class="chevron-right">
+                <span class="verified-badge"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                  Verified</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Change password"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Password</div>
+                <div class="setting-hint">Last changed 3 months ago</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Photo verification -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Photo verification</div>
+                <div class="setting-hint">
+                  Selfie matches your profile photos
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Verified</span
+              >
+            </div>
+          </div>
+
+          <!-- Connected accounts section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                />
+                <path
+                  d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                />
+              </svg>
+              <span class="section-title">Connected Accounts</span>
+            </div>
+            <p class="section-description">
+              Link services to enrich your profile experience.
+            </p>
+
+            <div class="connected-row">
+              <div class="connected-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12a4 4 0 0 1 8 0" />
+                  <circle cx="12" cy="12" r="1" />
+                </svg>
+              </div>
+              <div class="connected-info">
+                <div class="connected-name">Spotify</div>
+                <div class="connected-status" style="color: var(--success)">
+                  Connected — "Evening Reverie" playlist active
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost">Unlink</button>
+            </div>
+
+            <div class="connected-row">
+              <div class="connected-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
+              <div class="connected-info">
+                <div class="connected-name">Instagram</div>
+                <div class="connected-status">Not connected</div>
+              </div>
+              <button class="btn btn-sm btn-secondary">Link</button>
+            </div>
+
+            <div class="connected-row">
+              <div class="connected-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18" />
+                  <path d="M9 21V9" />
+                </svg>
+              </div>
+              <div class="connected-info">
+                <div class="connected-name">Pinterest</div>
+                <div class="connected-status" style="color: var(--success)">
+                  Connected — mood board synced
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost">Unlink</button>
+            </div>
+
+            <p class="section-footer-hint">
+              Connected accounts help enrich your mood board and audio identity.
+              MOTO never posts on your behalf.
+            </p>
+          </div>
+        </div>
+
+        <!-- ============================================================
+           TAB 2: MATCHING
+           ============================================================ -->
+        <div class="settings-tab-panel" data-panel="matching">
+          <!-- Discovery preferences section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <span class="section-title">Discovery</span>
+            </div>
+            <p class="section-description">
+              Who appears in your feed and how far we look.
+            </p>
+
+            <!-- Distance slider -->
+            <div class="slider-container">
+              <div class="slider-header">
+                <span class="slider-label">Maximum distance</span>
+                <span class="slider-value">35 mi</span>
+              </div>
+              <input
+                type="range"
+                min="5"
+                max="100"
+                value="35"
+                aria-label="Maximum distance"
+              />
+              <p class="section-footer-hint" style="padding-bottom: 0">
+                Profiles beyond this radius won't appear in your feed
+              </p>
+            </div>
+
+            <!-- Age range slider -->
+            <div class="slider-container">
+              <div class="slider-header">
+                <span class="slider-label">Age range</span>
+                <span class="slider-value">27 – 38</span>
+              </div>
+              <input
+                type="range"
+                min="18"
+                max="65"
+                value="38"
+                aria-label="Age range"
+              />
+            </div>
+
+            <!-- Gender preferences -->
+            <div
+              style="
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border-faint);
+              "
+            >
+              <div class="setting-label" style="margin-bottom: 10px">
+                Show me
+              </div>
+              <div class="chip-group">
+                <button class="chip active">Men</button>
+                <button class="chip">Women</button>
+                <button class="chip">Non-binary</button>
+                <button class="chip">Everyone</button>
+              </div>
+            </div>
+
+            <!-- Location preference -->
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit location preferences"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Location</div>
+                <div class="setting-hint">Austin, TX</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Long-term location -->
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit long-term location goal"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Long-term location goal</div>
+                <div class="setting-hint">Suburban — Texas or Colorado</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Intent filters section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                />
+              </svg>
+              <span class="section-title">Intent Filters</span>
+            </div>
+            <p class="section-description">
+              Only see people whose life timeline aligns with yours.
+            </p>
+
+            <!-- Marriage timeline -->
+            <div
+              style="
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border-faint);
+              "
+            >
+              <div class="setting-label" style="margin-bottom: 10px">
+                Marriage readiness
+              </div>
+              <div class="chip-group">
+                <button class="chip active">&lt; 3 years</button>
+                <button class="chip">3–5 years</button>
+                <button class="chip">5–10 years</button>
+                <button class="chip">Open</button>
+              </div>
+            </div>
+
+            <!-- Family timeline -->
+            <div
+              style="
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border-faint);
+              "
+            >
+              <div class="setting-label" style="margin-bottom: 10px">
+                Family timeline
+              </div>
+              <div class="chip-group">
+                <button class="chip active">Within 3 years</button>
+                <button class="chip">3–5 years</button>
+                <button class="chip">Someday</button>
+                <button class="chip">No children</button>
+              </div>
+            </div>
+
+            <!-- Children preference -->
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit children preference"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Desired number of children</div>
+                <div class="setting-hint">2–3 children</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Education philosophy -->
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit education philosophy"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Education philosophy</div>
+                <div class="setting-hint">Private school or Homeschool</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <p class="section-footer-hint">
+              Intent filters are hard filters. People outside these ranges won't
+              appear in your feed.
+            </p>
+          </div>
+
+          <!-- Domain weighting section (MOTO-unique) -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 20V10" />
+                <path d="M18 20V4" />
+                <path d="M6 20v-4" />
+              </svg>
+              <span class="section-title">Compatibility Weights</span>
+            </div>
+            <p class="section-description">
+              How MOTO weighs each domain when finding your matches. Higher
+              weight means stricter filtering.
+            </p>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Family goals</span>
+                <span class="domain-weight-pct">25%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Geographic alignment</span>
+                <span class="domain-weight-pct">15%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Spiritual & religious</span>
+                <span class="domain-weight-pct">15%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Lifestyle & economic</span>
+                <span class="domain-weight-pct">15%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Physical attraction</span>
+                <span class="domain-weight-pct">10%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Political philosophy</span>
+                <span class="domain-weight-pct">10%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <div class="domain-weight-item">
+              <div class="domain-weight-header">
+                <span class="domain-weight-name">Social interests</span>
+                <span class="domain-weight-pct">10%</span>
+              </div>
+              <div class="domain-weight-bar">
+                <div class="domain-weight-fill" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <p class="section-footer-hint">
+              Domain weights determine your compatibility score. Family goals
+              are always the most heavily weighted to reflect MOTO's
+              alignment-first philosophy.
+            </p>
+          </div>
+
+          <!-- Dealbreakers section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+              </svg>
+              <span class="section-title">Non-Negotiables</span>
+            </div>
+            <p class="section-description">
+              Hard filters that immediately eliminate incompatible matches.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Must want children</div>
+                <div class="setting-hint">
+                  Skip profiles marked "No children"
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Must want children"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Must share faith tradition</div>
+                <div class="setting-hint">Only show Christian profiles</div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Must share faith tradition"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Non-smoker only</div>
+                <div class="setting-hint">Skip profiles who smoke</div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Non-smoker only"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Geographic commitment required</div>
+                <div class="setting-hint">
+                  Only show people open to your long-term location
+                </div>
+              </div>
+              <button
+                class="toggle"
+                role="switch"
+                aria-checked="false"
+                aria-label="Geographic commitment required"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+           TAB 3: NOTIFICATIONS
+           ============================================================ -->
+        <div class="settings-tab-panel" data-panel="notifications">
+          <!-- Push notifications section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="section-title">Push Notifications</span>
+            </div>
+            <p class="section-description">
+              Choose which moments deserve your attention.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">New matches</div>
+                <div class="setting-hint">
+                  When someone you liked also liked you
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="New match notifications"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Messages</div>
+                <div class="setting-hint">
+                  New messages from your connections
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Message notifications"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">High compatibility alerts</div>
+                <div class="setting-hint">
+                  Someone with 90%+ compatibility joined nearby
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="High compatibility alerts"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Profile views</div>
+                <div class="setting-hint">
+                  When someone spends time on your profile
+                </div>
+              </div>
+              <button
+                class="toggle"
+                role="switch"
+                aria-checked="false"
+                aria-label="Profile view notifications"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Weekly compatibility report</div>
+                <div class="setting-hint">
+                  A summary of your top matches each Sunday
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Weekly compatibility report"
+              ></button>
+            </div>
+          </div>
+
+          <!-- Email notifications section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <span class="section-title">Email</span>
+            </div>
+            <p class="section-description">
+              Less urgent updates delivered to your inbox.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Monthly insights digest</div>
+                <div class="setting-hint">
+                  Your matching trends and activity overview
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Monthly insights digest"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Community events</div>
+                <div class="setting-hint">
+                  Value-aligned meetups and gatherings near you
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Community event notifications"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Product updates</div>
+                <div class="setting-hint">New features and improvements</div>
+              </div>
+              <button
+                class="toggle"
+                role="switch"
+                aria-checked="false"
+                aria-label="Product update notifications"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Pre-marital resources</div>
+                <div class="setting-hint">
+                  Counseling tips and relationship guides
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Pre-marital resource notifications"
+              ></button>
+            </div>
+          </div>
+
+          <!-- Quiet hours section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+              <span class="section-title">Quiet Hours</span>
+            </div>
+            <p class="section-description">
+              Silence notifications during your rest time.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Enable quiet hours</div>
+                <div class="setting-hint">
+                  No push notifications during these times
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Enable quiet hours"
+              ></button>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-label">Start time</span>
+              <span class="info-row-value tabular-nums">10:00 PM</span>
+            </div>
+            <div class="info-row">
+              <span class="info-row-label">End time</span>
+              <span class="info-row-value tabular-nums">7:00 AM</span>
+            </div>
+
+            <p class="section-footer-hint">
+              Matches and messages are still saved during quiet hours. You'll
+              see them when you open the app.
+            </p>
+          </div>
+        </div>
+
+        <!-- ============================================================
+           TAB 4: PRIVACY
+           ============================================================ -->
+        <div class="settings-tab-panel" data-panel="privacy">
+          <!-- Profile visibility section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span class="section-title">Profile Visibility</span>
+            </div>
+            <p class="section-description">
+              Control who can see your profile and how much they see.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Profile active</div>
+                <div class="setting-hint">
+                  Your profile appears in discovery feeds
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Profile active"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Show distance</div>
+                <div class="setting-hint">
+                  Others can see how far you are from them
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Show distance"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Show active status</div>
+                <div class="setting-hint">
+                  Show others when you were last active
+                </div>
+              </div>
+              <button
+                class="toggle"
+                role="switch"
+                aria-checked="false"
+                aria-label="Show active status"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Incognito browsing</div>
+                <div class="setting-hint">
+                  Browse profiles without appearing in their views
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px">
+                <span
+                  class="badge"
+                  style="background: rgba(139, 92, 246, 0.08); color: #8b5cf6"
+                  >Premium</span
+                >
+                <button
+                  class="toggle"
+                  role="switch"
+                  aria-checked="false"
+                  aria-label="Incognito browsing"
+                ></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content privacy section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M9 21V9" />
+              </svg>
+              <span class="section-title">Content Privacy</span>
+            </div>
+            <p class="section-description">
+              Choose which parts of your identity profile are public vs.
+              match-only.
+            </p>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit mood board visibility"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Mood board</div>
+                <div class="setting-hint">Visible to everyone</div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value" style="color: var(--success)"
+                  >Public</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit literary expression visibility"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Literary expression</div>
+                <div class="setting-hint">Your poem/passage and reflection</div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value" style="color: var(--accent)"
+                  >Matches only</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit values and beliefs visibility"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Values &amp; beliefs</div>
+                <div class="setting-hint">
+                  Spiritual, political, and philosophical views
+                </div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value" style="color: var(--success)"
+                  >Public</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit family plans visibility"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Family plans</div>
+                <div class="setting-hint">
+                  Children, timeline, and education philosophy
+                </div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value" style="color: var(--success)"
+                  >Public</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Edit Spotify playlist visibility"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Spotify playlist</div>
+                <div class="setting-hint">
+                  Audio identity played on your profile
+                </div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value" style="color: var(--success)"
+                  >Public</span
+                >
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Safety section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span class="section-title">Safety</span>
+            </div>
+            <p class="section-description">
+              Tools to keep your experience safe and respectful.
+            </p>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="View blocked profiles"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Blocked profiles</div>
+                <div class="setting-hint">3 profiles blocked</div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value tabular-nums">3</span>
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="View hidden profiles"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Hidden profiles</div>
+                <div class="setting-hint">7 profiles hidden from your feed</div>
+              </div>
+              <div class="chevron-right">
+                <span class="chevron-value tabular-nums">7</span>
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Block contacts</div>
+                <div class="setting-hint">
+                  Prevent phone contacts from seeing your profile
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Block contacts"
+              ></button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Date check-in reminders</div>
+                <div class="setting-hint">
+                  Safety check-in prompts during first meetups
+                </div>
+              </div>
+              <button
+                class="toggle active"
+                role="switch"
+                aria-checked="true"
+                aria-label="Date check-in reminders"
+              ></button>
+            </div>
+          </div>
+
+          <!-- Data & privacy section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span class="section-title">Data & Privacy</span>
+            </div>
+            <p class="section-description">Your data, your control.</p>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Download your data"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Download your data</div>
+                <div class="setting-hint">
+                  Get a copy of everything MOTO knows about you
+                </div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="View privacy policy"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Privacy policy</div>
+                <div class="setting-hint">
+                  How we collect, use, and protect your data
+                </div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="View terms of service"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Terms of service</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+           TAB 5: PLAN (Subscription)
+           ============================================================ -->
+        <div class="settings-tab-panel" data-panel="subscription">
+          <!-- Current plan section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+              <span class="section-title">Your Plan</span>
+            </div>
+
+            <div class="premium-card" style="margin-top: 16px">
+              <div class="premium-badge">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  />
+                </svg>
+                MOTO Devotion
+              </div>
+              <div class="premium-title">Your alignment journey is active</div>
+              <div class="premium-desc">
+                Unlimited compatibility insights, incognito browsing, priority
+                in high-match feeds, and advanced domain weighting.
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-end;
+                "
+              >
+                <div>
+                  <div class="premium-price tabular-nums">
+                    $29.99 <span>/month</span>
+                  </div>
+                  <div class="premium-renewal tabular-nums">
+                    Renews Apr 14, 2026
+                  </div>
+                </div>
+                <button class="btn btn-sm btn-secondary">Manage</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plan features section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <polyline points="9 11 12 14 22 4" />
+                <path
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                />
+              </svg>
+              <span class="section-title">Plan Features</span>
+            </div>
+            <p class="section-description">
+              What's included in your MOTO Devotion plan.
+            </p>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Unlimited daily matches</div>
+                <div class="setting-hint">Free: 5 matches/day</div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Full compatibility breakdown</div>
+                <div class="setting-hint">
+                  See per-domain scores for every profile
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Incognito browsing</div>
+                <div class="setting-hint">
+                  Browse without appearing in profile views
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Priority in high-match feeds</div>
+                <div class="setting-hint">
+                  Your profile shown first to 90%+ matches
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Advanced domain weighting</div>
+                <div class="setting-hint">
+                  Customize compatibility weights beyond defaults
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <div class="setting-label">Community event access</div>
+                <div class="setting-hint">
+                  Value-aligned meetups and gatherings
+                </div>
+              </div>
+              <span class="verified-badge"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                Active</span
+              >
+            </div>
+          </div>
+
+          <!-- Billing section -->
+          <div class="settings-section">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+              <span class="section-title">Billing</span>
+            </div>
+            <p class="section-description">
+              Payment method and billing history.
+            </p>
+
+            <div class="info-row">
+              <span class="info-row-label">Payment method</span>
+              <span class="info-row-value">Visa ending 4821</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-label">Next charge</span>
+              <span class="info-row-value tabular-nums">$29.99 on Apr 14</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-label">Last charge</span>
+              <span class="info-row-value tabular-nums">$29.99 on Mar 14</span>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="View billing history"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Billing history</div>
+                <div class="setting-hint">View all past invoices</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              tabindex="0"
+              class="chevron-row"
+              role="button"
+              aria-label="Update payment method"
+            >
+              <div class="setting-info">
+                <div class="setting-label">Update payment method</div>
+              </div>
+              <div class="chevron-right">
+                <svg
+                  class="chevron-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manage subscription section -->
+          <div class="settings-section" style="padding-bottom: 24px">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding-top: 8px;
+              "
+            >
+              <button
+                class="btn btn-secondary"
+                style="width: 100%; justify-content: center"
+              >
+                Change plan
+              </button>
+              <button
+                class="btn btn-danger"
+                style="width: 100%; justify-content: center"
+              >
+                Cancel subscription
+              </button>
+            </div>
+            <p class="section-footer-hint" style="text-align: center">
+              Cancelling keeps your profile active until the end of your billing
+              period.
+            </p>
+          </div>
+        </div>
+
+        <!-- ============================================================
+           DANGER ZONE — Outside tabs, always visible at bottom
+           (only shows on Account tab via JS)
+           ============================================================ -->
+        <div
+          class="danger-zone-container"
+          id="danger-zone"
+          style="display: block"
+        >
+          <div class="danger-zone">
+            <div class="section-header">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span class="section-title">Danger Zone</span>
+            </div>
+            <p
+              class="section-description"
+              style="padding-left: 28px; color: var(--text-tertiary)"
+            >
+              These actions cannot be easily undone.
+            </p>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px 0 24px;
+              "
+            >
+              <button
+                class="btn btn-secondary"
+                style="width: 100%; justify-content: center"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                Pause my profile
+              </button>
+              <button
+                class="btn btn-danger"
+                style="width: 100%; justify-content: center"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <polyline points="3 6 5 6 21 6" />
+                  <path
+                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  />
+                </svg>
+                Delete my account
+              </button>
+            </div>
+            <p
+              class="section-footer-hint"
+              style="text-align: center; padding-bottom: 24px"
+            >
+              Pausing hides you from feeds while keeping your data. Deleting
+              permanently removes your profile, matches, and messages.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- end settings-content -->
+    </div>
+    <!-- end mobile-shell -->
+
+    <script>
+      // Theme toggle
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+      }
+
+      // Settings tab switching
+      function switchSettingsTab(tabName) {
+        // Deactivate all tab buttons
+        document.querySelectorAll(".settings-tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        // Hide all panels
+        document.querySelectorAll(".settings-tab-panel").forEach((panel) => {
+          panel.classList.remove("active");
+        });
+        // Activate selected tab button
+        document
+          .querySelector(`.settings-tab-btn[data-tab="${tabName}"]`)
+          .classList.add("active");
+        // Show selected panel
+        document
+          .querySelector(`.settings-tab-panel[data-panel="${tabName}"]`)
+          .classList.add("active");
+
+        // Show danger zone only on account tab
+        const dangerZone = document.getElementById("danger-zone");
+        if (dangerZone) {
+          dangerZone.style.display = tabName === "account" ? "block" : "none";
+        }
+      }
+
+      // Toggle switches
+      document.querySelectorAll(".toggle").forEach((toggle) => {
+        toggle.addEventListener("click", function () {
+          this.classList.toggle("active");
+          const isActive = this.classList.contains("active");
+          this.setAttribute("aria-checked", isActive);
+        });
+      });
+
+      // Chip selection (single-select within group)
+      document.querySelectorAll(".chip-group").forEach((group) => {
+        group.querySelectorAll(".chip").forEach((chip) => {
+          chip.addEventListener("click", function () {
+            group
+              .querySelectorAll(".chip")
+              .forEach((c) => c.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
