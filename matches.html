@@ -1,0 +1,2237 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOTO — Matches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* === WARM LUXURY ATMOSPHERE === */
+      /* Dark (default) */
+      :root,
+      [data-theme="dark"] {
+        --bg-page: #0c0a09;
+        --surface-1: #141210;
+        --surface-2: #1c1a17;
+        --surface-hover: #242220;
+        --surface-active: #2c2a27;
+        --text-primary: #edece8;
+        --text-secondary: #a8a29e;
+        --text-tertiary: #78716c;
+        --text-disabled: #57534e;
+        --border-faint: #1e1c19;
+        --border-default: #2e2c28;
+        --border-strong: #44403c;
+        --accent: #a78bfa;
+        --accent-hover: #8b5cf6;
+        --accent-muted: rgba(167, 139, 250, 0.12);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
+        /* Semantic colors */
+        --positive: #16a34a;
+        --positive-bg: rgba(22, 163, 74, 0.08);
+        --warning: #d97706;
+        --warning-bg: rgba(217, 119, 6, 0.08);
+        --info: #3b82f6;
+        --info-bg: rgba(59, 130, 246, 0.12);
+        --negative: #ef4444;
+        --negative-bg: rgba(239, 68, 68, 0.08);
+        --neutral: #71717a;
+        --neutral-bg: rgba(113, 113, 122, 0.08);
+        --special: #8b5cf6;
+        --special-bg: rgba(139, 92, 246, 0.08);
+      }
+      /* Light */
+      [data-theme="light"] {
+        --bg-page: #faf9f7;
+        --surface-1: #ffffff;
+        --surface-2: #f5f4f1;
+        --surface-hover: #efede9;
+        --surface-active: #e8e6e1;
+        --text-primary: #1c1917;
+        --text-secondary: #57534e;
+        --text-tertiary: #78716c;
+        --text-disabled: #a8a29e;
+        --border-faint: #e7e5e4;
+        --border-default: #d6d3d1;
+        --border-strong: #a8a29e;
+        --accent: #7c3aed;
+        --accent-hover: #6d28d9;
+        --accent-muted: rgba(124, 58, 237, 0.08);
+        --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+        --shadow-sm:
+          0 2px 4px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.03);
+        --shadow-md:
+          0 4px 16px rgba(28, 25, 23, 0.07), 0 2px 4px rgba(28, 25, 23, 0.03);
+        --shadow-lg:
+          0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+
+        --positive: #16a34a;
+        --positive-bg: rgba(22, 163, 74, 0.08);
+        --warning: #d97706;
+        --warning-bg: rgba(217, 119, 6, 0.08);
+        --info: #3b82f6;
+        --info-bg: rgba(59, 130, 246, 0.12);
+        --negative: #ef4444;
+        --negative-bg: rgba(239, 68, 68, 0.08);
+        --neutral: #71717a;
+        --neutral-bg: rgba(113, 113, 122, 0.08);
+        --special: #8b5cf6;
+        --special-bg: rgba(139, 92, 246, 0.08);
+      }
+
+      html,
+      body {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition:
+          background-color 200ms ease-out,
+          color 200ms ease-out;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* === COMPONENT STANDARDS === */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 1.3;
+      }
+
+      .btn {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: none;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+      }
+      .btn-secondary {
+        background: var(--surface-1);
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+      }
+      .btn-secondary:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .btn-sm {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      .btn-lg {
+        height: 48px;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="search"],
+      input[type="number"],
+      input[type="url"],
+      input[type="tel"],
+      select,
+      textarea {
+        height: 40px;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-default);
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        transition:
+          border-color 150ms ease-out,
+          box-shadow 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--text-disabled);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-muted);
+      }
+
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out;
+      }
+      .card-interactive {
+        cursor: pointer;
+      }
+      .card-interactive:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      .card-interactive:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .tab-bar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        transition: color 150ms ease-out;
+        text-decoration: none;
+        background: none;
+        border: none;
+      }
+      .tab-bar-item:hover {
+        color: var(--text-secondary);
+      }
+      .tab-bar-item.active {
+        color: var(--accent);
+      }
+      .tab-bar-item svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 24px;
+        text-align: center;
+      }
+      .empty-state-icon {
+        width: 48px;
+        height: 48px;
+        color: var(--text-disabled);
+        margin-bottom: 16px;
+      }
+      .empty-state-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+      .empty-state-desc {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        max-width: 360px;
+        margin-bottom: 24px;
+        line-height: 1.5;
+      }
+
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      [role="button"]:focus-visible,
+      [tabindex]:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-default);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-strong);
+      }
+
+      .shell > *,
+      .shell > * > * {
+        min-height: 0;
+      }
+
+      /* === THEME TOGGLE === */
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      [data-theme="dark"] .theme-icon-sun {
+        display: block;
+      }
+      [data-theme="dark"] .theme-icon-moon {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-sun {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-moon {
+        display: block;
+      }
+      .theme-toggle svg {
+        color: var(--text-tertiary);
+      }
+
+      /* === MOTO-SPECIFIC STYLES === */
+
+      /* Mobile shell container — centered, max 430px */
+      .mobile-shell {
+        max-width: 430px;
+        margin: 0 auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-page);
+        position: relative;
+        border-left: 1px solid var(--border-faint);
+        border-right: 1px solid var(--border-faint);
+      }
+
+      /* Top header */
+      .top-header {
+        height: 56px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        border-bottom: 1px solid var(--border-faint);
+        background: var(--surface-1);
+      }
+
+      /* Content area */
+      .content-area {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 0;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Bottom tab bar */
+      .bottom-tab-bar {
+        height: 60px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-top: 1px solid var(--border-faint);
+        background: var(--surface-1);
+        padding: 0 4px;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+
+      /* Filter bar */
+      .filter-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--border-faint);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        background: var(--surface-1);
+      }
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-pill {
+        height: 32px;
+        padding: 0 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border-default);
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .filter-pill:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+        color: var(--text-primary);
+      }
+      .filter-pill.active {
+        background: var(--accent-muted);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .filter-pill:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Match count */
+      .match-count {
+        padding: 12px 20px 4px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+      }
+
+      /* Match cards container */
+      .match-cards {
+        padding: 8px 16px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* Match card */
+      .match-card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 16px;
+        padding: 20px;
+        cursor: pointer;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out,
+          transform 150ms ease-out;
+        position: relative;
+      }
+      .match-card:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+        box-shadow: var(--shadow-sm);
+      }
+      .match-card:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .match-card:active {
+        transform: scale(0.99);
+      }
+
+      /* New match highlight */
+      .match-card.is-new {
+        border-color: var(--accent);
+        box-shadow:
+          0 0 0 1px var(--accent-muted),
+          var(--shadow-sm);
+      }
+      .match-card.is-new::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 17px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-muted),
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Card top row: photo + info + score */
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Profile photo */
+      .profile-photo {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: var(--surface-2);
+        flex-shrink: 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* Online dot */
+      .online-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--positive);
+        border: 2px solid var(--surface-1);
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+      }
+
+      /* Info section */
+      .card-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .card-name-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 2px;
+      }
+      .card-name {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .new-badge {
+        display: inline-flex;
+        align-items: center;
+        height: 20px;
+        padding: 0 8px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-radius: 4px;
+        background: var(--special-bg);
+        color: var(--special);
+        white-space: nowrap;
+      }
+      .card-location {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .card-location svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+      }
+      .card-timestamp {
+        font-size: 12px;
+        color: var(--text-disabled);
+      }
+
+      /* Compatibility score ring */
+      .score-ring {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .score-ring svg {
+        width: 56px;
+        height: 56px;
+        transform: rotate(-90deg);
+      }
+      .score-ring-track {
+        fill: none;
+        stroke: var(--border-default);
+        stroke-width: 3.5;
+      }
+      .score-ring-fill {
+        fill: none;
+        stroke-width: 3.5;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 600ms ease-out;
+      }
+      .score-value {
+        position: absolute;
+        font-size: 15px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+
+      /* Score color variants */
+      .score-high .score-ring-fill {
+        stroke: var(--positive);
+      }
+      .score-high .score-value {
+        color: var(--positive);
+      }
+      .score-mid .score-ring-fill {
+        stroke: var(--accent);
+      }
+      .score-mid .score-value {
+        color: var(--accent);
+      }
+      .score-low .score-ring-fill {
+        stroke: var(--info);
+      }
+      .score-low .score-value {
+        color: var(--info);
+      }
+
+      /* Domain chips */
+      .domain-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+        position: relative;
+        z-index: 1;
+      }
+      .domain-chip {
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .domain-chip.chip-high {
+        background: var(--positive-bg);
+        color: var(--positive);
+      }
+      .domain-chip.chip-mid {
+        background: var(--accent-muted);
+        color: var(--accent);
+      }
+      .domain-chip.chip-info {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+
+      /* Message preview */
+      .message-preview {
+        margin-top: 12px;
+        padding: 10px 14px;
+        background: var(--surface-2);
+        border-radius: 10px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.4;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .message-preview svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: var(--accent);
+        margin-top: 2px;
+      }
+      .message-preview-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+      }
+
+      /* Card action buttons */
+      .card-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .action-btn {
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border-default);
+        background: var(--surface-2);
+        color: var(--text-secondary);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .action-btn:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+        color: var(--text-primary);
+      }
+      .action-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .action-btn:active {
+        transform: scale(0.97);
+      }
+      .action-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .action-btn.btn-message {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+        flex: 1;
+      }
+      .action-btn.btn-message:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+        color: #fff;
+      }
+
+      .action-btn.is-favorited {
+        background: rgba(239, 68, 68, 0.08);
+        border-color: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+      }
+
+      /* Sort dropdown overlay */
+      .sort-dropdown {
+        display: none;
+        position: absolute;
+        top: 56px;
+        right: 16px;
+        width: 220px;
+        background: var(--surface-1);
+        border: 1px solid var(--border-default);
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        padding: 6px;
+        z-index: 100;
+      }
+      .sort-dropdown.visible {
+        display: block;
+      }
+      .sort-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition:
+          background-color 100ms ease-out,
+          color 100ms ease-out;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: inherit;
+      }
+      .sort-option:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .sort-option.active {
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .sort-option.active::after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      /* Tab badge (notification count) */
+      .tab-badge {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 5px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-shell shell">
+      <!-- ============================================ -->
+      <!-- TOP HEADER                                   -->
+      <!-- ============================================ -->
+      <header class="top-header">
+        <!-- Left: page title -->
+        <div style="display: flex; align-items: center; gap: 10px">
+          <h1
+            style="font-size: 22px; font-weight: 700; letter-spacing: -0.03em"
+          >
+            Matches
+          </h1>
+          <span
+            class="badge"
+            style="
+              background: var(--accent-muted);
+              color: var(--accent);
+              font-variant-numeric: tabular-nums;
+            "
+            >24</span
+          >
+        </div>
+        <!-- Right: sort/filter + theme toggle -->
+        <div style="display: flex; align-items: center; gap: 4px">
+          <button
+            class="btn-ghost btn-sm"
+            onclick="toggleSort()"
+            title="Sort & Filter"
+            aria-label="Sort and filter matches"
+            style="
+              width: 36px;
+              height: 36px;
+              padding: 0;
+              border-radius: 8px;
+              border: none;
+              background: transparent;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: background-color 150ms ease-out;
+            "
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="8" y1="12" x2="20" y2="12" />
+              <line x1="12" y1="18" x2="20" y2="18" />
+            </svg>
+          </button>
+          <div
+            style="
+              width: 1px;
+              height: 24px;
+              background: var(--border-faint);
+              margin: 0 4px;
+            "
+          ></div>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+        <!-- Sort dropdown -->
+        <div class="sort-dropdown" id="sortDropdown">
+          <div
+            style="
+              padding: 10px 14px 6px;
+              font-size: 12px;
+              font-weight: 500;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              color: var(--text-tertiary);
+            "
+          >
+            Sort by
+          </div>
+          <button class="sort-option active" onclick="selectSort(this)">
+            Newest
+          </button>
+          <button class="sort-option" onclick="selectSort(this)">
+            Highest Compatibility
+          </button>
+          <button class="sort-option" onclick="selectSort(this)">
+            Most Active
+          </button>
+          <div
+            style="height: 1px; background: var(--border-faint); margin: 6px 0"
+          ></div>
+          <div
+            style="
+              padding: 10px 14px 6px;
+              font-size: 12px;
+              font-weight: 500;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              color: var(--text-tertiary);
+            "
+          >
+            Filter
+          </div>
+          <button class="sort-option active" onclick="selectSort(this)">
+            All Matches
+          </button>
+          <button class="sort-option" onclick="selectSort(this)">
+            New (Unseen)
+          </button>
+          <button class="sort-option" onclick="selectSort(this)">
+            Favorites
+          </button>
+          <button class="sort-option" onclick="selectSort(this)">
+            Archived
+          </button>
+        </div>
+      </header>
+
+      <!-- ============================================ -->
+      <!-- FILTER PILLS BAR                             -->
+      <!-- ============================================ -->
+      <div class="filter-bar">
+        <button class="filter-pill active">All</button>
+        <button class="filter-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="6" />
+          </svg>
+          New
+        </button>
+        <button class="filter-pill">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          Favorites
+        </button>
+        <button class="filter-pill">Archived</button>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- SCROLLABLE CONTENT AREA                      -->
+      <!-- ============================================ -->
+      <div class="content-area">
+        <!-- Match count -->
+        <div class="match-count">
+          <span class="tabular-nums">24</span> matches &middot;
+          <span class="tabular-nums">3</span> new
+        </div>
+
+        <!-- Match cards feed -->
+        <div class="match-cards">
+          <!-- ========================================== -->
+          <!-- CARD 1: NEW MATCH — High compatibility     -->
+          <!-- ========================================== -->
+          <div
+            class="match-card is-new card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Emma Chen's profile, 94% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #c4a882 0%,
+                      #d4b896 50%,
+                      #c9a97a 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  EC
+                </div>
+                <div class="online-dot"></div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Emma Chen, 28</span>
+                  <span class="new-badge">New</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  San Francisco, CA
+                </div>
+                <div class="card-timestamp">Just now</div>
+              </div>
+              <div class="score-ring score-high">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="6.8"
+                  />
+                </svg>
+                <span class="score-value">94%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-high">Family 96%</span>
+              <span class="domain-chip chip-high">Spirituality 94%</span>
+              <span class="domain-chip chip-high">Geography 91%</span>
+            </div>
+            <div class="card-actions">
+              <button class="action-btn btn-message" aria-label="Message Emma">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 2: High compat — with message preview -->
+          <!-- ========================================== -->
+          <div
+            class="match-card card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Olivia Parker's profile, 91% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #8b7a6b 0%,
+                      #a08e7d 50%,
+                      #9c8a78 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  OP
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Olivia Parker, 31</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Austin, TX
+                </div>
+                <div class="card-timestamp">2 hours ago</div>
+              </div>
+              <div class="score-ring score-high">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="10.2"
+                  />
+                </svg>
+                <span class="score-value">91%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-high">Family 98%</span>
+              <span class="domain-chip chip-mid">Lifestyle 88%</span>
+              <span class="domain-chip chip-high">Geography 90%</span>
+            </div>
+            <div class="message-preview">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              <span class="message-preview-text"
+                >"I noticed we both want 3 kids and value classical education.
+                Would love to chat more..."</span
+              >
+            </div>
+            <div class="card-actions">
+              <button
+                class="action-btn btn-message"
+                aria-label="Reply to Olivia"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Reply
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn is-favorited" aria-label="Unfavorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 3: NEW MATCH — Medium compatibility   -->
+          <!-- ========================================== -->
+          <div
+            class="match-card is-new card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Sophia Rivera's profile, 87% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #b8956a 0%,
+                      #cba87e 50%,
+                      #c09d72 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  SR
+                </div>
+                <div class="online-dot"></div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Sophia Rivera, 26</span>
+                  <span class="new-badge">New</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Denver, CO
+                </div>
+                <div class="card-timestamp">35 minutes ago</div>
+              </div>
+              <div class="score-ring score-mid">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="14.7"
+                  />
+                </svg>
+                <span class="score-value">87%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-high">Family 92%</span>
+              <span class="domain-chip chip-mid">Spirituality 85%</span>
+              <span class="domain-chip chip-mid">Politics 84%</span>
+            </div>
+            <div class="card-actions">
+              <button
+                class="action-btn btn-message"
+                aria-label="Message Sophia"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 4: Medium compatibility — Favorited   -->
+          <!-- ========================================== -->
+          <div
+            class="match-card card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Ava Mitchell's profile, 83% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #7a8b8b 0%,
+                      #8d9e9e 50%,
+                      #829393 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  AM
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Ava Mitchell, 29</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Portland, OR
+                </div>
+                <div class="card-timestamp">Yesterday</div>
+              </div>
+              <div class="score-ring score-mid">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="19.2"
+                  />
+                </svg>
+                <span class="score-value">83%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-mid">Family 86%</span>
+              <span class="domain-chip chip-high">Geography 92%</span>
+              <span class="domain-chip chip-mid">Lifestyle 82%</span>
+            </div>
+            <div class="card-actions">
+              <button class="action-btn btn-message" aria-label="Message Ava">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn is-favorited" aria-label="Unfavorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 5: Medium-low compat — Online         -->
+          <!-- ========================================== -->
+          <div
+            class="match-card card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Isabella Torres's profile, 79% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #a67c6b 0%,
+                      #b88e7d 50%,
+                      #ad8474 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  IT
+                </div>
+                <div class="online-dot"></div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Isabella Torres, 27</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Nashville, TN
+                </div>
+                <div class="card-timestamp">Yesterday</div>
+              </div>
+              <div class="score-ring score-mid">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="23.7"
+                  />
+                </svg>
+                <span class="score-value">79%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-high">Spirituality 93%</span>
+              <span class="domain-chip chip-mid">Family 81%</span>
+              <span class="domain-chip chip-info">Social 76%</span>
+            </div>
+            <div class="card-actions">
+              <button
+                class="action-btn btn-message"
+                aria-label="Message Isabella"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 6: Lower compat — with message        -->
+          <!-- ========================================== -->
+          <div
+            class="match-card card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Mia Johnson's profile, 76% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #6b7a8b 0%,
+                      #7d8e9e 50%,
+                      #728393 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  MJ
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Mia Johnson, 30</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Chicago, IL
+                </div>
+                <div class="card-timestamp">3 days ago</div>
+              </div>
+              <div class="score-ring score-low">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="27.1"
+                  />
+                </svg>
+                <span class="score-value">76%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-mid">Lifestyle 88%</span>
+              <span class="domain-chip chip-info">Family 74%</span>
+              <span class="domain-chip chip-info">Politics 72%</span>
+            </div>
+            <div class="message-preview">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              <span class="message-preview-text"
+                >"Your Spotify playlist had so much overlap with mine! Big
+                Radiohead fan too?"</span
+              >
+            </div>
+            <div class="card-actions">
+              <button class="action-btn btn-message" aria-label="Reply to Mia">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Reply
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 7: NEW — Medium compat                -->
+          <!-- ========================================== -->
+          <div
+            class="match-card is-new card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Lily Nakamura's profile, 85% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #9b8a78 0%,
+                      #ae9d8b 50%,
+                      #a39281 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  LN
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Lily Nakamura, 29</span>
+                  <span class="new-badge">New</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  San Francisco, CA
+                </div>
+                <div class="card-timestamp">4 hours ago</div>
+              </div>
+              <div class="score-ring score-mid">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="17.0"
+                  />
+                </svg>
+                <span class="score-value">85%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-high">Family 90%</span>
+              <span class="domain-chip chip-mid">Vibe 87%</span>
+              <span class="domain-chip chip-mid">Spirituality 83%</span>
+            </div>
+            <div class="card-actions">
+              <button class="action-btn btn-message" aria-label="Message Lily">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- CARD 8: Lower compat — older match         -->
+          <!-- ========================================== -->
+          <div
+            class="match-card card-interactive"
+            tabindex="0"
+            role="button"
+            aria-label="View Grace Kim's profile, 72% compatible"
+          >
+            <div class="card-top">
+              <div class="profile-photo">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                      135deg,
+                      #8b7a8b 0%,
+                      #9e8d9e 50%,
+                      #938293 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #fff;
+                  "
+                >
+                  GK
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="card-name-row">
+                  <span class="card-name">Grace Kim, 32</span>
+                </div>
+                <div class="card-location">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Portland, OR
+                </div>
+                <div class="card-timestamp">5 days ago</div>
+              </div>
+              <div class="score-ring score-low">
+                <svg viewBox="0 0 44 44">
+                  <circle class="score-ring-track" cx="22" cy="22" r="18" />
+                  <circle
+                    class="score-ring-fill"
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    stroke-dasharray="113.1"
+                    stroke-dashoffset="31.7"
+                  />
+                </svg>
+                <span class="score-value">72%</span>
+              </div>
+            </div>
+            <div class="domain-chips">
+              <span class="domain-chip chip-mid">Geography 89%</span>
+              <span class="domain-chip chip-info">Family 73%</span>
+              <span class="domain-chip chip-info">Lifestyle 70%</span>
+            </div>
+            <div class="card-actions">
+              <button class="action-btn btn-message" aria-label="Message Grace">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Message
+              </button>
+              <button class="action-btn" aria-label="View profile">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </button>
+              <button class="action-btn" aria-label="Favorite">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- end .match-cards -->
+
+        <!-- Bottom padding for scroll past tab bar -->
+        <div style="height: 24px"></div>
+      </div>
+      <!-- end .content-area -->
+
+      <!-- ============================================ -->
+      <!-- BOTTOM TAB BAR                               -->
+      <!-- ============================================ -->
+      <nav class="bottom-tab-bar" aria-label="Main navigation">
+        <!-- Discover -->
+        <button class="tab-bar-item" aria-label="Discover">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polygon
+              points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+            />
+          </svg>
+          <span>Discover</span>
+        </button>
+
+        <!-- Matches (active) -->
+        <button
+          class="tab-bar-item active"
+          aria-label="Matches"
+          style="position: relative"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          <span>Matches</span>
+          <span class="tab-badge">3</span>
+        </button>
+
+        <!-- Messages -->
+        <button
+          class="tab-bar-item"
+          aria-label="Messages"
+          style="position: relative"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          <span>Messages</span>
+          <span class="tab-badge">2</span>
+        </button>
+
+        <!-- Activity -->
+        <button class="tab-bar-item" aria-label="Activity">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+          <span>Activity</span>
+        </button>
+
+        <!-- Profile -->
+        <button class="tab-bar-item" aria-label="Profile">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Profile</span>
+        </button>
+      </nav>
+    </div>
+    <!-- end .mobile-shell -->
+
+    <!-- ============================================ -->
+    <!-- SCRIPTS                                      -->
+    <!-- ============================================ -->
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+      }
+
+      function toggleSort() {
+        const dropdown = document.getElementById("sortDropdown");
+        dropdown.classList.toggle("visible");
+      }
+
+      function selectSort(el) {
+        // Toggle active state within the same section
+        const siblings =
+          el.parentElement === el.closest(".sort-dropdown")
+            ? Array.from(el.parentElement.querySelectorAll(".sort-option"))
+            : [];
+        // Just toggle visual for wireframe
+        el.classList.toggle("active");
+      }
+
+      // Close sort dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        const dropdown = document.getElementById("sortDropdown");
+        if (
+          !e.target.closest(".sort-dropdown") &&
+          !e.target.closest('[onclick="toggleSort()"]')
+        ) {
+          dropdown.classList.remove("visible");
+        }
+      });
+
+      // Filter pill toggle
+      document.querySelectorAll(".filter-pill").forEach(function (pill) {
+        pill.addEventListener("click", function () {
+          document.querySelectorAll(".filter-pill").forEach(function (p) {
+            p.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
