@@ -1,196 +1,189 @@
 # MOTO Auth Wireframe Spec
 
-Mobile-first (430px max-width), dark default, 8 views toggled via JS.
+Composition: **Step Wizard (D)** — full-page centered, no shell chrome, 430px max-width.
+Atmosphere: **Warm Luxury** — purple accent on warm stone, Cormorant Garamond display + Inter body.
 
 ## Layout
 
 ```
-+--[430px shell]-----------------------------+
-|                                             |
-|  View 1: WELCOME (full-screen landing)      |
-|  View 2: SIGN UP (form)                     |
-|  View 3: SIGN UP ERROR (form + validation)  |
-|  View 4: SIGN UP SUCCESS (confirmation)     |
-|  View 5: SIGN IN (form)                     |
-|  View 6: SIGN IN ERROR (form + error banner)|
-|  View 7: FORGOT PASSWORD (form)             |
-|  View 8: FORGOT SUCCESS (confirmation)      |
-|                                             |
-+---------------------------------------------+
++------------------------------------------+
+| [< Back]                   [Theme Toggle] |  topbar: 72px
+|                                          |
+|         +------------------+             |
+|         |   VIEW CONTENT   |             |  centered, 430px max
+|         |   (4 states)     |             |
+|         +------------------+             |
+|                                          |
+| Terms of Service · Privacy Policy        |  legal footer
++------------------------------------------+
 ```
 
-One view visible at a time. JS `showView(name)` hides all, shows target.
+Background: constellation dots (2px, accent color, pulsing animation) + warm radial glow (purple-to-pink gradient, 6% opacity).
 
-## Welcome Screen
+## 4 View States (JS-toggled)
 
-```
-+---------------------------------------+
-|                          [theme-toggle]|
-|                                        |
-|          ( O   O )                     |
-|       interlocking circles             |
-|                                        |
-|            M O T O                     |
-|      VALUES-ALIGNED DATING             |
-|                                        |
-|      Not more choice.                  |
-|      Better alignment.    (serif h1)   |
-|                                        |
-|  A dating platform built around shared |
-|  values, life timelines, and the       |
-|  vision to build something that lasts. |
-|                                        |
-|  [====== Begin Your Story ======] 56px |
-|                                        |
-|   Already have an account? Sign in     |
-|                                        |
-|   Terms of Service · Privacy Policy    |
-+---------------------------------------+
-```
-
-- Logo: 56px, font-weight 700, gradient text (accent -> #c4b5fd)
-- Wordmark: 13px uppercase, letter-spacing 0.2em, text-tertiary
-- Headline: Cormorant Garamond serif, 34px, weight 500
-- Thesis: 16px, text-secondary, max-width 320px, centered
-- Background: abstract constellation (radial gradients, dot pattern SVG)
-- No stock photos, no couple imagery
-
-## Form Header
+### Welcome (default)
 
 ```
-+---------------------------------------+
-| [<- back]              [theme-toggle] |
-+---------------------------------------+
+        MOTO                    serif 56px/600, 0.12em tracking
+   ─── gradient bar ───        48px wide, purple-to-pink
+
+  "The future of dating        serif 22px/400 italic
+   is not more choice —        text-secondary
+   it is better alignment."
+
+  Values-first thesis text     14px, text-tertiary, 340px max
+
+  [ Create Your Profile ]      pill 52px, accent bg, white text
+  [      Sign In        ]      pill 52px, transparent, border
+
+        — or continue with —
+
+  [ Apple icon  Continue with Apple  ]   pill 48px, surface-1 bg
+  [ Google icon Continue with Google ]   pill 48px, surface-1 bg
 ```
 
-- Back button: 40px square, rounded-[10px], ghost style
-- Theme toggle: 36px square, same as welcome
-
-## Sign Up Form
+### Sign Up
 
 ```
-+---------------------------------------+
-| [<-]                     [sun/moon]   |
-|                                        |
-| Create your account          28px/600  |
-| This is the beginning of...  16px/sec  |
-|                                        |
-| [G  Continue with Google    ] 52px     |
-| [   Continue with Apple     ] 52px     |
-|                                        |
-| ---------- or continue ----------      |
-|                                        |
-| First name        Last name            |
-| [Sarah         ]  [Mitchell       ]    |
-|                                        |
-| Email address                          |
-| [sarah@example.com              ]      |
-|                                        |
-| Password                               |
-| [At least 8 characters      ] [eye]   |
-| [==][==][  ][  ] Medium strength       |
-|                                        |
-| Date of birth                          |
-| [Month v] [Day v] [Year v]            |
-| You must be 18 or older                |
-|                                        |
-| [======= Create Account =======]      |
-|                                        |
-| By creating an account, you agree...   |
-|                                        |
-| Already have an account? Sign in       |
-+---------------------------------------+
+     Begin Your Journey         serif 32px/600
+     Subtitle text              16px text-secondary
+
+  Email address                 label 14px/500
+  [ you@example.com        ]   input 48px, surface-1 bg
+
+  Password                      label 14px/500
+  [ At least 8 characters  👁 ] input 48px + toggle
+
+  Confirm password              label 14px/500
+  [ Re-enter your password 👁 ] input 48px + toggle
+  (error: "Passwords do not match")
+
+  [    Create Account    ]      pill 52px primary
+
+        — or continue with —
+
+  [ Continue with Apple  ]
+  [ Continue with Google ]
+
+  Already have an account? Sign in
 ```
 
-## Input Specs
-
-| Element | Height | Radius | Font |
-|---------|--------|--------|------|
-| Text input | 48px | 10px | 16px/400 |
-| Social btn | 52px | 12px | 15px/500 |
-| Submit btn | 52px | 12px | 16px/600 |
-| Begin btn | 56px | 12px | 16px/600 |
-
-## Password Strength
-
-4 bars, 3px height, 4px gap. Colors:
-
-| Level | Bar color | Label |
-|-------|-----------|-------|
-| Weak | --negative (#ef4444) | "Too weak" |
-| Medium | --warning (#d97706) | "Medium strength" |
-| Strong | --positive (#16a34a) | "Strong password" |
-
-## Validation Errors
-
-- Input border: --negative
-- Focus ring: 0 0 0 3px --negative-muted
-- Error text: 13px, --negative, flex with X-circle icon (14px)
-- Form-level error: card with --negative-muted bg, 1px border rgba(239,68,68,0.2), rounded-[10px], alert icon + title + description
-
-## Success States
+### Sign In
 
 ```
-+---------------------------------------+
-|                          [theme-toggle]|
-|                                        |
-|            ( checkmark )               |
-|         64px circle, green bg          |
-|                                        |
-|        Check your email                |
-|                                        |
-|    We sent a verification link to      |
-|    sarah.mitchell@gmail.com            |
-|                                        |
-|    Click the link in the email to...   |
-|                                        |
-|    [======= Resend Email ========]     |
-|                                        |
-|    Wrong email? Go back                |
-+---------------------------------------+
+     Welcome Back               serif 32px/600
+     Subtitle text              16px text-secondary
+
+  Email address
+  [ you@example.com        ]
+
+  Password
+  [ Enter your password    👁 ]
+                    Forgot password?   accent link, right-aligned
+
+  [      Sign In       ]        pill 52px primary
+
+        — or continue with —
+
+  [ Continue with Apple  ]
+  [ Continue with Google ]
+
+  Don't have an account? Create one
 ```
 
-- Icon container: 64px circle, --positive-muted bg
-- Checkmark: 28px, stroke-width 2.5, --positive color
-- Email: --text-primary, font-weight 500
+### Forgot Password
 
-## Forgot Password
+Form state:
+```
+     Reset Your Password        serif 32px/600
+     Instruction text           16px text-secondary
 
-Form with single email field + "Send Reset Link" CTA. Below: info card with 3 numbered steps (check inbox, click link valid 60 min, create new password). Step numbers: 24px circles, --accent-muted bg, --accent text, 12px/600 tabular-nums.
+  Email address
+  [ you@example.com        ]
 
-## Theme Toggle
+  [   Send Reset Link    ]      pill 52px primary
 
-Sun icon in dark mode, moon icon in light. Located in header right-side on every view. 36px tap target, rounded-[8px], ghost hover.
+       < Back to sign in        accent link with chevron
+```
 
-## Colors (Warm Luxury)
+Success state:
+```
+       ( envelope icon )        64px circle, accent-muted bg
+     Check Your Email           serif 28px/600
+     We've sent a reset link to
+     you@example.com            accent color, 500 weight
 
-| Token | Dark | Light |
-|-------|------|-------|
-| bg-page | #0c0a09 | #faf9f7 |
-| surface-1 | #141210 | #ffffff |
-| surface-2 | #1c1a17 | #f5f4f1 |
-| accent | #a78bfa | #7c3aed |
-| accent-hover | #8b5cf6 | #6d28d9 |
+     Didn't receive it?
+     Check spam or try again    text link
+
+  [   Return to Sign In  ]     pill 52px secondary
+```
+
+## Component Specs
+
+### Pill Buttons
+- Primary: h-52px, rounded-full (26px), accent bg, white text, 16px font, 500 weight
+- Secondary: h-52px, rounded-full (26px), transparent bg, border-default, text-primary
+- Social: h-48px, rounded-full (24px), surface-1 bg, border-default, 15px font
+- All: scale(0.98) on :active, focus-ring on :focus-visible
+
+### Inputs
+- h-48px, rounded-[10px], surface-1 bg, border-default, 16px font
+- Focus: accent border + 3px accent-muted glow
+- Error: negative border + negative-muted glow + 13px error text below
+
+### Password Toggle
+- 40px square, transparent bg, positioned absolute right inside input
+- Eye open (default) / eye closed (revealed) SVG swap
+- Toggles input type between password/text
+
+### Back Button
+- 40px square, rounded-[10px], transparent bg, text-secondary
+- Hidden (visibility) on welcome, visible on all other states
+- Chevron-left SVG icon
 
 ## Typography
 
-- Headlines: Inter 600, -0.02em to -0.03em
-- Welcome headline: Cormorant Garamond 500, 34px (serif differentiator)
-- Logo: Inter 700, 56px, gradient fill
-- Body: Inter 400, 16px
-- Labels: Inter 500, 14px
-- Hints: Inter 400, 13px, text-tertiary
-- Errors: Inter 400, 13px, --negative
+| Element | Font | Size | Weight | Color |
+|---------|------|------|--------|-------|
+| Logo "MOTO" | Cormorant Garamond | 56px | 600 | text-primary |
+| Tagline | Cormorant Garamond | 22px | 400 italic | text-secondary |
+| Thesis | Inter | 14px | 400 | text-tertiary |
+| View headings | Cormorant Garamond | 32px | 600 | text-primary |
+| View subtitles | Inter | 16px | 400 | text-secondary |
+| Labels | Inter | 14px | 500 | text-secondary |
+| Inputs | Inter | 16px | 400 | text-primary |
+| Buttons | Inter | 16px | 500 | varies |
+| Links | Inter | 14px | 500 | accent |
+| Legal | Inter | 12px | 400 | text-disabled |
+| Divider text | Inter | 13px | 500 | text-disabled |
 
-## Interactions
+## Navigation Flow
 
-- View switch: JS toggles .active class (display:flex vs none)
-- Password toggle: switches input type text/password, swaps eye/eye-off icon
-- Notification bar: slides down from top, auto-hides after 3s
-- All buttons: scale(0.98) on :active
-- All focusable: double-ring focus-visible pattern
-- Reduced motion: @media query kills all animation/transition durations
+```
+Welcome ──> Sign Up ──> (submit: onboarding)
+   │
+   └──> Sign In ──> (submit: app home)
+            │
+            └──> Forgot Password ──> Success ──> Sign In
+```
 
-## Navigation Bar (Design Review Only)
+Back button pops view history stack. All transitions use 350ms fadeSlideIn animation (opacity 0->1, translateY 12px->0).
 
-Fixed bottom bar with 8 buttons for jumping between views. Not part of production UI.
+## Tokens (custom beyond Warm Luxury base)
+
+- `--gradient-warm`: 135deg purple-to-pink gradient at low opacity
+- `--accent-pink`: #f472b6 (dark) / #ec4899 (light)
+- `--accent-gold`: #fbbf24 (dark) / #d97706 (light)
+- `--constellation-opacity`: 0.12 (dark) / 0.08 (light)
+
+## Accessibility
+
+- All interactive elements have focus-visible (double-ring)
+- Password toggles have aria-label that updates on state
+- Back button has aria-label
+- Theme toggle has aria-label
+- prefers-reduced-motion disables all animations
+- Inputs use autocomplete attributes (email, new-password, current-password)
+- Form validation via native HTML required + custom error display
