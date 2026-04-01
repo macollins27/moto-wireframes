@@ -1,0 +1,2921 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOTO — Messages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* === WARM LUXURY ATMOSPHERE === */
+      /* Dark (default) */
+      :root,
+      [data-theme="dark"] {
+        --bg-page: #0c0a09;
+        --surface-1: #141210;
+        --surface-2: #1c1a17;
+        --surface-hover: #242220;
+        --surface-active: #2c2a27;
+        --text-primary: #edece8;
+        --text-secondary: #a8a29e;
+        --text-tertiary: #78716c;
+        --text-disabled: #57534e;
+        --border-faint: #1e1c19;
+        --border-default: #2e2c28;
+        --border-strong: #44403c;
+        --accent: #a78bfa;
+        --accent-hover: #8b5cf6;
+        --accent-muted: rgba(167, 139, 250, 0.12);
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+        /* MOTO custom tokens */
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(167, 139, 250, 0.15),
+          rgba(244, 114, 182, 0.12)
+        );
+        --accent-pink: #f472b6;
+        --accent-pink-muted: rgba(244, 114, 182, 0.12);
+        --accent-gold: #fbbf24;
+        --accent-gold-muted: rgba(251, 191, 36, 0.12);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.08);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.08);
+        --info: #3b82f6;
+        --info-muted: rgba(59, 130, 246, 0.12);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.08);
+        --special: #8b5cf6;
+        --special-muted: rgba(139, 92, 246, 0.08);
+        /* Message bubble colors */
+        --bubble-own: rgba(167, 139, 250, 0.18);
+        --bubble-own-border: rgba(167, 139, 250, 0.25);
+        --bubble-theirs: var(--surface-2);
+        --bubble-theirs-border: var(--border-faint);
+      }
+      /* Light */
+      [data-theme="light"] {
+        --bg-page: #faf9f7;
+        --surface-1: #ffffff;
+        --surface-2: #f5f4f1;
+        --surface-hover: #efede9;
+        --surface-active: #e8e6e1;
+        --text-primary: #1c1917;
+        --text-secondary: #57534e;
+        --text-tertiary: #78716c;
+        --text-disabled: #a8a29e;
+        --border-faint: #e7e5e4;
+        --border-default: #d6d3d1;
+        --border-strong: #a8a29e;
+        --accent: #7c3aed;
+        --accent-hover: #6d28d9;
+        --accent-muted: rgba(124, 58, 237, 0.08);
+        --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+        --shadow-sm:
+          0 2px 4px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.03);
+        --shadow-md:
+          0 4px 16px rgba(28, 25, 23, 0.07), 0 2px 4px rgba(28, 25, 23, 0.03);
+        --shadow-lg:
+          0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
+        --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
+        /* MOTO custom tokens — light overrides */
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.08),
+          rgba(236, 72, 153, 0.06)
+        );
+        --accent-pink: #ec4899;
+        --accent-pink-muted: rgba(236, 72, 153, 0.08);
+        --accent-gold: #d97706;
+        --accent-gold-muted: rgba(217, 119, 6, 0.08);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.06);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.06);
+        --info: #3b82f6;
+        --info-muted: rgba(59, 130, 246, 0.08);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.06);
+        --special: #7c3aed;
+        --special-muted: rgba(124, 58, 237, 0.06);
+        /* Message bubble colors — light */
+        --bubble-own: rgba(124, 58, 237, 0.1);
+        --bubble-own-border: rgba(124, 58, 237, 0.15);
+        --bubble-theirs: var(--surface-2);
+        --bubble-theirs-border: var(--border-faint);
+      }
+
+      html,
+      body {
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition:
+          background-color 200ms ease-out,
+          color 200ms ease-out;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* === COMPONENT STANDARDS === */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h1 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      h3 {
+        font-size: 16px;
+        line-height: 1.3;
+      }
+
+      /* Buttons */
+      .btn {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: none;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+      }
+
+      .btn-secondary {
+        background: var(--surface-1);
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+      }
+      .btn-secondary:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+
+      .btn-sm {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      .btn-lg {
+        height: 48px;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+
+      /* Inputs */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="search"],
+      input[type="number"],
+      input[type="url"],
+      input[type="tel"],
+      select,
+      textarea {
+        height: 40px;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-default);
+        background: var(--bg-page);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        transition:
+          border-color 150ms ease-out,
+          box-shadow 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--text-disabled);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-muted);
+      }
+      textarea {
+        height: auto;
+        min-height: 80px;
+        padding: 12px;
+        resize: vertical;
+      }
+
+      /* Cards */
+      .card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          background-color 150ms ease-out,
+          border-color 150ms ease-out,
+          box-shadow 200ms ease-out;
+      }
+      .card-interactive {
+        cursor: pointer;
+      }
+      .card-interactive:hover {
+        background: var(--surface-hover);
+        border-color: var(--border-default);
+      }
+      .card-interactive:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Bottom tab bar items */
+      .tab-bar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        transition: color 150ms ease-out;
+        text-decoration: none;
+        background: none;
+        border: none;
+      }
+      .tab-bar-item:hover {
+        color: var(--text-secondary);
+      }
+      .tab-bar-item.active {
+        color: var(--accent);
+      }
+      .tab-bar-item svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Numeric data */
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Focus-visible on all interactive elements */
+      a:focus-visible,
+      button:focus-visible,
+      [role="button"]:focus-visible,
+      [tabindex]:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-default);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--border-strong);
+      }
+
+      /* Scroll containment */
+      .shell > *,
+      .shell > * > * {
+        min-height: 0;
+      }
+
+      /* === THEME TOGGLE === */
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 150ms ease-out;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+      .theme-toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      [data-theme="dark"] .theme-icon-sun {
+        display: block;
+      }
+      [data-theme="dark"] .theme-icon-moon {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-sun {
+        display: none;
+      }
+      [data-theme="light"] .theme-icon-moon {
+        display: block;
+      }
+      .theme-toggle svg {
+        color: var(--text-tertiary);
+      }
+
+      /* === TAB NAVIGATION (in-page tabs) === */
+      .tab-btn {
+        padding: 8px 0 12px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition:
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+      }
+      .tab-btn:hover {
+        color: var(--text-primary);
+      }
+      .tab-btn.active {
+        color: var(--accent);
+        font-weight: 500;
+        border-bottom-color: var(--accent);
+      }
+
+      /* ================================================================
+         MOTO MESSAGES — Custom Styles
+         ================================================================ */
+
+      /* Header icon buttons (matches discover.html) */
+      .header-icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+        position: relative;
+      }
+      .header-icon-btn:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .header-icon-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Conversation list item */
+      .convo-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        cursor: pointer;
+        transition: background-color 150ms ease-out;
+        border-bottom: 1px solid var(--border-faint);
+        position: relative;
+      }
+      .convo-item:hover {
+        background: var(--surface-hover);
+      }
+      .convo-item:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .convo-item:active {
+        background: var(--surface-active);
+      }
+      .convo-item.unread .convo-name {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      .convo-item.unread .convo-preview {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+      .convo-item.unread .convo-time {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* Avatar */
+      .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        background: var(--surface-2);
+      }
+      .avatar-sm {
+        width: 36px;
+        height: 36px;
+      }
+      .avatar-online::after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--positive);
+        border: 2.5px solid var(--surface-1);
+      }
+
+      /* Conversation text */
+      .convo-body {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .convo-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .convo-name {
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--text-primary);
+      }
+      .convo-time {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+      }
+      .convo-bottom-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .convo-preview {
+        font-size: 14px;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+        min-width: 0;
+        line-height: 1.4;
+      }
+      .convo-unread-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* Your turn badge */
+      .your-turn-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 20px;
+        padding: 0 8px;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 10px;
+        background: var(--accent-muted);
+        color: var(--accent);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Compatibility mini badge in convo list */
+      .compat-mini {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Search bar */
+      .search-wrapper {
+        position: relative;
+        padding: 12px 16px;
+      }
+      .search-wrapper svg {
+        position: absolute;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-disabled);
+        pointer-events: none;
+      }
+      .search-wrapper input {
+        padding-left: 36px;
+        height: 40px;
+        border-radius: 20px;
+        background: var(--surface-2);
+        border: 1px solid transparent;
+        font-size: 14px;
+      }
+      .search-wrapper input:focus {
+        background: var(--bg-page);
+        border-color: var(--accent);
+      }
+
+      /* Section label */
+      .section-label {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-tertiary);
+        padding: 12px 16px 6px;
+      }
+
+      /* ============================================================
+         CONVERSATION THREAD VIEW
+         ============================================================ */
+
+      /* Thread header */
+      .thread-header {
+        height: 60px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 8px 0 4px;
+        border-bottom: 1px solid var(--border-faint);
+        background: var(--surface-1);
+        z-index: 10;
+      }
+      .thread-header-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .thread-header-name {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .thread-header-status {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      /* Message bubbles */
+      .messages-scroll {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 0;
+        padding: 16px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .day-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 16px 0 12px;
+      }
+      .day-divider::before,
+      .day-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border-faint);
+      }
+      .day-divider-text {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        white-space: nowrap;
+      }
+
+      .msg-row {
+        display: flex;
+        flex-direction: column;
+        max-width: 82%;
+      }
+      .msg-row-own {
+        align-self: flex-end;
+        align-items: flex-end;
+      }
+      .msg-row-theirs {
+        align-self: flex-start;
+        align-items: flex-start;
+      }
+
+      .msg-bubble {
+        padding: 10px 14px;
+        font-size: 15px;
+        line-height: 1.45;
+        border-radius: 18px;
+        word-break: break-word;
+      }
+      .msg-own {
+        background: var(--bubble-own);
+        border: 1px solid var(--bubble-own-border);
+        border-bottom-right-radius: 6px;
+      }
+      .msg-theirs {
+        background: var(--bubble-theirs);
+        border: 1px solid var(--bubble-theirs-border);
+        border-bottom-left-radius: 6px;
+      }
+
+      /* Consecutive messages from same sender: tighter radius */
+      .msg-row-own + .msg-row-own .msg-bubble {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+      .msg-row-theirs + .msg-row-theirs .msg-bubble {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+
+      .msg-time {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        padding: 2px 4px 0;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Read receipt */
+      .msg-read {
+        font-size: 11px;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 2px 4px 0;
+      }
+
+      /* Typing indicator */
+      .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 12px 14px;
+        background: var(--bubble-theirs);
+        border: 1px solid var(--bubble-theirs-border);
+        border-radius: 18px;
+        border-bottom-left-radius: 6px;
+        align-self: flex-start;
+      }
+      .typing-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--text-tertiary);
+        animation: typingBounce 1.4s infinite ease-in-out;
+      }
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes typingBounce {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.4;
+        }
+        30% {
+          transform: translateY(-4px);
+          opacity: 1;
+        }
+      }
+
+      /* Shared content cards in messages */
+      .msg-shared-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        overflow: hidden;
+        max-width: 260px;
+        cursor: pointer;
+        transition: border-color 150ms ease-out;
+      }
+      .msg-shared-card:hover {
+        border-color: var(--border-default);
+      }
+      .msg-shared-card-body {
+        padding: 10px 12px;
+      }
+      .msg-shared-card-title {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 2px;
+      }
+      .msg-shared-card-subtitle {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      /* Prompt reference card in messages */
+      .msg-prompt-ref {
+        background: var(--gradient-warm);
+        border: 1px solid var(--accent-muted);
+        border-radius: 12px;
+        padding: 10px 14px;
+        max-width: 260px;
+        margin-bottom: 4px;
+      }
+      .msg-prompt-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+      .msg-prompt-text {
+        font-size: 14px;
+        color: var(--text-primary);
+        line-height: 1.4;
+      }
+
+      /* Compatibility banner in thread */
+      .compat-banner {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--gradient-warm);
+        border: 1px solid var(--accent-muted);
+        border-radius: 12px;
+        margin: 8px 4px 12px;
+        cursor: pointer;
+        transition: border-color 150ms ease-out;
+      }
+      .compat-banner:hover {
+        border-color: var(--accent);
+      }
+      .compat-ring {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+      }
+      .compat-ring-bg {
+        fill: none;
+        stroke: var(--border-faint);
+        stroke-width: 3;
+      }
+      .compat-ring-fill {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 3;
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        transform-origin: center;
+        transition: stroke-dashoffset 600ms ease-out;
+      }
+      .compat-banner-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .compat-banner-score {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .compat-banner-label {
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      /* Message input area */
+      .msg-input-area {
+        flex-shrink: 0;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid var(--border-faint);
+        background: var(--surface-1);
+      }
+      .msg-input-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: var(--surface-2);
+        border: 1px solid var(--border-faint);
+        border-radius: 22px;
+        padding: 6px 6px 6px 14px;
+        transition: border-color 150ms ease-out;
+        min-height: 44px;
+      }
+      .msg-input-wrapper:focus-within {
+        border-color: var(--accent);
+      }
+      .msg-input-field {
+        flex: 1;
+        border: none;
+        background: none;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 15px;
+        line-height: 1.4;
+        padding: 0;
+        outline: none;
+        resize: none;
+        min-height: 22px;
+        max-height: 100px;
+      }
+      .msg-input-field::placeholder {
+        color: var(--text-disabled);
+      }
+
+      /* Input action buttons */
+      .msg-input-action {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+      }
+      .msg-input-action:hover {
+        background: var(--surface-hover);
+        color: var(--text-secondary);
+      }
+
+      /* Send button */
+      .msg-send-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background-color 150ms ease-out,
+          transform 100ms ease-out;
+      }
+      .msg-send-btn:hover {
+        background: var(--accent-hover);
+      }
+      .msg-send-btn:active {
+        transform: scale(0.93);
+      }
+      .msg-send-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      /* Voice note button */
+      .voice-note-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+      }
+      .voice-note-btn:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+
+      /* Inline voice note message */
+      .msg-voice-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        min-width: 180px;
+      }
+      .voice-play-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .voice-waveform {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        height: 24px;
+      }
+      .voice-bar {
+        width: 3px;
+        border-radius: 2px;
+        background: var(--text-tertiary);
+        transition: background-color 150ms ease-out;
+      }
+      .voice-bar.played {
+        background: var(--accent);
+      }
+      .voice-duration {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+      }
+
+      /* Shared playlist card in messages */
+      .msg-playlist-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        overflow: hidden;
+        max-width: 240px;
+        cursor: pointer;
+        transition: border-color 150ms ease-out;
+      }
+      .msg-playlist-card:hover {
+        border-color: var(--border-default);
+      }
+      .msg-playlist-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        background: rgba(30, 215, 96, 0.08);
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .msg-playlist-tracks {
+        padding: 8px 12px;
+      }
+      .msg-playlist-track {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+      .msg-playlist-track-num {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        width: 16px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .msg-playlist-track-name {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* New match intro card */
+      .match-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px 16px;
+        gap: 8px;
+      }
+      .match-intro-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--accent);
+        margin-bottom: 4px;
+      }
+      .match-intro-name {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .match-intro-detail {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        line-height: 1.4;
+      }
+      .match-intro-prompt {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-style: italic;
+        margin-top: 4px;
+        max-width: 280px;
+      }
+
+      /* Empty state */
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 24px;
+        text-align: center;
+      }
+      .empty-state-icon {
+        width: 56px;
+        height: 56px;
+        color: var(--text-disabled);
+        margin-bottom: 16px;
+      }
+      .empty-state-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+      .empty-state-desc {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        max-width: 280px;
+        margin-bottom: 24px;
+        line-height: 1.5;
+      }
+
+      /* Filter tabs in conversation list */
+      .convo-filter-tabs {
+        display: flex;
+        gap: 0;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--border-faint);
+      }
+      .convo-filter-tab {
+        flex: 1;
+        padding: 10px 0 12px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-tertiary);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        text-align: center;
+        transition:
+          color 150ms ease-out,
+          border-color 150ms ease-out;
+        position: relative;
+      }
+      .convo-filter-tab:hover {
+        color: var(--text-primary);
+      }
+      .convo-filter-tab.active {
+        color: var(--accent);
+        font-weight: 500;
+        border-bottom-color: var(--accent);
+      }
+      .convo-filter-count {
+        font-size: 11px;
+        font-weight: 600;
+        background: var(--accent-muted);
+        color: var(--accent);
+        padding: 0 6px;
+        height: 18px;
+        border-radius: 9px;
+        display: inline-flex;
+        align-items: center;
+        margin-left: 6px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Profile quick-view sheet */
+      .profile-sheet-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms ease-out;
+      }
+      .profile-sheet-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .profile-sheet {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(100%);
+        max-width: 430px;
+        width: 100%;
+        max-height: 75vh;
+        background: var(--surface-1);
+        border-radius: 20px 20px 0 0;
+        z-index: 101;
+        overflow-y: auto;
+        transition: transform 300ms ease-out;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .profile-sheet-overlay.open .profile-sheet {
+        transform: translateX(-50%) translateY(0);
+      }
+      .profile-sheet-handle {
+        width: 36px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--border-strong);
+        margin: 10px auto 0;
+      }
+      .profile-sheet-content {
+        padding: 16px 20px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         VIEW: CONVERSATION LIST
+         ============================================================ -->
+    <div
+      class="shell"
+      id="view-list"
+      style="
+        max-width: 430px;
+        margin: 0 auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-page);
+      "
+    >
+      <!-- TOP HEADER -->
+      <header
+        style="
+          height: 56px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 12px 0 16px;
+          border-bottom: 1px solid var(--border-faint);
+          background: var(--surface-1);
+          z-index: 20;
+        "
+      >
+        <!-- Left: Logo -->
+        <div style="display: flex; align-items: center; gap: 6px">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle
+              cx="14"
+              cy="14"
+              r="13"
+              stroke="var(--accent)"
+              stroke-width="2"
+            />
+            <circle cx="10" cy="12" r="3" fill="var(--accent)" opacity="0.6" />
+            <circle
+              cx="18"
+              cy="12"
+              r="3"
+              fill="var(--accent-pink)"
+              opacity="0.6"
+            />
+            <path
+              d="M10 15 C10 19, 18 19, 18 15"
+              stroke="var(--accent)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              fill="none"
+            />
+          </svg>
+          <span
+            style="
+              font-size: 18px;
+              font-weight: 700;
+              letter-spacing: -0.03em;
+              background: linear-gradient(
+                135deg,
+                var(--accent),
+                var(--accent-pink)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+            >MOTO</span
+          >
+        </div>
+
+        <!-- Right: Actions -->
+        <div style="display: flex; align-items: center; gap: 2px">
+          <!-- New message -->
+          <button
+            class="header-icon-btn"
+            title="New message"
+            aria-label="New message"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+              <line x1="12" y1="8" x2="12" y2="14" />
+              <line x1="9" y1="11" x2="15" y2="11" />
+            </svg>
+          </button>
+          <!-- Divider -->
+          <div
+            style="
+              width: 1px;
+              height: 24px;
+              background: var(--border-faint);
+              margin: 0 2px;
+            "
+          ></div>
+          <!-- Theme toggle -->
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- SEARCH BAR -->
+      <div class="search-wrapper">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          type="search"
+          placeholder="Search conversations..."
+          aria-label="Search conversations"
+        />
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="convo-filter-tabs" data-tab-group="convo-filters">
+        <button
+          class="convo-filter-tab active"
+          data-tab="all"
+          onclick="switchConvoFilter('all')"
+        >
+          All<span class="convo-filter-count">7</span>
+        </button>
+        <button
+          class="convo-filter-tab"
+          data-tab="unread"
+          onclick="switchConvoFilter('unread')"
+        >
+          Unread<span class="convo-filter-count">3</span>
+        </button>
+        <button
+          class="convo-filter-tab"
+          data-tab="archived"
+          onclick="switchConvoFilter('archived')"
+        >
+          Archived
+        </button>
+      </div>
+
+      <!-- SCROLLABLE CONVERSATION LIST -->
+      <div
+        style="flex: 1; overflow-y: auto; min-height: 0"
+        id="convo-list-scroll"
+      >
+        <!-- Panel: All conversations -->
+        <div data-panel="all" id="panel-all">
+          <!-- New matches section -->
+          <div class="section-label">New Matches</div>
+
+          <!-- Horizontal scroll of new match avatars -->
+          <div
+            style="
+              display: flex;
+              gap: 16px;
+              padding: 8px 16px 16px;
+              overflow-x: auto;
+            "
+          >
+            <!-- New match: Isabella -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                flex-shrink: 0;
+              "
+              onclick="showThread()"
+            >
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-pink)
+                  );
+                  padding: 2px;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: var(--surface-2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 22px;
+                    overflow: hidden;
+                  "
+                >
+                  <div
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      background: linear-gradient(135deg, #c084fc, #f0abfc);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  font-weight: 500;
+                "
+                >Isabella</span
+              >
+            </div>
+
+            <!-- New match: Rachel -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                flex-shrink: 0;
+              "
+            >
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-pink)
+                  );
+                  padding: 2px;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #fda4af, #fbb3a0);
+                    overflow: hidden;
+                  "
+                ></div>
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  font-weight: 500;
+                "
+                >Rachel</span
+              >
+            </div>
+
+            <!-- New match: Naomi -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                flex-shrink: 0;
+              "
+            >
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-pink)
+                  );
+                  padding: 2px;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #86efac, #67e8f9);
+                    overflow: hidden;
+                  "
+                ></div>
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  font-weight: 500;
+                "
+                >Naomi</span
+              >
+            </div>
+
+            <!-- New match: Priya -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+                flex-shrink: 0;
+              "
+            >
+              <div
+                style="
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-pink)
+                  );
+                  padding: 2px;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #fcd34d, #fb923c);
+                    overflow: hidden;
+                  "
+                ></div>
+              </div>
+              <span
+                style="
+                  font-size: 12px;
+                  color: var(--text-secondary);
+                  font-weight: 500;
+                "
+                >Priya</span
+              >
+            </div>
+          </div>
+
+          <div class="section-label">Conversations</div>
+
+          <!-- Conversation 1: Emma Chen — UNREAD, Your Turn -->
+          <div
+            class="convo-item unread"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar avatar-online">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #c4b5fd, #f9a8d4)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Emma Chen</span>
+                <span class="convo-time">2m ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >That poem by Mary Oliver really captures what I...</span
+                >
+                <span class="convo-unread-dot"></span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  margin-top: 4px;
+                "
+              >
+                <span class="your-turn-badge">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M13 19V7.83l4.88 4.88c.39.39 1.03.39 1.42 0 .39-.39.39-1.02 0-1.41l-6.59-6.59a.996.996 0 0 0-1.41 0l-6.6 6.58c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L11 7.83V19c0 .55.45 1 1 1s1-.45 1-1z"
+                    />
+                  </svg>
+                  Your turn
+                </span>
+                <span class="compat-mini">92% match</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 2: James Rivera — UNREAD -->
+          <div
+            class="convo-item unread"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #86efac, #67e8f9)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">James Rivera</span>
+                <span class="convo-time">28m ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >I actually grew up on a ranch too! What part of...</span
+                >
+                <span class="convo-unread-dot"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 3: Sophia Williams — read, voice note -->
+          <div
+            class="convo-item"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar avatar-online">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #fda4af, #fbb3a0)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Sophia Williams</span>
+                <span class="convo-time">1h ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="vertical-align: -2px; margin-right: 4px"
+                  >
+                    <path
+                      d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
+                    />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="23" />
+                  </svg>
+                  Voice note &middot; 0:42
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 4: Daniel Park — UNREAD, shared playlist -->
+          <div
+            class="convo-item unread"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #fcd34d, #fb923c)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Daniel Park</span>
+                <span class="convo-time">3h ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="vertical-align: -2px; margin-right: 4px"
+                  >
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg>
+                  Shared a playlist &middot; Evening Hymns
+                </span>
+                <span class="convo-unread-dot"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 5: Olivia Martinez — read -->
+          <div
+            class="convo-item"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #a5b4fc, #818cf8)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Olivia Martinez</span>
+                <span class="convo-time">Yesterday</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >You: That sounds like an amazing trip! I've always
+                  wanted...</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 6: Marcus Thompson — read, older -->
+          <div
+            class="convo-item"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #6ee7b7, #34d399)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Marcus Thompson</span>
+                <span class="convo-time">Mar 29</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >You: Definitely! Let's plan something for next week...</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation 7: Ava Nakamura — read, oldest -->
+          <div
+            class="convo-item"
+            onclick="showThread()"
+            tabindex="0"
+            role="button"
+          >
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #f0abfc, #d946ef)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Ava Nakamura</span>
+                <span class="convo-time">Mar 27</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >That Rilke passage you shared was beautiful...</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel: Unread (hidden by default) -->
+        <div data-panel="unread" id="panel-unread" style="display: none">
+          <div class="section-label">3 unread conversations</div>
+          <!-- Same unread items from above repeated for filter state -->
+          <div class="convo-item unread" tabindex="0" role="button">
+            <div class="avatar avatar-online">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #c4b5fd, #f9a8d4)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Emma Chen</span>
+                <span class="convo-time">2m ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >That poem by Mary Oliver really captures what I...</span
+                >
+                <span class="convo-unread-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="convo-item unread" tabindex="0" role="button">
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #86efac, #67e8f9)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">James Rivera</span>
+                <span class="convo-time">28m ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >I actually grew up on a ranch too! What part of...</span
+                >
+                <span class="convo-unread-dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="convo-item unread" tabindex="0" role="button">
+            <div class="avatar">
+              <div
+                class="avatar-img"
+                style="background: linear-gradient(135deg, #fcd34d, #fb923c)"
+              ></div>
+            </div>
+            <div class="convo-body">
+              <div class="convo-top-row">
+                <span class="convo-name">Daniel Park</span>
+                <span class="convo-time">3h ago</span>
+              </div>
+              <div class="convo-bottom-row">
+                <span class="convo-preview"
+                  >Shared a playlist &middot; Evening Hymns</span
+                >
+                <span class="convo-unread-dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel: Archived (empty state) -->
+        <div data-panel="archived" id="panel-archived" style="display: none">
+          <div class="empty-state">
+            <svg
+              class="empty-state-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            >
+              <polyline points="21 8 21 21 3 21 3 8" />
+              <rect x="1" y="3" width="22" height="5" rx="1" />
+              <line x1="10" y1="12" x2="14" y2="12" />
+            </svg>
+            <div class="empty-state-title">No archived conversations</div>
+            <div class="empty-state-desc">
+              Conversations you archive will appear here. Swipe left on any
+              conversation to archive it.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM TAB BAR -->
+      <nav
+        style="
+          height: 60px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          border-top: 1px solid var(--border-faint);
+          background: var(--surface-1);
+          padding: 0 8px;
+          padding-bottom: env(safe-area-inset-bottom, 0px);
+        "
+      >
+        <!-- Discover -->
+        <button class="tab-bar-item" aria-label="Discover">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polygon
+              points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+              fill="currentColor"
+              stroke="none"
+            />
+          </svg>
+          <span>Discover</span>
+        </button>
+        <!-- Matches -->
+        <button class="tab-bar-item" aria-label="Matches">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          <span>Matches</span>
+        </button>
+        <!-- Messages (active) -->
+        <button
+          class="tab-bar-item active"
+          aria-label="Messages"
+          style="position: relative"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          <span
+            style="
+              position: absolute;
+              top: 0;
+              right: 6px;
+              background: var(--accent-pink);
+              color: #fff;
+              font-size: 9px;
+              font-weight: 700;
+              min-width: 16px;
+              height: 16px;
+              border-radius: 8px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0 4px;
+              font-variant-numeric: tabular-nums;
+              border: 2px solid var(--surface-1);
+            "
+            >3</span
+          >
+          <span>Messages</span>
+        </button>
+        <!-- Activity -->
+        <button class="tab-bar-item" aria-label="Activity">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          <span>Activity</span>
+        </button>
+        <!-- Profile -->
+        <button class="tab-bar-item" aria-label="Profile">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Profile</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ============================================================
+         VIEW: CONVERSATION THREAD (Emma Chen)
+         Hidden by default, toggled by JS
+         ============================================================ -->
+    <div
+      class="shell"
+      id="view-thread"
+      style="
+        max-width: 430px;
+        margin: 0 auto;
+        height: 100vh;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-page);
+      "
+    >
+      <!-- THREAD HEADER -->
+      <div class="thread-header">
+        <!-- Back button -->
+        <button
+          class="header-icon-btn"
+          onclick="showList()"
+          title="Back"
+          aria-label="Back to conversations"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <!-- Avatar + name -->
+        <div
+          class="avatar avatar-sm avatar-online"
+          onclick="openProfileSheet()"
+        >
+          <div
+            class="avatar-img"
+            style="background: linear-gradient(135deg, #c4b5fd, #f9a8d4)"
+          ></div>
+        </div>
+        <div
+          class="thread-header-info"
+          onclick="openProfileSheet()"
+          style="cursor: pointer"
+        >
+          <div class="thread-header-name">Emma Chen</div>
+          <div class="thread-header-status">
+            <span style="color: var(--positive)">Online now</span>
+          </div>
+        </div>
+
+        <!-- Thread actions -->
+        <div style="display: flex; align-items: center; gap: 0">
+          <!-- Phone/video call -->
+          <button
+            class="header-icon-btn"
+            title="Voice call"
+            aria-label="Start voice call"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+          </button>
+          <!-- More options -->
+          <button
+            class="header-icon-btn"
+            title="More options"
+            aria-label="More options"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="5" r="1" fill="currentColor" />
+              <circle cx="12" cy="12" r="1" fill="currentColor" />
+              <circle cx="12" cy="19" r="1" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- COMPATIBILITY BANNER -->
+      <div
+        class="compat-banner"
+        onclick="openProfileSheet()"
+        tabindex="0"
+        role="button"
+      >
+        <svg class="compat-ring" viewBox="0 0 44 44">
+          <circle class="compat-ring-bg" cx="22" cy="22" r="18" />
+          <circle
+            class="compat-ring-fill"
+            cx="22"
+            cy="22"
+            r="18"
+            stroke-dasharray="113.1"
+            stroke-dashoffset="9.05"
+          />
+        </svg>
+        <div class="compat-banner-text">
+          <div class="compat-banner-score">92% Compatible</div>
+          <div class="compat-banner-label">
+            Strong alignment in family goals & spirituality
+          </div>
+        </div>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="var(--text-tertiary)"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </div>
+
+      <!-- SCROLLABLE MESSAGES -->
+      <div class="messages-scroll">
+        <!-- Match intro card -->
+        <div class="match-intro">
+          <div class="match-intro-avatar">
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
+              "
+            ></div>
+          </div>
+          <div class="match-intro-name">You matched with Emma</div>
+          <div class="match-intro-detail">
+            San Francisco, CA &middot; Matched Mar 28
+          </div>
+          <div class="match-intro-prompt">
+            She liked your prompt: "The moment I knew what I wanted in life..."
+          </div>
+        </div>
+
+        <!-- Day divider -->
+        <div class="day-divider">
+          <span class="day-divider-text">March 28</span>
+        </div>
+
+        <!-- Emma's first message (prompt reference) -->
+        <div class="msg-row msg-row-theirs">
+          <div class="msg-prompt-ref">
+            <div class="msg-prompt-label">Responding to your prompt</div>
+            <div class="msg-prompt-text">
+              "The moment I knew what I wanted in life..."
+            </div>
+          </div>
+          <div class="msg-bubble msg-theirs">
+            I loved your answer to this! The way you described wanting to build
+            something lasting rather than chasing the next thing really
+            resonated with me. I had a similar turning point at 24.
+          </div>
+          <span class="msg-time">6:42 PM</span>
+        </div>
+
+        <!-- Your reply -->
+        <div class="msg-row msg-row-own">
+          <div class="msg-bubble msg-own">
+            Thank you! That means a lot. What was your turning point at 24? I'm
+            really curious.
+          </div>
+          <span class="msg-time">7:15 PM</span>
+        </div>
+
+        <!-- Emma's reply -->
+        <div class="msg-row msg-row-theirs">
+          <div class="msg-bubble msg-theirs">
+            I was living in NYC, had the career track thing going, but I
+            volunteered at this family shelter one weekend and it completely
+            reframed my priorities. Realized I wanted depth, not just
+            achievement.
+          </div>
+          <span class="msg-time">7:28 PM</span>
+        </div>
+
+        <!-- Your reply -->
+        <div class="msg-row msg-row-own">
+          <div class="msg-bubble msg-own">
+            That's incredible. I think that's exactly what drew me to your
+            profile — your mood board had that "intentional life" energy. The
+            ranch photos, the family dinners...
+          </div>
+          <span class="msg-time">7:45 PM</span>
+        </div>
+
+        <!-- Emma sends a shared playlist -->
+        <div class="msg-row msg-row-theirs">
+          <div class="msg-bubble msg-theirs" style="padding-bottom: 6px">
+            Speaking of mood boards, I think our music taste might be scary
+            compatible too. Here's what I've been listening to lately:
+          </div>
+        </div>
+        <div class="msg-row msg-row-theirs" style="margin-top: 4px">
+          <div class="msg-playlist-card">
+            <div class="msg-playlist-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954">
+                <path
+                  d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                />
+              </svg>
+              <div>
+                <div
+                  style="
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: var(--text-primary);
+                  "
+                >
+                  Quiet Evenings
+                </div>
+                <div style="font-size: 11px; color: var(--text-tertiary)">
+                  Emma's playlist &middot; 12 songs
+                </div>
+              </div>
+            </div>
+            <div class="msg-playlist-tracks">
+              <div class="msg-playlist-track">
+                <span class="msg-playlist-track-num">1</span>
+                <span class="msg-playlist-track-name"
+                  >Holocene &mdash; Bon Iver</span
+                >
+              </div>
+              <div class="msg-playlist-track">
+                <span class="msg-playlist-track-num">2</span>
+                <span class="msg-playlist-track-name"
+                  >The Night We Met &mdash; Lord Huron</span
+                >
+              </div>
+              <div class="msg-playlist-track">
+                <span class="msg-playlist-track-num">3</span>
+                <span class="msg-playlist-track-name"
+                  >Mystery of Love &mdash; Sufjan Stevens</span
+                >
+              </div>
+              <div
+                style="
+                  font-size: 12px;
+                  color: var(--accent);
+                  padding: 6px 0 2px;
+                  font-weight: 500;
+                "
+              >
+                View full playlist
+              </div>
+            </div>
+          </div>
+          <span class="msg-time">8:03 PM</span>
+        </div>
+
+        <!-- Your reply about the music -->
+        <div class="msg-row msg-row-own">
+          <div class="msg-bubble msg-own">
+            Bon Iver AND Sufjan Stevens? We might actually be the same person.
+            Holocene is one of my all-time favorites.
+          </div>
+          <span class="msg-time">8:12 PM</span>
+        </div>
+
+        <!-- Day divider -->
+        <div class="day-divider">
+          <span class="day-divider-text">March 29</span>
+        </div>
+
+        <!-- Emma voice note -->
+        <div class="msg-row msg-row-theirs">
+          <div class="msg-bubble msg-theirs msg-voice-note">
+            <button class="voice-play-btn" aria-label="Play voice note">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
+            </button>
+            <div class="voice-waveform">
+              <div class="voice-bar played" style="height: 8px"></div>
+              <div class="voice-bar played" style="height: 14px"></div>
+              <div class="voice-bar played" style="height: 20px"></div>
+              <div class="voice-bar played" style="height: 16px"></div>
+              <div class="voice-bar played" style="height: 22px"></div>
+              <div class="voice-bar played" style="height: 12px"></div>
+              <div class="voice-bar played" style="height: 18px"></div>
+              <div class="voice-bar" style="height: 10px"></div>
+              <div class="voice-bar" style="height: 16px"></div>
+              <div class="voice-bar" style="height: 24px"></div>
+              <div class="voice-bar" style="height: 14px"></div>
+              <div class="voice-bar" style="height: 8px"></div>
+              <div class="voice-bar" style="height: 18px"></div>
+              <div class="voice-bar" style="height: 12px"></div>
+              <div class="voice-bar" style="height: 6px"></div>
+            </div>
+            <span class="voice-duration">1:24</span>
+          </div>
+          <span class="msg-time">10:15 AM</span>
+        </div>
+
+        <!-- Your text reply -->
+        <div class="msg-row msg-row-own">
+          <div class="msg-bubble msg-own">
+            I love that you send voice notes. Your voice is so warm. And yes, I
+            completely agree about what you said about finding the right
+            community.
+          </div>
+          <span class="msg-time">11:30 AM</span>
+        </div>
+
+        <div class="msg-row msg-row-own">
+          <div class="msg-bubble msg-own">
+            By the way, have you read Mary Oliver? Your reflection on your
+            profile reminded me of "The Summer Day"
+          </div>
+          <div class="msg-read">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Read
+          </div>
+        </div>
+
+        <!-- Day divider — Today -->
+        <div class="day-divider">
+          <span class="day-divider-text">Today</span>
+        </div>
+
+        <!-- Emma's latest message (the unread one) -->
+        <div class="msg-row msg-row-theirs">
+          <div class="msg-bubble msg-theirs">
+            That poem by Mary Oliver really captures what I feel about living
+            deliberately! "Tell me, what is it you plan to do with your one wild
+            and precious life?" I think about that line every single morning.
+            It's basically my life motto at this point.
+          </div>
+          <span class="msg-time">Just now</span>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      </div>
+
+      <!-- MESSAGE INPUT AREA -->
+      <div class="msg-input-area">
+        <div class="msg-input-wrapper">
+          <input
+            type="text"
+            class="msg-input-field"
+            placeholder="Write something meaningful..."
+            style="
+              height: auto;
+              border: none;
+              background: none;
+              padding: 0;
+              border-radius: 0;
+              width: 100%;
+            "
+          />
+          <!-- Attachment actions -->
+          <button
+            class="msg-input-action"
+            title="Attach photo"
+            aria-label="Attach photo"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </button>
+          <button
+            class="msg-input-action"
+            title="Share playlist"
+            aria-label="Share playlist"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          </button>
+        </div>
+        <!-- Voice note button (when input is empty) -->
+        <button
+          class="voice-note-btn"
+          title="Record voice note"
+          aria-label="Record voice note"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+        </button>
+        <!-- Send button (when input has content) -->
+        <button
+          class="msg-send-btn"
+          title="Send message"
+          aria-label="Send message"
+          style="display: none"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PROFILE QUICK-VIEW SHEET
+         ============================================================ -->
+    <div
+      class="profile-sheet-overlay"
+      id="profile-sheet"
+      onclick="closeProfileSheet(event)"
+    >
+      <div class="profile-sheet">
+        <div class="profile-sheet-handle"></div>
+        <div class="profile-sheet-content">
+          <!-- Profile header -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              margin-bottom: 20px;
+            "
+          >
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 3px solid var(--accent);
+                flex-shrink: 0;
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
+                "
+              ></div>
+            </div>
+            <div>
+              <div
+                style="
+                  font-size: 20px;
+                  font-weight: 600;
+                  letter-spacing: -0.02em;
+                "
+              >
+                Emma Chen, 28
+              </div>
+              <div style="font-size: 14px; color: var(--text-secondary)">
+                San Francisco, CA
+              </div>
+              <div style="font-size: 13px; color: var(--positive)">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="vertical-align: -1px"
+                >
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                Verified
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick compatibility -->
+          <div
+            style="
+              background: var(--gradient-warm);
+              border: 1px solid var(--accent-muted);
+              border-radius: 12px;
+              padding: 16px;
+              margin-bottom: 16px;
+            "
+          >
+            <div
+              style="
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--accent);
+                margin-bottom: 10px;
+              "
+            >
+              92% Compatible
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                font-size: 13px;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 6px">
+                <span style="font-size: 16px">&#x1F3E1;</span>
+                <span style="color: var(--text-secondary)"
+                  >Suburban &middot; West Coast</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px">
+                <span style="font-size: 16px">&#x1F46A;</span>
+                <span style="color: var(--text-secondary)"
+                  >2-3 kids &middot; &lt;3 yrs</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px">
+                <span style="font-size: 16px">&#x2728;</span>
+                <span style="color: var(--text-secondary)"
+                  >Christian &middot; Active</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px">
+                <span style="font-size: 16px">&#x1F393;</span>
+                <span style="color: var(--text-secondary)"
+                  >Homeschool-leaning</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Key life plans -->
+          <div style="margin-bottom: 16px">
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-tertiary);
+                margin-bottom: 10px;
+              "
+            >
+              Life Architecture
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 10px 12px;
+                  background: var(--surface-2);
+                  border-radius: 8px;
+                "
+              >
+                <span style="font-size: 14px; color: var(--text-secondary)"
+                  >Marriage timeline</span
+                >
+                <span
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--text-primary);
+                  "
+                  >&lt;3 years</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 10px 12px;
+                  background: var(--surface-2);
+                  border-radius: 8px;
+                "
+              >
+                <span style="font-size: 14px; color: var(--text-secondary)"
+                  >Desired children</span
+                >
+                <span
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--text-primary);
+                  "
+                  >2&ndash;3</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 10px 12px;
+                  background: var(--surface-2);
+                  border-radius: 8px;
+                "
+              >
+                <span style="font-size: 14px; color: var(--text-secondary)"
+                  >Long-term location</span
+                >
+                <span
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--text-primary);
+                  "
+                  >Suburban, California</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- View full profile CTA -->
+          <button
+            class="btn btn-primary"
+            style="
+              width: 100%;
+              height: 48px;
+              border-radius: 12px;
+              font-size: 16px;
+            "
+          >
+            View Full Profile
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* Theme toggle */
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+      }
+
+      /* View switching: list <-> thread */
+      function showThread() {
+        document.getElementById("view-list").style.display = "none";
+        const thread = document.getElementById("view-thread");
+        thread.style.display = "flex";
+        /* Scroll messages to bottom */
+        const scroll = thread.querySelector(".messages-scroll");
+        if (scroll) {
+          scroll.scrollTop = scroll.scrollHeight;
+        }
+      }
+
+      function showList() {
+        document.getElementById("view-thread").style.display = "none";
+        document.getElementById("view-list").style.display = "flex";
+      }
+
+      /* Conversation filter tabs */
+      function switchConvoFilter(tabName) {
+        /* Deactivate all tabs */
+        document.querySelectorAll(".convo-filter-tab").forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+        /* Activate selected */
+        document
+          .querySelector('.convo-filter-tab[data-tab="' + tabName + '"]')
+          .classList.add("active");
+
+        /* Hide all panels */
+        document.getElementById("panel-all").style.display = "none";
+        document.getElementById("panel-unread").style.display = "none";
+        document.getElementById("panel-archived").style.display = "none";
+
+        /* Show selected panel */
+        document.getElementById("panel-" + tabName).style.display = "block";
+      }
+
+      /* Profile quick-view sheet */
+      function openProfileSheet() {
+        document.getElementById("profile-sheet").classList.add("open");
+      }
+
+      function closeProfileSheet(event) {
+        /* Close only if clicking overlay, not the sheet itself */
+        if (event.target === event.currentTarget) {
+          document.getElementById("profile-sheet").classList.remove("open");
+        }
+      }
+
+      /* Toggle send/voice-note button based on input content */
+      var msgInput = document.querySelector(".msg-input-field");
+      var voiceBtn = document.querySelector(".voice-note-btn");
+      var sendBtn = document.querySelector(".msg-send-btn");
+      if (msgInput && voiceBtn && sendBtn) {
+        msgInput.addEventListener("input", function () {
+          if (msgInput.value.trim().length > 0) {
+            voiceBtn.style.display = "none";
+            sendBtn.style.display = "flex";
+          } else {
+            voiceBtn.style.display = "flex";
+            sendBtn.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
