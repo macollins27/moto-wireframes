@@ -4564,13 +4564,7 @@
 
       // Show/hide detail view
       function showDetail(matchId) {
-        document.getElementById("listView").classList.add("hidden");
-        document.getElementById("detailView").classList.add("active");
-        // Scroll detail to top
-        const scrollArea = document.querySelector(".detail-scroll");
-        if (scrollArea) scrollArea.scrollTop = 0;
-        // Reset to first tab
-        switchTab("detail", "life-plans");
+        window.location.href = "discover.html";
       }
 
       function hideDetail() {
