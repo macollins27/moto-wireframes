@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MOTO — Authentication</title>
+    <title>MOTO — Welcome & Auth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       /* === WARM LUXURY ATMOSPHERE === */
-      /* Dark (default) */
       :root,
       [data-theme="dark"] {
         --bg-page: #0c0a09;
@@ -35,22 +34,24 @@
         --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
         --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
         --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
-
-        /* MOTO-specific */
-        --gradient-start: #a78bfa;
-        --gradient-mid: #c084fc;
-        --gradient-end: #e879f9;
-        --social-btn-bg: #1c1a17;
-        --social-btn-border: #2e2c28;
-        --social-btn-hover: #242220;
-        --input-bg: #141210;
-        --success-bg: rgba(22, 163, 74, 0.08);
-        --success-text: #4ade80;
-        --error-bg: rgba(239, 68, 68, 0.08);
-        --error-text: #f87171;
-        --error-border: rgba(239, 68, 68, 0.3);
+        /* MOTO custom tokens */
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(167, 139, 250, 0.15),
+          rgba(244, 114, 182, 0.12)
+        );
+        --accent-pink: #f472b6;
+        --accent-pink-muted: rgba(244, 114, 182, 0.12);
+        --accent-gold: #fbbf24;
+        --accent-gold-muted: rgba(251, 191, 36, 0.12);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.08);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.08);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.08);
+        --constellation-opacity: 0.12;
       }
-      /* Light */
       [data-theme="light"] {
         --bg-page: #faf9f7;
         --surface-1: #ffffff;
@@ -75,30 +76,24 @@
         --shadow-lg:
           0 8px 32px rgba(28, 25, 23, 0.1), 0 4px 8px rgba(28, 25, 23, 0.03);
         --focus-ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent);
-
-        /* MOTO-specific */
-        --gradient-start: #7c3aed;
-        --gradient-mid: #a855f7;
-        --gradient-end: #d946ef;
-        --social-btn-bg: #ffffff;
-        --social-btn-border: #d6d3d1;
-        --social-btn-hover: #f5f4f1;
-        --input-bg: #ffffff;
-        --success-bg: rgba(22, 163, 74, 0.06);
-        --success-text: #16a34a;
-        --error-bg: rgba(239, 68, 68, 0.06);
-        --error-text: #ef4444;
-        --error-border: rgba(239, 68, 68, 0.2);
+        --gradient-warm: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.08),
+          rgba(236, 72, 153, 0.06)
+        );
+        --accent-pink: #ec4899;
+        --accent-pink-muted: rgba(236, 72, 153, 0.06);
+        --accent-gold: #d97706;
+        --accent-gold-muted: rgba(217, 119, 6, 0.06);
+        --positive: #16a34a;
+        --positive-muted: rgba(22, 163, 74, 0.06);
+        --warning: #d97706;
+        --warning-muted: rgba(217, 119, 6, 0.06);
+        --negative: #ef4444;
+        --negative-muted: rgba(239, 68, 68, 0.06);
+        --constellation-opacity: 0.08;
       }
 
-      /* === SHARED BODY === */
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
       html,
       body {
         background: var(--bg-page);
@@ -117,6 +112,8 @@
         transition:
           background-color 200ms ease-out,
           color 200ms ease-out;
+        margin: 0;
+        padding: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -212,15 +209,11 @@
         color: var(--text-primary);
       }
 
-      .btn-sm {
-        height: 32px;
-        padding: 0 12px;
-        font-size: 13px;
-      }
       .btn-lg {
-        height: 48px;
-        padding: 0 20px;
+        height: 52px;
+        padding: 0 24px;
         font-size: 16px;
+        border-radius: 10px;
       }
 
       input[type="text"],
@@ -236,7 +229,7 @@
         padding: 0 16px;
         border-radius: 10px;
         border: 1px solid var(--border-default);
-        background: var(--input-bg);
+        background: var(--surface-1);
         color: var(--text-primary);
         font-family: inherit;
         font-size: 16px;
@@ -246,6 +239,7 @@
           box-shadow 150ms ease-out;
         -webkit-font-smoothing: antialiased;
         width: 100%;
+        box-sizing: border-box;
       }
       input::placeholder,
       textarea::placeholder {
@@ -257,6 +251,18 @@
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 3px var(--accent-muted);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 8px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
       }
 
       a:focus-visible,
@@ -279,6 +285,10 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: var(--border-strong);
+      }
+
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
       }
 
       /* === THEME TOGGLE === */
@@ -318,314 +328,440 @@
         color: var(--text-tertiary);
       }
 
-      /* === MOTO AUTH STYLES === */
+      /* ======================================================================
+         MOTO AUTH — CUSTOM STYLES
+         ====================================================================== */
 
-      /* Shell */
-      .auth-shell {
+      /* Mobile shell */
+      .shell {
+        max-width: 430px;
+        margin: 0 auto;
         min-height: 100vh;
+        background: var(--bg-page);
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         position: relative;
         overflow: hidden;
       }
 
-      /* Ambient background glow */
-      .auth-shell::before {
-        content: "";
-        position: fixed;
-        top: -40%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(
-          ellipse,
-          var(--accent-muted) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.7;
-      }
-      .auth-shell::after {
-        content: "";
-        position: fixed;
-        bottom: -30%;
-        right: -10%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(
-          ellipse,
-          rgba(232, 121, 249, 0.06) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      /* Top bar */
-      .auth-topbar {
-        position: fixed;
+      /* Constellation background — abstract visual identity, no stock photos */
+      .constellation-bg {
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 24px;
-        z-index: 10;
+        bottom: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .constellation-bg::before {
+        content: "";
+        position: absolute;
+        top: -20%;
+        right: -30%;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(167, 139, 250, 0.08) 0%,
+          transparent 70%
+        );
+        animation: drift 20s ease-in-out infinite;
+      }
+      .constellation-bg::after {
+        content: "";
+        position: absolute;
+        bottom: -10%;
+        left: -20%;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(244, 114, 182, 0.06) 0%,
+          transparent 70%
+        );
+        animation: drift 25s ease-in-out infinite reverse;
+      }
+      [data-theme="light"] .constellation-bg::before {
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.06) 0%,
+          transparent 70%
+        );
+      }
+      [data-theme="light"] .constellation-bg::after {
+        background: radial-gradient(
+          circle,
+          rgba(236, 72, 153, 0.04) 0%,
+          transparent 70%
+        );
+      }
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-20px, 15px);
+        }
       }
 
-      /* Content container */
-      .auth-container {
-        width: 100%;
-        max-width: 430px;
-        padding: 24px;
+      /* Dot pattern overlay */
+      .dot-field {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        opacity: var(--constellation-opacity);
+      }
+
+      /* View container */
+      .view {
+        display: none;
+        flex-direction: column;
+        min-height: 100vh;
         position: relative;
         z-index: 1;
       }
-
-      /* View state management */
-      .auth-view {
-        display: none;
-        animation: fadeSlideIn 300ms ease-out;
+      .view.active {
+        display: flex;
       }
-      .auth-view.active {
+
+      /* Serif headline — MOTO's differentiator */
+      .serif {
+        font-family: "Cormorant Garamond", "Georgia", serif;
+      }
+
+      /* ==================== WELCOME VIEW ==================== */
+      .welcome-content {
+        flex: 1;
         display: flex;
         flex-direction: column;
-      }
-      @keyframes fadeSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        justify-content: flex-end;
+        padding: 0 28px 48px;
       }
 
-      /* MOTO Logo */
-      .moto-logo {
+      .welcome-top {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+      }
+
+      .welcome-brand {
+        margin-bottom: 48px;
+        text-align: center;
+      }
+
+      .welcome-logo {
         font-size: 56px;
         font-weight: 700;
         letter-spacing: -0.04em;
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start),
-          var(--gradient-mid),
-          var(--gradient-end)
-        );
+        background: linear-gradient(135deg, var(--accent), #c4b5fd);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-align: center;
+        margin-bottom: 4px;
         line-height: 1;
-        user-select: none;
-      }
-      .moto-logo-sm {
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start),
-          var(--gradient-mid),
-          var(--gradient-end)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1;
-        user-select: none;
       }
 
-      /* Tagline */
-      .tagline {
-        font-size: 20px;
-        font-weight: 400;
+      .welcome-wordmark {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        margin-top: 8px;
+      }
+
+      /* Geometric connection motif — two interlocking circles */
+      .connection-motif {
+        width: 120px;
+        height: 80px;
+        margin: 0 auto 40px;
+        position: relative;
+        opacity: 0.6;
+      }
+      .connection-motif::before,
+      .connection-motif::after {
+        content: "";
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 1.5px solid var(--accent);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .connection-motif::before {
+        left: 8px;
+        opacity: 0.5;
+      }
+      .connection-motif::after {
+        right: 8px;
+        opacity: 0.5;
+      }
+
+      .welcome-headline {
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        text-align: center;
+        margin-bottom: 16px;
+        color: var(--text-primary);
+      }
+
+      .welcome-thesis {
+        font-size: 16px;
+        line-height: 1.6;
         color: var(--text-secondary);
         text-align: center;
-        line-height: 1.5;
-        letter-spacing: -0.01em;
         max-width: 320px;
-        margin: 0 auto;
+        margin: 0 auto 48px;
       }
 
-      /* Welcome decorative ring */
-      .logo-ring {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start),
-          var(--gradient-mid),
-          var(--gradient-end)
-        );
+      .welcome-actions {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-        position: relative;
-      }
-      .logo-ring-inner {
-        width: 108px;
-        height: 108px;
-        border-radius: 50%;
-        background: var(--bg-page);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .logo-ring svg {
-        width: 48px;
-        height: 48px;
-        color: var(--accent);
+        flex-direction: column;
+        gap: 12px;
       }
 
-      /* Primary auth buttons */
-      .auth-btn-primary {
-        width: 100%;
-        height: 52px;
+      .btn-begin {
+        height: 56px;
         border-radius: 12px;
-        border: none;
-        background: linear-gradient(
-          135deg,
-          var(--gradient-start),
-          var(--accent-hover)
-        );
-        color: #fff;
-        font-family: inherit;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
+        background: var(--accent);
+        color: #fff;
+        border: none;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        width: 100%;
         transition:
-          opacity 150ms ease-out,
-          transform 80ms ease-out;
+          background-color 150ms ease-out,
+          transform 100ms ease-out;
+        font-family: inherit;
+        letter-spacing: -0.01em;
         -webkit-font-smoothing: antialiased;
       }
-      .auth-btn-primary:hover {
-        opacity: 0.92;
+      .btn-begin:hover {
+        background: var(--accent-hover);
       }
-      .auth-btn-primary:active {
+      .btn-begin:active {
         transform: scale(0.98);
       }
-      .auth-btn-primary:focus-visible {
+      .btn-begin:focus-visible {
         outline: none;
         box-shadow: var(--focus-ring);
       }
 
-      .auth-btn-secondary {
+      .btn-signin-link {
+        height: 48px;
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 15px;
+        font-weight: 400;
+        cursor: pointer;
         width: 100%;
+        font-family: inherit;
+        transition: color 150ms ease-out;
+        -webkit-font-smoothing: antialiased;
+      }
+      .btn-signin-link:hover {
+        color: var(--text-primary);
+      }
+      .btn-signin-link:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn-signin-link span {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .welcome-footer {
+        text-align: center;
+        padding: 0 28px 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .welcome-footer p {
+        font-size: 12px;
+        color: var(--text-disabled);
+        line-height: 1.5;
+        margin: 0;
+      }
+      .welcome-footer a {
+        color: var(--text-tertiary);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: color 150ms ease-out;
+      }
+      .welcome-footer a:hover {
+        color: var(--text-secondary);
+      }
+
+      /* ==================== FORM VIEWS (Sign Up, Sign In, Forgot) ==================== */
+      .form-view {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-header {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .back-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        transition:
+          background-color 150ms ease-out,
+          color 150ms ease-out;
+      }
+      .back-btn:hover {
+        background: var(--surface-hover);
+        color: var(--text-primary);
+      }
+      .back-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .form-body {
+        flex: 1;
+        padding: 16px 28px 32px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+
+      .form-title {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+        line-height: 1.15;
+      }
+
+      .form-subtitle {
+        font-size: 16px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        margin-bottom: 36px;
+      }
+
+      /* Divider with text */
+      .divider-text {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 24px 0;
+      }
+      .divider-text::before,
+      .divider-text::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border-faint);
+      }
+      .divider-text span {
+        font-size: 13px;
+        color: var(--text-disabled);
+        font-weight: 400;
+        white-space: nowrap;
+      }
+
+      /* Social login buttons */
+      .social-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn-social {
         height: 52px;
         border-radius: 12px;
         border: 1px solid var(--border-default);
         background: var(--surface-1);
         color: var(--text-primary);
         font-family: inherit;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 500;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 12px;
+        width: 100%;
         transition:
           background-color 150ms ease-out,
           border-color 150ms ease-out;
         -webkit-font-smoothing: antialiased;
       }
-      .auth-btn-secondary:hover {
+      .btn-social:hover {
         background: var(--surface-hover);
         border-color: var(--border-strong);
       }
-      .auth-btn-secondary:active {
+      .btn-social:active {
         transform: scale(0.98);
       }
-      .auth-btn-secondary:focus-visible {
+      .btn-social:focus-visible {
         outline: none;
         box-shadow: var(--focus-ring);
       }
-
-      /* Social auth buttons */
-      .social-btn {
-        width: 100%;
-        height: 48px;
-        border-radius: 10px;
-        border: 1px solid var(--social-btn-border);
-        background: var(--social-btn-bg);
-        color: var(--text-primary);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transition:
-          background-color 150ms ease-out,
-          border-color 150ms ease-out;
-        -webkit-font-smoothing: antialiased;
-      }
-      .social-btn:hover {
-        background: var(--social-btn-hover);
-        border-color: var(--border-strong);
-      }
-      .social-btn:active {
-        transform: scale(0.98);
-      }
-      .social-btn:focus-visible {
-        outline: none;
-        box-shadow: var(--focus-ring);
-      }
-      .social-btn svg {
+      .btn-social svg {
         width: 20px;
         height: 20px;
         flex-shrink: 0;
       }
 
-      /* Divider */
-      .auth-divider {
+      /* Form fields */
+      .field-group {
         display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      .auth-divider::before,
-      .auth-divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--border-faint);
-      }
-      .auth-divider span {
-        font-size: 13px;
-        font-weight: 400;
-        color: var(--text-disabled);
-        white-space: nowrap;
+        flex-direction: column;
+        gap: 20px;
       }
 
-      /* Form field group */
-      .field-group {
+      .field {
         display: flex;
         flex-direction: column;
         gap: 6px;
       }
-      .field-label {
+
+      .field label {
         font-size: 14px;
         font-weight: 500;
         color: var(--text-secondary);
       }
+
+      .field-hint {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        margin-top: 2px;
+      }
+
       .field-error {
         font-size: 13px;
-        color: var(--error-text);
+        color: var(--negative);
+        margin-top: 2px;
         display: flex;
         align-items: center;
         gap: 4px;
@@ -635,407 +771,463 @@
         height: 14px;
         flex-shrink: 0;
       }
-      .input-error {
-        border-color: var(--error-border) !important;
-        background: var(--error-bg) !important;
-      }
-      .input-error:focus {
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
-      }
 
-      /* Password input wrapper */
-      .password-wrapper {
+      .input-wrapper {
         position: relative;
       }
-      .password-wrapper input {
+      .input-wrapper input {
         padding-right: 48px;
       }
-      .password-toggle {
+      .input-action {
         position: absolute;
         right: 4px;
         top: 50%;
         transform: translateY(-50%);
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
         border: none;
         background: transparent;
-        color: var(--text-disabled);
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--text-disabled);
         transition:
           color 150ms ease-out,
           background-color 150ms ease-out;
       }
-      .password-toggle:hover {
+      .input-action:hover {
         color: var(--text-secondary);
         background: var(--surface-hover);
       }
-      .password-toggle svg {
-        width: 18px;
-        height: 18px;
-      }
-
-      /* Back button */
-      .back-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        border: 1px solid var(--border-faint);
-        background: var(--surface-1);
-        color: var(--text-secondary);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition:
-          background-color 150ms ease-out,
-          color 150ms ease-out,
-          border-color 150ms ease-out;
-      }
-      .back-btn:hover {
-        background: var(--surface-hover);
-        color: var(--text-primary);
-        border-color: var(--border-default);
-      }
-      .back-btn:active {
-        transform: scale(0.96);
-      }
-      .back-btn:focus-visible {
+      .input-action:focus-visible {
         outline: none;
         box-shadow: var(--focus-ring);
       }
-      .back-btn svg {
+      .input-action svg {
         width: 18px;
         height: 18px;
       }
 
-      /* Text links */
-      .auth-link {
+      .input-error {
+        border-color: var(--negative) !important;
+      }
+      .input-error:focus {
+        box-shadow: 0 0 0 3px var(--negative-muted) !important;
+      }
+
+      /* Password strength */
+      .password-strength {
+        display: flex;
+        gap: 4px;
+        margin-top: 8px;
+      }
+      .strength-bar {
+        flex: 1;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--border-faint);
+        transition: background-color 200ms ease-out;
+      }
+      .strength-bar.active-weak {
+        background: var(--negative);
+      }
+      .strength-bar.active-medium {
+        background: var(--warning);
+      }
+      .strength-bar.active-strong {
+        background: var(--positive);
+      }
+
+      .strength-label {
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 4px;
+      }
+      .strength-label.weak {
+        color: var(--negative);
+      }
+      .strength-label.medium {
+        color: var(--warning);
+      }
+      .strength-label.strong {
+        color: var(--positive);
+      }
+
+      /* Forgot password link */
+      .forgot-link {
+        display: inline-block;
         font-size: 14px;
         font-weight: 500;
         color: var(--accent);
         text-decoration: none;
         cursor: pointer;
         transition: color 150ms ease-out;
+        align-self: flex-end;
+        margin-top: -8px;
         background: none;
         border: none;
-        font-family: inherit;
         padding: 0;
+        font-family: inherit;
+        -webkit-font-smoothing: antialiased;
       }
-      .auth-link:hover {
+      .forgot-link:hover {
         color: var(--accent-hover);
       }
-
-      /* Legal text */
-      .legal-text {
-        font-size: 13px;
-        color: var(--text-disabled);
-        text-align: center;
-        line-height: 1.5;
+      .forgot-link:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
       }
-      .legal-text a {
+
+      /* Terms */
+      .terms-text {
+        font-size: 13px;
         color: var(--text-tertiary);
+        line-height: 1.5;
+        text-align: center;
+        margin-top: 24px;
+      }
+      .terms-text a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .terms-text a:hover {
         text-decoration: underline;
         text-underline-offset: 2px;
+      }
+
+      /* Bottom link row */
+      .form-footer-link {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 15px;
+        color: var(--text-secondary);
+        margin-top: auto;
+      }
+      .form-footer-link button {
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
         transition: color 150ms ease-out;
       }
-      .legal-text a:hover {
-        color: var(--text-secondary);
+      .form-footer-link button:hover {
+        color: var(--accent-hover);
+      }
+      .form-footer-link button:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
       }
 
-      /* Switch text (at bottom of forms) */
-      .switch-text {
-        font-size: 14px;
-        color: var(--text-tertiary);
-        text-align: center;
+      /* Submit button full-width */
+      .btn-submit {
+        height: 52px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        transition:
+          background-color 150ms ease-out,
+          transform 100ms ease-out;
+        font-family: inherit;
+        letter-spacing: -0.01em;
+        -webkit-font-smoothing: antialiased;
+        margin-top: 28px;
+      }
+      .btn-submit:hover {
+        background: var(--accent-hover);
+      }
+      .btn-submit:active {
+        transform: scale(0.98);
+      }
+      .btn-submit:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+      .btn-submit:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
       }
 
-      /* Success state */
-      .success-card {
-        background: var(--surface-1);
-        border: 1px solid var(--border-faint);
-        border-radius: 16px;
-        padding: 40px 32px;
-        text-align: center;
+      /* ==================== NAME ENTRY (Sign Up Step) ==================== */
+      .name-fields {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        gap: 12px;
       }
+      .name-fields .field {
+        flex: 1;
+      }
+
+      /* Date of birth group */
+      .dob-fields {
+        display: flex;
+        gap: 12px;
+      }
+      .dob-fields select {
+        flex: 1;
+        height: 48px;
+        padding: 0 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border-default);
+        background: var(--surface-1);
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 16px;
+        appearance: none;
+        cursor: pointer;
+      }
+
+      /* ==================== SUCCESS STATE ==================== */
       .success-icon {
         width: 64px;
         height: 64px;
         border-radius: 50%;
-        background: var(--success-bg);
+        background: var(--positive-muted);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin: 0 auto 24px;
       }
       .success-icon svg {
         width: 28px;
         height: 28px;
-        color: var(--success-text);
+        color: var(--positive);
       }
 
-      /* Form header with back button */
-      .form-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 32px;
-      }
-      .form-header-text h2 {
+      .success-title {
         font-size: 24px;
         font-weight: 600;
         letter-spacing: -0.02em;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+
+      .success-desc {
+        font-size: 16px;
+        color: var(--text-secondary);
+        text-align: center;
+        line-height: 1.6;
+        max-width: 320px;
+        margin: 0 auto 32px;
+      }
+
+      .email-highlight {
         color: var(--text-primary);
-        line-height: 1.2;
+        font-weight: 500;
       }
-      .form-header-text p {
+
+      /* ==================== FORGOT PASSWORD ==================== */
+      .reset-info-card {
+        background: var(--surface-1);
+        border: 1px solid var(--border-faint);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 8px;
+      }
+      .reset-info-card p {
         font-size: 14px;
-        color: var(--text-tertiary);
-        margin-top: 4px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
       }
-
-      /* Forgot password alignment */
-      .forgot-row {
+      .reset-info-card .step-list {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 0;
         display: flex;
-        justify-content: flex-end;
-        margin-top: -4px;
+        flex-direction: column;
+        gap: 12px;
       }
-
-      /* Loading spinner on button (demo state) */
-      .btn-loading {
-        position: relative;
-        color: transparent !important;
-        pointer-events: none;
+      .reset-info-card .step-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
       }
-      .btn-loading::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-top-color: #fff;
+      .step-number {
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        animation: spin 600ms linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
+        background: var(--accent-muted);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        flex-shrink: 0;
+        font-variant-numeric: tabular-nums;
       }
 
-      /* Password strength indicator */
-      .password-strength {
-        display: flex;
-        gap: 4px;
-        margin-top: 2px;
+      /* Notification bar */
+      .notification {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 12px 20px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        z-index: 100;
+        transition:
+          transform 300ms ease-out,
+          opacity 300ms ease-out;
+        transform: translateY(-100%);
+        opacity: 0;
       }
-      .password-strength-bar {
-        flex: 1;
-        height: 3px;
-        border-radius: 2px;
-        background: var(--border-default);
-        transition: background-color 200ms ease-out;
+      .notification.show {
+        transform: translateY(0);
+        opacity: 1;
       }
-      .password-strength-bar.active-weak {
-        background: var(--error-text);
+      .notification-error {
+        background: var(--negative);
+        color: #fff;
       }
-      .password-strength-bar.active-fair {
-        background: #d97706;
-      }
-      .password-strength-bar.active-good {
-        background: #16a34a;
-      }
-      .password-strength-bar.active-strong {
-        background: var(--accent);
-      }
-      .password-strength-label {
-        font-size: 12px;
-        color: var(--text-disabled);
-        margin-top: 4px;
-        font-weight: 400;
+      .notification-success {
+        background: var(--positive);
+        color: #fff;
       }
     </style>
   </head>
   <body>
-    <div class="auth-shell">
-      <!-- ============================== -->
-      <!-- TOP BAR: logo wordmark + theme -->
-      <!-- ============================== -->
-      <div class="auth-topbar">
-        <div
-          class="moto-logo-sm"
-          id="topbar-logo"
-          style="opacity: 0; transition: opacity 200ms ease-out"
-        >
-          MOTO
-        </div>
-        <button
-          class="theme-toggle"
-          onclick="toggleTheme()"
-          title="Toggle theme"
-          aria-label="Toggle dark/light theme"
-        >
-          <svg
-            class="theme-icon-sun"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+    <div class="shell">
+      <!-- Abstract background — no stock photos of couples -->
+      <div class="constellation-bg"></div>
+
+      <!-- SVG dot pattern for depth -->
+      <svg class="dot-field" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="dots"
+            x="0"
+            y="0"
+            width="32"
+            height="32"
+            patternUnits="userSpaceOnUse"
           >
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-          </svg>
-          <svg
-            class="theme-icon-moon"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-        </button>
+            <circle cx="2" cy="2" r="0.8" fill="currentColor" opacity="0.3" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dots)" />
+      </svg>
+
+      <!-- Notification bar (used for error/success feedback) -->
+      <div id="notification" class="notification">
+        <span id="notification-text"></span>
       </div>
 
-      <!-- ============================== -->
-      <!-- MAIN CONTENT CONTAINER         -->
-      <!-- ============================== -->
-      <div class="auth-container">
-        <!-- ========================================= -->
-        <!-- STATE 1: WELCOME / LANDING                -->
-        <!-- ========================================= -->
-        <div id="view-welcome" class="auth-view active">
-          <!-- Logo ring with heart icon -->
-          <div style="margin-bottom: 24px">
-            <div class="logo-ring">
-              <div class="logo-ring-inner">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                  />
-                </svg>
-              </div>
-            </div>
+      <!-- ============================
+           VIEW 1: WELCOME / LANDING
+           ============================ -->
+      <div id="view-welcome" class="view active">
+        <div class="welcome-top">
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+            aria-label="Toggle dark/light theme"
+          >
+            <svg
+              class="theme-icon-sun"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="theme-icon-moon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="welcome-content">
+          <!-- Interlocking circles motif — abstract representation of alignment -->
+          <div class="connection-motif"></div>
+
+          <div class="welcome-brand">
+            <div class="welcome-logo">MOTO</div>
+            <div class="welcome-wordmark">Values-Aligned Dating</div>
           </div>
 
-          <!-- Brand name -->
-          <div class="moto-logo" style="margin-bottom: 16px">MOTO</div>
+          <!-- Serif headline — literary, intentional, different from every competitor -->
+          <h1 class="welcome-headline serif">
+            Not more choice.<br />Better alignment.
+          </h1>
 
-          <!-- Tagline -->
-          <p class="tagline" style="margin-bottom: 48px">
-            Find someone to build a life with
+          <p class="welcome-thesis">
+            A dating platform built around shared values, life timelines, and
+            the vision to build something that lasts.
           </p>
 
-          <!-- Primary CTAs -->
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-              margin-bottom: 24px;
-            "
-          >
-            <button class="auth-btn-primary" onclick="showView('signup')">
-              Create Account
+          <div class="welcome-actions">
+            <button class="btn-begin" onclick="showView('signup')">
+              Begin Your Story
             </button>
-            <button class="auth-btn-secondary" onclick="showView('signin')">
-              Sign In
+            <button class="btn-signin-link" onclick="showView('signin')">
+              Already have an account? <span>Sign in</span>
             </button>
           </div>
+        </div>
 
-          <!-- Divider -->
-          <div class="auth-divider" style="margin-bottom: 24px">
-            <span>or continue with</span>
-          </div>
-
-          <!-- Social auth -->
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-              margin-bottom: 32px;
-            "
-          >
-            <!-- Continue with Apple -->
-            <button class="social-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                />
-              </svg>
-              Continue with Apple
-            </button>
-
-            <!-- Continue with Google -->
-            <button class="social-btn">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                  fill="#4285F4"
-                />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853"
-                />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05"
-                />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335"
-                />
-              </svg>
-              Continue with Google
-            </button>
-          </div>
-
-          <!-- Legal -->
-          <p class="legal-text">
+        <div class="welcome-footer">
+          <p>
             By continuing, you agree to our <a href="#">Terms of Service</a> and
             <a href="#">Privacy Policy</a>
           </p>
         </div>
+      </div>
 
-        <!-- ========================================= -->
-        <!-- STATE 2: SIGN UP                          -->
-        <!-- ========================================= -->
-        <div id="view-signup" class="auth-view">
-          <!-- Header with back button -->
+      <!-- ============================
+           VIEW 2: SIGN UP
+           ============================ -->
+      <div id="view-signup" class="view">
+        <div class="form-view">
           <div class="form-header">
             <button
               class="back-btn"
               onclick="showView('welcome')"
-              aria-label="Back to welcome"
+              aria-label="Go back"
             >
               <svg
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -1043,224 +1235,221 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
               </svg>
             </button>
-            <div class="form-header-text">
-              <h2>Create your account</h2>
-              <p>Start your journey to a meaningful connection</p>
-            </div>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
           </div>
 
-          <!-- Form -->
-          <form
-            onsubmit="return false;"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
-              margin-bottom: 24px;
-            "
-          >
-            <!-- Email -->
-            <div class="field-group">
-              <label class="field-label" for="signup-email"
-                >Email address</label
-              >
-              <input
-                type="email"
-                id="signup-email"
-                placeholder="you@example.com"
-                autocomplete="email"
-              />
-            </div>
+          <div class="form-body">
+            <h1 class="form-title">Create your account</h1>
+            <p class="form-subtitle">
+              This is the beginning of something intentional. Let's start with
+              the basics.
+            </p>
 
-            <!-- Password -->
-            <div class="field-group">
-              <label class="field-label" for="signup-password">Password</label>
-              <div class="password-wrapper">
-                <input
-                  type="password"
-                  id="signup-password"
-                  placeholder="Create a strong password"
-                  autocomplete="new-password"
-                />
-                <button
-                  type="button"
-                  class="password-toggle"
-                  onclick="togglePassword('signup-password', this)"
-                  aria-label="Show password"
+            <!-- Social logins — appear here, NOT on welcome screen -->
+            <div class="social-btns">
+              <button class="btn-social">
+                <!-- Google icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+              <button class="btn-social">
+                <!-- Apple icon -->
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 18px; height: 18px"
                 >
-                  <!-- Eye icon (show) -->
-                  <svg
-                    class="icon-eye"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                    ></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                  <!-- Eye-off icon (hide) -->
-                  <svg
-                    class="icon-eye-off"
-                    style="display: none"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                    ></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-                </button>
-              </div>
-              <!-- Password strength indicator -->
-              <div class="password-strength">
-                <div class="password-strength-bar active-weak"></div>
-                <div class="password-strength-bar active-fair"></div>
-                <div class="password-strength-bar active-good"></div>
-                <div class="password-strength-bar"></div>
-              </div>
-              <span class="password-strength-label"
-                >Good -- add a special character for stronger</span
-              >
+                  <path
+                    d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.45-3.74 4.25z"
+                  />
+                </svg>
+                Continue with Apple
+              </button>
             </div>
 
-            <!-- Confirm password -->
+            <div class="divider-text"><span>or continue with email</span></div>
+
             <div class="field-group">
-              <label class="field-label" for="signup-confirm"
-                >Confirm password</label
-              >
-              <div class="password-wrapper">
+              <div class="name-fields">
+                <div class="field">
+                  <label for="signup-first">First name</label>
+                  <input type="text" id="signup-first" placeholder="Sarah" />
+                </div>
+                <div class="field">
+                  <label for="signup-last">Last name</label>
+                  <input type="text" id="signup-last" placeholder="Mitchell" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="signup-email">Email address</label>
                 <input
-                  type="password"
-                  id="signup-confirm"
-                  placeholder="Re-enter your password"
-                  autocomplete="new-password"
+                  type="email"
+                  id="signup-email"
+                  placeholder="sarah@example.com"
                 />
-                <button
-                  type="button"
-                  class="password-toggle"
-                  onclick="togglePassword('signup-confirm', this)"
-                  aria-label="Show password"
-                >
-                  <svg
-                    class="icon-eye"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+              </div>
+
+              <div class="field">
+                <label for="signup-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="signup-password"
+                    placeholder="At least 8 characters"
+                  />
+                  <button
+                    class="input-action"
+                    onclick="togglePassword('signup-password', this)"
+                    aria-label="Show password"
                   >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                    ></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                  <svg
-                    class="icon-eye-off"
-                    style="display: none"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                    ></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-                </button>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="password-strength">
+                  <div class="strength-bar active-medium"></div>
+                  <div class="strength-bar active-medium"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                </div>
+                <div class="strength-label medium">Medium strength</div>
+              </div>
+
+              <div class="field">
+                <label>Date of birth</label>
+                <div class="dob-fields">
+                  <select aria-label="Month">
+                    <option value="" disabled selected>Month</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option selected>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                  </select>
+                  <select aria-label="Day" style="max-width: 80px">
+                    <option value="" disabled selected>Day</option>
+                    <option selected>15</option>
+                  </select>
+                  <select aria-label="Year" style="max-width: 100px">
+                    <option value="" disabled selected>Year</option>
+                    <option selected>1997</option>
+                  </select>
+                </div>
+                <div class="field-hint">
+                  You must be 18 or older to use MOTO
+                </div>
               </div>
             </div>
 
-            <!-- Submit -->
-            <button
-              type="submit"
-              class="auth-btn-primary"
-              style="margin-top: 4px"
-            >
+            <button class="btn-submit" onclick="showView('signup-success')">
               Create Account
             </button>
-          </form>
 
-          <!-- Divider -->
-          <div class="auth-divider" style="margin-bottom: 20px">
-            <span>or continue with</span>
+            <p class="terms-text">
+              By creating an account, you agree to our
+              <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a>, and confirm you are at least 18
+              years old.
+            </p>
+
+            <div class="form-footer-link">
+              Already have an account?
+              <button onclick="showView('signin')">Sign in</button>
+            </div>
           </div>
-
-          <!-- Social auth -->
-          <div style="display: flex; gap: 10px; margin-bottom: 28px">
-            <button class="social-btn" style="flex: 1">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                style="width: 18px; height: 18px"
-              >
-                <path
-                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                />
-              </svg>
-              Apple
-            </button>
-            <button class="social-btn" style="flex: 1">
-              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                  fill="#4285F4"
-                />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853"
-                />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05"
-                />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335"
-                />
-              </svg>
-              Google
-            </button>
-          </div>
-
-          <!-- Switch to sign in -->
-          <p class="switch-text">
-            Already have an account?
-            <button class="auth-link" onclick="showView('signin')">
-              Sign in
-            </button>
-          </p>
         </div>
+      </div>
 
-        <!-- ========================================= -->
-        <!-- STATE 3: SIGN IN                          -->
-        <!-- ========================================= -->
-        <div id="view-signin" class="auth-view">
-          <!-- Header with back button -->
+      <!-- ============================
+           VIEW 3: SIGN UP — ERROR STATE
+           ============================ -->
+      <div id="view-signup-error" class="view">
+        <div class="form-view">
           <div class="form-header">
             <button
               class="back-btn"
               onclick="showView('welcome')"
-              aria-label="Back to welcome"
+              aria-label="Go back"
             >
               <svg
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -1268,204 +1457,744 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
               </svg>
             </button>
-            <div class="form-header-text">
-              <h2>Welcome back</h2>
-              <p>Sign in to continue where you left off</p>
-            </div>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
           </div>
 
-          <!-- Form -->
-          <form
-            onsubmit="return false;"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
-              margin-bottom: 24px;
-            "
-          >
-            <!-- Email -->
-            <div class="field-group">
-              <label class="field-label" for="signin-email"
-                >Email address</label
-              >
-              <input
-                type="email"
-                id="signin-email"
-                placeholder="you@example.com"
-                autocomplete="email"
-              />
+          <div class="form-body">
+            <h1 class="form-title">Create your account</h1>
+            <p class="form-subtitle">
+              This is the beginning of something intentional. Let's start with
+              the basics.
+            </p>
+
+            <div class="social-btns">
+              <button class="btn-social">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+              <button class="btn-social">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 18px; height: 18px"
+                >
+                  <path
+                    d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.45-3.74 4.25z"
+                  />
+                </svg>
+                Continue with Apple
+              </button>
             </div>
 
-            <!-- Password -->
+            <div class="divider-text"><span>or continue with email</span></div>
+
             <div class="field-group">
-              <label class="field-label" for="signin-password">Password</label>
-              <div class="password-wrapper">
+              <div class="name-fields">
+                <div class="field">
+                  <label for="signup-err-first">First name</label>
+                  <input type="text" id="signup-err-first" value="Sarah" />
+                </div>
+                <div class="field">
+                  <label for="signup-err-last">Last name</label>
+                  <input
+                    type="text"
+                    id="signup-err-last"
+                    value=""
+                    placeholder="Required"
+                    class="input-error"
+                  />
+                  <div class="field-error">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="15" y1="9" x2="9" y2="15" />
+                      <line x1="9" y1="9" x2="15" y2="15" />
+                    </svg>
+                    Last name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="signup-err-email">Email address</label>
                 <input
-                  type="password"
-                  id="signin-password"
-                  placeholder="Enter your password"
-                  autocomplete="current-password"
+                  type="email"
+                  id="signup-err-email"
+                  value="sarah@"
+                  class="input-error"
                 />
-                <button
-                  type="button"
-                  class="password-toggle"
-                  onclick="togglePassword('signin-password', this)"
-                  aria-label="Show password"
-                >
+                <div class="field-error">
                   <svg
-                    class="icon-eye"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
                   >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                    ></path>
-                    <circle cx="12" cy="12" r="3"></circle>
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" />
                   </svg>
-                  <svg
-                    class="icon-eye-off"
-                    style="display: none"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                    ></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-                </button>
+                  Please enter a valid email address
+                </div>
               </div>
-              <!-- Forgot password link -->
-              <div class="forgot-row">
-                <button
-                  class="auth-link"
-                  onclick="showView('forgot')"
-                  style="font-size: 13px"
-                >
-                  Forgot password?
-                </button>
+
+              <div class="field">
+                <label for="signup-err-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="signup-err-password"
+                    value="abc"
+                    class="input-error"
+                  />
+                  <button
+                    class="input-action"
+                    onclick="togglePassword('signup-err-password', this)"
+                    aria-label="Show password"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="password-strength">
+                  <div class="strength-bar active-weak"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                </div>
+                <div class="strength-label weak">
+                  Too weak — use 8+ characters with letters and numbers
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Date of birth</label>
+                <div class="dob-fields">
+                  <select aria-label="Month">
+                    <option value="" disabled selected>Month</option>
+                  </select>
+                  <select aria-label="Day" style="max-width: 80px">
+                    <option value="" disabled selected>Day</option>
+                  </select>
+                  <select aria-label="Year" style="max-width: 100px">
+                    <option value="" disabled selected>Year</option>
+                  </select>
+                </div>
+                <div class="field-error">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" />
+                  </svg>
+                  Date of birth is required
+                </div>
               </div>
             </div>
 
-            <!-- Error state demo (visible by default to show the pattern) -->
-            <div
-              id="signin-error"
+            <button class="btn-submit" disabled>Create Account</button>
+
+            <p class="terms-text">
+              By creating an account, you agree to our
+              <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a>, and confirm you are at least 18
+              years old.
+            </p>
+
+            <div class="form-footer-link">
+              Already have an account?
+              <button onclick="showView('signin')">Sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           VIEW 4: SIGN UP — SUCCESS
+           ============================ -->
+      <div id="view-signup-success" class="view">
+        <div class="form-view">
+          <div class="form-header">
+            <div></div>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
+          </div>
+
+          <div
+            class="form-body"
+            style="justify-content: center; align-items: center"
+          >
+            <div class="success-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+
+            <h2 class="success-title">Check your email</h2>
+
+            <p class="success-desc">
+              We sent a verification link to<br />
+              <span class="email-highlight">sarah.mitchell@gmail.com</span>
+            </p>
+
+            <p
               style="
-                display: none;
-                background: var(--error-bg);
-                border: 1px solid var(--error-border);
-                border-radius: 10px;
-                padding: 12px 16px;
-                display: none;
+                font-size: 14px;
+                color: var(--text-tertiary);
+                text-align: center;
+                line-height: 1.6;
+                max-width: 300px;
+                margin-bottom: 32px;
               "
             >
-              <div style="display: flex; align-items: center; gap: 8px">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--error-text)"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  style="flex-shrink: 0"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="15" y1="9" x2="9" y2="15"></line>
-                  <line x1="9" y1="9" x2="15" y2="15"></line>
+              Click the link in the email to verify your account and begin
+              building your identity profile.
+            </p>
+
+            <button
+              class="btn-submit"
+              style="max-width: 280px"
+              onclick="
+                showNotification('success', 'Verification email resent!')
+              "
+            >
+              Resend Email
+            </button>
+
+            <div class="form-footer-link" style="margin-top: 24px">
+              Wrong email? <button onclick="showView('signup')">Go back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           VIEW 5: SIGN IN
+           ============================ -->
+      <div id="view-signin" class="view">
+        <div class="form-view">
+          <div class="form-header">
+            <button
+              class="back-btn"
+              onclick="showView('welcome')"
+              aria-label="Go back"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="form-body">
+            <h1 class="form-title">Welcome back</h1>
+            <p class="form-subtitle">
+              Sign in to continue building what matters.
+            </p>
+
+            <div class="social-btns">
+              <button class="btn-social">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
                 </svg>
-                <span style="font-size: 14px; color: var(--error-text)"
-                  >Invalid email or password. Please try again.</span
+                Continue with Google
+              </button>
+              <button class="btn-social">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 18px; height: 18px"
                 >
-              </div>
+                  <path
+                    d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.45-3.74 4.25z"
+                  />
+                </svg>
+                Continue with Apple
+              </button>
             </div>
 
-            <!-- Submit -->
+            <div class="divider-text"><span>or sign in with email</span></div>
+
+            <div class="field-group">
+              <div class="field">
+                <label for="signin-email">Email address</label>
+                <input
+                  type="email"
+                  id="signin-email"
+                  placeholder="sarah@example.com"
+                />
+              </div>
+
+              <div class="field">
+                <label for="signin-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="signin-password"
+                    placeholder="Enter your password"
+                  />
+                  <button
+                    class="input-action"
+                    onclick="togglePassword('signin-password', this)"
+                    aria-label="Show password"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <button class="forgot-link" onclick="showView('forgot')">
+                Forgot password?
+              </button>
+            </div>
+
             <button
-              type="submit"
-              class="auth-btn-primary"
-              onclick="showSigninError()"
+              class="btn-submit"
+              onclick="
+                showNotification(
+                  'success',
+                  'Signed in successfully! Redirecting...',
+                )
+              "
             >
               Sign In
             </button>
-          </form>
 
-          <!-- Divider -->
-          <div class="auth-divider" style="margin-bottom: 20px">
-            <span>or continue with</span>
+            <div class="form-footer-link">
+              New to MOTO?
+              <button onclick="showView('signup')">Create account</button>
+            </div>
           </div>
-
-          <!-- Social auth -->
-          <div style="display: flex; gap: 10px; margin-bottom: 28px">
-            <button class="social-btn" style="flex: 1">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                style="width: 18px; height: 18px"
-              >
-                <path
-                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                />
-              </svg>
-              Apple
-            </button>
-            <button class="social-btn" style="flex: 1">
-              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                  fill="#4285F4"
-                />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853"
-                />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05"
-                />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335"
-                />
-              </svg>
-              Google
-            </button>
-          </div>
-
-          <!-- Switch to sign up -->
-          <p class="switch-text">
-            Don't have an account?
-            <button class="auth-link" onclick="showView('signup')">
-              Create one
-            </button>
-          </p>
         </div>
+      </div>
 
-        <!-- ========================================= -->
-        <!-- STATE 4: FORGOT PASSWORD                  -->
-        <!-- ========================================= -->
-        <div id="view-forgot" class="auth-view">
-          <!-- Header with back button -->
+      <!-- ============================
+           VIEW 6: SIGN IN — ERROR STATE
+           ============================ -->
+      <div id="view-signin-error" class="view">
+        <div class="form-view">
+          <div class="form-header">
+            <button
+              class="back-btn"
+              onclick="showView('welcome')"
+              aria-label="Go back"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+            </button>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="form-body">
+            <h1 class="form-title">Welcome back</h1>
+            <p class="form-subtitle">
+              Sign in to continue building what matters.
+            </p>
+
+            <!-- Error banner at form level -->
+            <div
+              style="
+                background: var(--negative-muted);
+                border: 1px solid rgba(239, 68, 68, 0.2);
+                border-radius: 10px;
+                padding: 14px 16px;
+                margin-bottom: 24px;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+              "
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--negative)"
+                stroke-width="2"
+                stroke-linecap="round"
+                style="flex-shrink: 0; margin-top: 1px"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <div>
+                <div
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--negative);
+                    margin-bottom: 2px;
+                  "
+                >
+                  Invalid email or password
+                </div>
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--text-secondary);
+                    line-height: 1.4;
+                  "
+                >
+                  Please check your credentials and try again. If you've
+                  forgotten your password, you can reset it below.
+                </div>
+              </div>
+            </div>
+
+            <div class="social-btns">
+              <button class="btn-social">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                </svg>
+                Continue with Google
+              </button>
+              <button class="btn-social">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="width: 18px; height: 18px"
+                >
+                  <path
+                    d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.45-3.74 4.25z"
+                  />
+                </svg>
+                Continue with Apple
+              </button>
+            </div>
+
+            <div class="divider-text"><span>or sign in with email</span></div>
+
+            <div class="field-group">
+              <div class="field">
+                <label for="signin-err-email">Email address</label>
+                <input
+                  type="email"
+                  id="signin-err-email"
+                  value="sarah.mitchell@gmail.com"
+                />
+              </div>
+
+              <div class="field">
+                <label for="signin-err-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="signin-err-password"
+                    value="wrongpassword"
+                    class="input-error"
+                  />
+                  <button
+                    class="input-action"
+                    onclick="togglePassword('signin-err-password', this)"
+                    aria-label="Show password"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <button class="forgot-link" onclick="showView('forgot')">
+                Forgot password?
+              </button>
+            </div>
+
+            <button class="btn-submit" onclick="showView('signin')">
+              Sign In
+            </button>
+
+            <div class="form-footer-link">
+              New to MOTO?
+              <button onclick="showView('signup')">Create account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           VIEW 7: FORGOT PASSWORD
+           ============================ -->
+      <div id="view-forgot" class="view">
+        <div class="form-view">
           <div class="form-header">
             <button
               class="back-btn"
               onclick="showView('signin')"
-              aria-label="Back to sign in"
+              aria-label="Go back"
             >
               <svg
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -1473,542 +2202,393 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
               </svg>
             </button>
-            <div class="form-header-text">
-              <h2>Reset your password</h2>
-              <p>We'll send a reset link to your email</p>
-            </div>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
           </div>
 
-          <!-- Form state -->
-          <div id="forgot-form">
-            <form
-              onsubmit="return false;"
-              style="
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                margin-bottom: 28px;
-              "
-            >
-              <!-- Email -->
-              <div class="field-group">
-                <label class="field-label" for="forgot-email"
-                  >Email address</label
-                >
+          <div class="form-body">
+            <h1 class="form-title">Reset password</h1>
+            <p class="form-subtitle">
+              Enter the email address associated with your account. We'll send
+              you a link to create a new password.
+            </p>
+
+            <div class="field-group">
+              <div class="field">
+                <label for="forgot-email">Email address</label>
                 <input
                   type="email"
                   id="forgot-email"
-                  placeholder="you@example.com"
-                  autocomplete="email"
+                  placeholder="sarah@example.com"
                 />
               </div>
+            </div>
 
-              <!-- Submit -->
-              <button
-                type="submit"
-                class="auth-btn-primary"
-                onclick="showForgotSuccess()"
+            <button class="btn-submit" onclick="showView('forgot-success')">
+              Send Reset Link
+            </button>
+
+            <div class="reset-info-card" style="margin-top: 32px">
+              <p
+                style="
+                  font-weight: 500;
+                  color: var(--text-primary);
+                  margin-bottom: 4px;
+                "
               >
-                Send Reset Link
-              </button>
-            </form>
+                What happens next?
+              </p>
+              <ul class="step-list">
+                <li>
+                  <span class="step-number">1</span>
+                  Check your email inbox and spam folder
+                </li>
+                <li>
+                  <span class="step-number">2</span>
+                  Click the reset link (valid for 60 minutes)
+                </li>
+                <li>
+                  <span class="step-number">3</span>
+                  Create a new password and sign back in
+                </li>
+              </ul>
+            </div>
 
-            <!-- Back to sign in link -->
-            <p class="switch-text">
+            <div class="form-footer-link">
               Remember your password?
-              <button class="auth-link" onclick="showView('signin')">
-                Back to sign in
-              </button>
-            </p>
+              <button onclick="showView('signin')">Sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================
+           VIEW 8: FORGOT PASSWORD — SUCCESS
+           ============================ -->
+      <div id="view-forgot-success" class="view">
+        <div class="form-view">
+          <div class="form-header">
+            <div></div>
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Toggle theme"
+              aria-label="Toggle dark/light theme"
+            >
+              <svg
+                class="theme-icon-sun"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+              <svg
+                class="theme-icon-moon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
           </div>
 
-          <!-- Success state -->
-          <div id="forgot-success" style="display: none">
-            <div class="success-card">
-              <div class="success-icon">
-                <!-- Email/check icon -->
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                </svg>
-              </div>
-              <h2
-                style="
-                  font-size: 20px;
-                  font-weight: 600;
-                  letter-spacing: -0.02em;
-                  margin-bottom: 8px;
-                "
+          <div
+            class="form-body"
+            style="justify-content: center; align-items: center"
+          >
+            <!-- Mail sent icon -->
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                background: var(--accent-muted);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 24px;
+              "
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                Check your email
-              </h2>
-              <p
-                style="
-                  font-size: 14px;
-                  color: var(--text-tertiary);
-                  line-height: 1.6;
-                  margin-bottom: 8px;
-                  max-width: 300px;
-                "
-              >
-                We sent a password reset link to your email address. It may take
-                a minute to arrive.
-              </p>
-              <p
-                style="
-                  font-size: 13px;
-                  color: var(--text-disabled);
-                  margin-bottom: 24px;
-                "
-              >
-                Don't see it? Check your spam folder.
-              </p>
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+
+            <h2 class="success-title">Reset link sent</h2>
+
+            <p class="success-desc">
+              Check your inbox at<br />
+              <span class="email-highlight">sarah.mitchell@gmail.com</span>
+            </p>
+
+            <p
+              style="
+                font-size: 14px;
+                color: var(--text-tertiary);
+                text-align: center;
+                line-height: 1.6;
+                max-width: 300px;
+                margin-bottom: 8px;
+              "
+            >
+              The link will expire in
+              <span
+                class="tabular-nums"
+                style="color: var(--text-secondary); font-weight: 500"
+                >60 minutes</span
+              >. Check your spam folder if you don't see it.
+            </p>
+
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                max-width: 280px;
+                margin-top: 32px;
+              "
+            >
               <button
-                class="auth-btn-secondary"
-                onclick="resetForgot()"
-                style="
-                  width: auto;
-                  height: 44px;
-                  padding: 0 24px;
-                  border-radius: 10px;
-                "
+                class="btn-submit"
+                style="margin-top: 0"
+                onclick="showNotification('success', 'Reset link resent!')"
+              >
+                Resend Link
+              </button>
+              <button
+                class="btn-ghost btn-lg"
+                style="width: 100%; border-radius: 12px"
+                onclick="showView('signin')"
               >
                 Back to Sign In
               </button>
             </div>
           </div>
         </div>
-
-        <!-- ========================================= -->
-        <!-- STATE 5: SIGN IN ERROR DEMO               -->
-        <!-- ========================================= -->
-        <div id="view-signin-error" class="auth-view">
-          <!-- Header with back button -->
-          <div class="form-header">
-            <button
-              class="back-btn"
-              onclick="showView('welcome')"
-              aria-label="Back to welcome"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-            </button>
-            <div class="form-header-text">
-              <h2>Welcome back</h2>
-              <p>Sign in to continue where you left off</p>
-            </div>
-          </div>
-
-          <form
-            onsubmit="return false;"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
-              margin-bottom: 24px;
-            "
-          >
-            <!-- Error banner -->
-            <div
-              style="
-                background: var(--error-bg);
-                border: 1px solid var(--error-border);
-                border-radius: 10px;
-                padding: 12px 16px;
-              "
-            >
-              <div style="display: flex; align-items: center; gap: 8px">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--error-text)"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  style="flex-shrink: 0"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="15" y1="9" x2="9" y2="15"></line>
-                  <line x1="9" y1="9" x2="15" y2="15"></line>
-                </svg>
-                <span style="font-size: 14px; color: var(--error-text)"
-                  >Invalid email or password. Please try again.</span
-                >
-              </div>
-            </div>
-
-            <!-- Email with error -->
-            <div class="field-group">
-              <label class="field-label" for="signin-error-email"
-                >Email address</label
-              >
-              <input
-                type="email"
-                id="signin-error-email"
-                class="input-error"
-                value="sarah.johnson@gmail.com"
-                autocomplete="email"
-              />
-            </div>
-
-            <!-- Password with error -->
-            <div class="field-group">
-              <label class="field-label" for="signin-error-password"
-                >Password</label
-              >
-              <div class="password-wrapper">
-                <input
-                  type="password"
-                  id="signin-error-password"
-                  class="input-error"
-                  value="wrongpassword"
-                  autocomplete="current-password"
-                />
-                <button
-                  type="button"
-                  class="password-toggle"
-                  onclick="togglePassword('signin-error-password', this)"
-                  aria-label="Show password"
-                >
-                  <svg
-                    class="icon-eye"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                    ></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                  <svg
-                    class="icon-eye-off"
-                    style="display: none"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
-                    ></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-                </button>
-              </div>
-              <div class="forgot-row">
-                <button
-                  class="auth-link"
-                  onclick="showView('forgot')"
-                  style="font-size: 13px"
-                >
-                  Forgot password?
-                </button>
-              </div>
-            </div>
-
-            <!-- Submit -->
-            <button type="submit" class="auth-btn-primary">Sign In</button>
-          </form>
-
-          <div class="auth-divider" style="margin-bottom: 20px">
-            <span>or continue with</span>
-          </div>
-
-          <div style="display: flex; gap: 10px; margin-bottom: 28px">
-            <button class="social-btn" style="flex: 1">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                style="width: 18px; height: 18px"
-              >
-                <path
-                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                />
-              </svg>
-              Apple
-            </button>
-            <button class="social-btn" style="flex: 1">
-              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-                  fill="#4285F4"
-                />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853"
-                />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05"
-                />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335"
-                />
-              </svg>
-              Google
-            </button>
-          </div>
-
-          <p class="switch-text">
-            Don't have an account?
-            <button class="auth-link" onclick="showView('signup')">
-              Create one
-            </button>
-          </p>
-        </div>
-      </div>
-      <!-- /.auth-container -->
-
-      <!-- ============================== -->
-      <!-- VIEW NAV (bottom pill for demo) -->
-      <!-- ============================== -->
-      <div
-        style="
-          position: fixed;
-          bottom: 24px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 20;
-          display: flex;
-          gap: 4px;
-          background: var(--surface-1);
-          border: 1px solid var(--border-faint);
-          border-radius: 12px;
-          padding: 4px;
-          box-shadow: var(--shadow-lg);
-        "
-      >
-        <button
-          class="view-nav-btn active"
-          data-view="welcome"
-          onclick="showView('welcome')"
-          style="
-            height: 32px;
-            padding: 0 14px;
-            border-radius: 8px;
-            border: none;
-            background: var(--accent-muted);
-            color: var(--accent);
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition:
-              background-color 150ms ease-out,
-              color 150ms ease-out;
-            white-space: nowrap;
-          "
-        >
-          Welcome
-        </button>
-        <button
-          class="view-nav-btn"
-          data-view="signup"
-          onclick="showView('signup')"
-          style="
-            height: 32px;
-            padding: 0 14px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: var(--text-tertiary);
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition:
-              background-color 150ms ease-out,
-              color 150ms ease-out;
-            white-space: nowrap;
-          "
-        >
-          Sign Up
-        </button>
-        <button
-          class="view-nav-btn"
-          data-view="signin"
-          onclick="showView('signin')"
-          style="
-            height: 32px;
-            padding: 0 14px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: var(--text-tertiary);
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition:
-              background-color 150ms ease-out,
-              color 150ms ease-out;
-            white-space: nowrap;
-          "
-        >
-          Sign In
-        </button>
-        <button
-          class="view-nav-btn"
-          data-view="forgot"
-          onclick="showView('forgot')"
-          style="
-            height: 32px;
-            padding: 0 14px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: var(--text-tertiary);
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition:
-              background-color 150ms ease-out,
-              color 150ms ease-out;
-            white-space: nowrap;
-          "
-        >
-          Forgot
-        </button>
-        <button
-          class="view-nav-btn"
-          data-view="signin-error"
-          onclick="showView('signin-error')"
-          style="
-            height: 32px;
-            padding: 0 14px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: var(--text-tertiary);
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition:
-              background-color 150ms ease-out,
-              color 150ms ease-out;
-            white-space: nowrap;
-          "
-        >
-          Error
-        </button>
       </div>
     </div>
-    <!-- /.auth-shell -->
+
+    <!-- ============================
+         NAVIGATION STATE BAR
+         Shows all views for easy navigation during design review
+         ============================ -->
+    <div
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--surface-1);
+        border-top: 1px solid var(--border-faint);
+        padding: 8px 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        z-index: 1000;
+      "
+    >
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('welcome')"
+        data-nav="welcome"
+        style="font-size: 11px"
+      >
+        Welcome
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('signup')"
+        data-nav="signup"
+        style="font-size: 11px"
+      >
+        Sign Up
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('signup-error')"
+        data-nav="signup-error"
+        style="font-size: 11px"
+      >
+        Sign Up (Error)
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('signup-success')"
+        data-nav="signup-success"
+        style="font-size: 11px"
+      >
+        Sign Up (Success)
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('signin')"
+        data-nav="signin"
+        style="font-size: 11px"
+      >
+        Sign In
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('signin-error')"
+        data-nav="signin-error"
+        style="font-size: 11px"
+      >
+        Sign In (Error)
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('forgot')"
+        data-nav="forgot"
+        style="font-size: 11px"
+      >
+        Forgot PW
+      </button>
+      <button
+        class="btn btn-ghost btn-sm"
+        onclick="showView('forgot-success')"
+        data-nav="forgot-success"
+        style="font-size: 11px"
+      >
+        Forgot (Sent)
+      </button>
+    </div>
 
     <script>
-      /* ============================== */
-      /* THEME TOGGLE                   */
-      /* ============================== */
+      // View switching
+      function showView(viewName) {
+        // Hide all views
+        document
+          .querySelectorAll(".view")
+          .forEach((v) => v.classList.remove("active"));
+        // Show target
+        const target = document.getElementById("view-" + viewName);
+        if (target) {
+          target.classList.add("active");
+        }
+        // Update nav bar active state
+        document.querySelectorAll("[data-nav]").forEach((btn) => {
+          btn.style.background =
+            btn.getAttribute("data-nav") === viewName
+              ? "var(--accent-muted)"
+              : "";
+          btn.style.color =
+            btn.getAttribute("data-nav") === viewName ? "var(--accent)" : "";
+        });
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+
+      // Theme toggle
       function toggleTheme() {
         const html = document.documentElement;
         const current = html.getAttribute("data-theme");
         html.setAttribute("data-theme", current === "light" ? "dark" : "light");
       }
 
-      /* ============================== */
-      /* VIEW SWITCHING                 */
-      /* ============================== */
-      function showView(viewName) {
-        // Hide all views
-        document.querySelectorAll(".auth-view").forEach((v) => {
-          v.classList.remove("active");
-        });
-
-        // Show target view
-        const target = document.getElementById("view-" + viewName);
-        if (target) {
-          target.classList.add("active");
-        }
-
-        // Update topbar logo visibility (hidden on welcome, visible on forms)
-        const topbarLogo = document.getElementById("topbar-logo");
-        topbarLogo.style.opacity = viewName === "welcome" ? "0" : "1";
-
-        // Update nav pill active state
-        document.querySelectorAll(".view-nav-btn").forEach((btn) => {
-          if (btn.dataset.view === viewName) {
-            btn.style.background = "var(--accent-muted)";
-            btn.style.color = "var(--accent)";
-          } else {
-            btn.style.background = "transparent";
-            btn.style.color = "var(--text-tertiary)";
-          }
-        });
-
-        // Reset forgot password form when navigating to it
-        if (viewName === "forgot") {
-          document.getElementById("forgot-form").style.display = "block";
-          document.getElementById("forgot-success").style.display = "none";
-        }
-      }
-
-      /* ============================== */
-      /* PASSWORD TOGGLE                */
-      /* ============================== */
-      function togglePassword(inputId, toggleBtn) {
+      // Password visibility toggle
+      function togglePassword(inputId, btn) {
         const input = document.getElementById(inputId);
-        const eyeIcon = toggleBtn.querySelector(".icon-eye");
-        const eyeOffIcon = toggleBtn.querySelector(".icon-eye-off");
-
         if (input.type === "password") {
           input.type = "text";
-          eyeIcon.style.display = "none";
-          eyeOffIcon.style.display = "block";
+          btn.innerHTML =
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
         } else {
           input.type = "password";
-          eyeIcon.style.display = "block";
-          eyeOffIcon.style.display = "none";
+          btn.innerHTML =
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
         }
       }
 
-      /* ============================== */
-      /* FORGOT PASSWORD SUCCESS        */
-      /* ============================== */
-      function showForgotSuccess() {
-        document.getElementById("forgot-form").style.display = "none";
-        document.getElementById("forgot-success").style.display = "block";
+      // Notification
+      function showNotification(type, message) {
+        const el = document.getElementById("notification");
+        const textEl = document.getElementById("notification-text");
+        el.className = "notification notification-" + type;
+        textEl.textContent = message;
+        el.classList.add("show");
+        setTimeout(() => {
+          el.classList.remove("show");
+        }, 3000);
       }
 
-      function resetForgot() {
-        showView("signin");
-      }
-
-      /* ============================== */
-      /* SIGN IN ERROR DEMO             */
-      /* ============================== */
-      function showSigninError() {
-        showView("signin-error");
-      }
+      // Set initial nav state
+      document.querySelector('[data-nav="welcome"]').style.background =
+        "var(--accent-muted)";
+      document.querySelector('[data-nav="welcome"]').style.color =
+        "var(--accent)";
     </script>
   </body>
 </html>

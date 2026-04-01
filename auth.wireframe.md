@@ -1,210 +1,196 @@
 # MOTO Auth Wireframe Spec
 
+Mobile-first (430px max-width), dark default, 8 views toggled via JS.
+
 ## Layout
 
-Full-page centered, no shell chrome. Mobile-first, max-width 430px.
-
 ```
-+----------------------------------+
-| [MOTO logo]        [theme toggle]|  <- fixed top bar
-|                                  |
-|         (ambient glow)           |
-|                                  |
-|     +------------------------+   |
-|     |   [content area]       |   |
-|     |   430px max, centered  |   |
-|     +------------------------+   |
-|                                  |
-+----------------------------------+
-```
-
-## States (JS view switching)
-
-5 states, switched via `showView(name)`. Each is a `div.auth-view`.
-
-| State | ID | Entry Point |
-|---|---|---|
-| Welcome | `view-welcome` | Default / back buttons |
-| Sign Up | `view-signup` | "Create Account" on welcome |
-| Sign In | `view-signin` | "Sign In" on welcome |
-| Forgot Password | `view-forgot` | "Forgot password?" on sign in |
-| Sign In Error | `view-signin-error` | Demo: "Sign In" button on sign-in |
-
-## Atmosphere: Warm Luxury
-
-- Accent: `#a78bfa` (dark), `#7c3aed` (light)
-- Bg: `#0c0a09` (dark), `#faf9f7` (light)
-- Surface-1: `#141210` (dark), `#ffffff` (light)
-- Stone-toned text hierarchy, 4 levels
-
-## Welcome State
-
-```
-        [gradient ring]
-         [heart icon]
-
-           MOTO
-   (56px, gradient text,
-    700 weight, -0.04em)
-
-  "Find someone to build
-       a life with"
-   (20px, text-secondary)
-
-  [====Create Account====]  <- 52px, gradient bg, white text
-  [======Sign In=========]  <- 52px, surface-1, border
-
-  ----  or continue with  ----
-
-  [Apple icon  Continue with Apple ]  <- 48px, bordered
-  [Google icon Continue with Google]  <- 48px, bordered
-
-  Terms of Service | Privacy Policy
-       (13px, text-disabled)
++--[430px shell]-----------------------------+
+|                                             |
+|  View 1: WELCOME (full-screen landing)      |
+|  View 2: SIGN UP (form)                     |
+|  View 3: SIGN UP ERROR (form + validation)  |
+|  View 4: SIGN UP SUCCESS (confirmation)     |
+|  View 5: SIGN IN (form)                     |
+|  View 6: SIGN IN ERROR (form + error banner)|
+|  View 7: FORGOT PASSWORD (form)             |
+|  View 8: FORGOT SUCCESS (confirmation)      |
+|                                             |
++---------------------------------------------+
 ```
 
-- Logo ring: 120px circle, gradient border, bg-page inner, heart SVG
-- Gradient: `linear-gradient(135deg, #a78bfa, #c084fc, #e879f9)`
-- Ambient glow: radial-gradient pseudo-elements on shell
+One view visible at a time. JS `showView(name)` hides all, shows target.
 
-## Sign Up State
+## Welcome Screen
 
 ```
-  [<-] Create your account
-       Start your journey...
-
-  Email address
-  [________________]  <- 48px, 10px radius
-
-  Password
-  [________________] [eye]
-  [====][====][====][    ]  <- strength bars
-  Good -- add a special character
-
-  Confirm password
-  [________________] [eye]
-
-  [====Create Account====]
-
-  ----  or continue with  ----
-
-  [Apple]  [Google]  <- side-by-side
-
-  Already have an account? Sign in
++---------------------------------------+
+|                          [theme-toggle]|
+|                                        |
+|          ( O   O )                     |
+|       interlocking circles             |
+|                                        |
+|            M O T O                     |
+|      VALUES-ALIGNED DATING             |
+|                                        |
+|      Not more choice.                  |
+|      Better alignment.    (serif h1)   |
+|                                        |
+|  A dating platform built around shared |
+|  values, life timelines, and the       |
+|  vision to build something that lasts. |
+|                                        |
+|  [====== Begin Your Story ======] 56px |
+|                                        |
+|   Already have an account? Sign in     |
+|                                        |
+|   Terms of Service · Privacy Policy    |
++---------------------------------------+
 ```
 
-- Back button: 40px square, 10px radius, border-faint
-- Password toggle: eye/eye-off SVG swap
-- Strength bars: 4 segments, color-coded (red/amber/green/purple)
+- Logo: 56px, font-weight 700, gradient text (accent -> #c4b5fd)
+- Wordmark: 13px uppercase, letter-spacing 0.2em, text-tertiary
+- Headline: Cormorant Garamond serif, 34px, weight 500
+- Thesis: 16px, text-secondary, max-width 320px, centered
+- Background: abstract constellation (radial gradients, dot pattern SVG)
+- No stock photos, no couple imagery
 
-## Sign In State
-
-```
-  [<-] Welcome back
-       Sign in to continue...
-
-  Email address
-  [________________]
-
-  Password
-  [________________] [eye]
-                Forgot password?
-
-  [========Sign In========]
-
-  ----  or continue with  ----
-
-  [Apple]  [Google]
-
-  Don't have an account? Create one
-```
-
-- "Forgot password?" right-aligned, 13px, accent color
-- Sign In button triggers error demo state
-
-## Forgot Password State
-
-### Form view:
-```
-  [<-] Reset your password
-       We'll send a reset link...
-
-  Email address
-  [________________]
-
-  [===Send Reset Link====]
-
-  Remember your password? Back to sign in
-```
-
-### Success view:
-```
-  +----------------------------+
-  |                            |
-  |     [green circle]         |
-  |     [email icon]           |
-  |                            |
-  |   Check your email         |
-  |   We sent a password       |
-  |   reset link...            |
-  |                            |
-  |   Don't see it? Check      |
-  |   your spam folder.        |
-  |                            |
-  |   [Back to Sign In]        |
-  +----------------------------+
-```
-
-- Success card: surface-1, border-faint, 16px radius, 40px/32px padding
-- Icon: 64px circle, success-bg, email SVG in success-text color
-
-## Error State (Sign In variant)
+## Form Header
 
 ```
-  [<-] Welcome back
-       Sign in to continue...
-
-  [!] Invalid email or password.
-      Please try again.
-      (error-bg + error-border + X icon)
-
-  Email address
-  [sarah.johnson@gmail.com]  <- red border, error-bg
-
-  Password
-  [wrongpassword___] [eye]  <- red border, error-bg
-                Forgot password?
-
-  [========Sign In========]
-
-  ----  or continue with  ----
-  [Apple]  [Google]
++---------------------------------------+
+| [<- back]              [theme-toggle] |
++---------------------------------------+
 ```
 
-- Error banner: error-bg, error-border, 10px radius, X circle icon
-- Inputs: `.input-error` class adds red border + red tinted bg
+- Back button: 40px square, rounded-[10px], ghost style
+- Theme toggle: 36px square, same as welcome
 
-## Component Specs
+## Sign Up Form
 
-| Component | Height | Radius | Font |
-|---|---|---|---|
-| Primary auth button | 52px | 12px | 16px/500 |
-| Secondary auth button | 52px | 12px | 16px/500 |
-| Social auth button | 48px | 10px | 14px/500 |
-| Input field | 48px | 10px | 16px/400 |
-| Back button | 40px | 10px | -- |
-| Password toggle | 36px | 6px | -- |
-| Theme toggle | 36px | 8px | -- |
+```
++---------------------------------------+
+| [<-]                     [sun/moon]   |
+|                                        |
+| Create your account          28px/600  |
+| This is the beginning of...  16px/sec  |
+|                                        |
+| [G  Continue with Google    ] 52px     |
+| [   Continue with Apple     ] 52px     |
+|                                        |
+| ---------- or continue ----------      |
+|                                        |
+| First name        Last name            |
+| [Sarah         ]  [Mitchell       ]    |
+|                                        |
+| Email address                          |
+| [sarah@example.com              ]      |
+|                                        |
+| Password                               |
+| [At least 8 characters      ] [eye]   |
+| [==][==][  ][  ] Medium strength       |
+|                                        |
+| Date of birth                          |
+| [Month v] [Day v] [Year v]            |
+| You must be 18 or older                |
+|                                        |
+| [======= Create Account =======]      |
+|                                        |
+| By creating an account, you agree...   |
+|                                        |
+| Already have an account? Sign in       |
++---------------------------------------+
+```
 
-## Transitions
+## Input Specs
 
-- View switch: `fadeSlideIn` 300ms (opacity 0->1, translateY 12px->0)
-- Button hover: `opacity 150ms ease-out`
-- Input focus: `border-color 150ms, box-shadow 150ms`
-- Theme: `background-color 200ms, color 200ms`
+| Element | Height | Radius | Font |
+|---------|--------|--------|------|
+| Text input | 48px | 10px | 16px/400 |
+| Social btn | 52px | 12px | 15px/500 |
+| Submit btn | 52px | 12px | 16px/600 |
+| Begin btn | 56px | 12px | 16px/600 |
 
-## Demo Navigation
+## Password Strength
 
-Fixed bottom pill bar for wireframe review:
-`[Welcome] [Sign Up] [Sign In] [Forgot] [Error]`
-Active pill: accent-muted bg, accent text. 12px radius, shadow-lg.
+4 bars, 3px height, 4px gap. Colors:
+
+| Level | Bar color | Label |
+|-------|-----------|-------|
+| Weak | --negative (#ef4444) | "Too weak" |
+| Medium | --warning (#d97706) | "Medium strength" |
+| Strong | --positive (#16a34a) | "Strong password" |
+
+## Validation Errors
+
+- Input border: --negative
+- Focus ring: 0 0 0 3px --negative-muted
+- Error text: 13px, --negative, flex with X-circle icon (14px)
+- Form-level error: card with --negative-muted bg, 1px border rgba(239,68,68,0.2), rounded-[10px], alert icon + title + description
+
+## Success States
+
+```
++---------------------------------------+
+|                          [theme-toggle]|
+|                                        |
+|            ( checkmark )               |
+|         64px circle, green bg          |
+|                                        |
+|        Check your email                |
+|                                        |
+|    We sent a verification link to      |
+|    sarah.mitchell@gmail.com            |
+|                                        |
+|    Click the link in the email to...   |
+|                                        |
+|    [======= Resend Email ========]     |
+|                                        |
+|    Wrong email? Go back                |
++---------------------------------------+
+```
+
+- Icon container: 64px circle, --positive-muted bg
+- Checkmark: 28px, stroke-width 2.5, --positive color
+- Email: --text-primary, font-weight 500
+
+## Forgot Password
+
+Form with single email field + "Send Reset Link" CTA. Below: info card with 3 numbered steps (check inbox, click link valid 60 min, create new password). Step numbers: 24px circles, --accent-muted bg, --accent text, 12px/600 tabular-nums.
+
+## Theme Toggle
+
+Sun icon in dark mode, moon icon in light. Located in header right-side on every view. 36px tap target, rounded-[8px], ghost hover.
+
+## Colors (Warm Luxury)
+
+| Token | Dark | Light |
+|-------|------|-------|
+| bg-page | #0c0a09 | #faf9f7 |
+| surface-1 | #141210 | #ffffff |
+| surface-2 | #1c1a17 | #f5f4f1 |
+| accent | #a78bfa | #7c3aed |
+| accent-hover | #8b5cf6 | #6d28d9 |
+
+## Typography
+
+- Headlines: Inter 600, -0.02em to -0.03em
+- Welcome headline: Cormorant Garamond 500, 34px (serif differentiator)
+- Logo: Inter 700, 56px, gradient fill
+- Body: Inter 400, 16px
+- Labels: Inter 500, 14px
+- Hints: Inter 400, 13px, text-tertiary
+- Errors: Inter 400, 13px, --negative
+
+## Interactions
+
+- View switch: JS toggles .active class (display:flex vs none)
+- Password toggle: switches input type text/password, swaps eye/eye-off icon
+- Notification bar: slides down from top, auto-hides after 3s
+- All buttons: scale(0.98) on :active
+- All focusable: double-ring focus-visible pattern
+- Reduced motion: @media query kills all animation/transition durations
+
+## Navigation Bar (Design Review Only)
+
+Fixed bottom bar with 8 buttons for jumping between views. Not part of production UI.
